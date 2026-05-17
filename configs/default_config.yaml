@@ -1,0 +1,72 @@
+# default_config.yaml — baseline experiment configuration
+# All values here can be overridden from the CLI or a sweep config.
+
+experiment:
+  name: "baseline_working_memory"
+  description: "LIF population + reward-modulated STDP on working memory task"
+
+# ── Network ──────────────────────────────────────────────────────────────────
+network:
+  layer_sizes: [128, 512, 256, 128]   # [input, hidden..., output]
+  dt: 1.0                             # simulation timestep (ms)
+  ei_ratio: 0.8                       # fraction of excitatory neurons per layer
+
+# ── Neuron parameters (Norse LIFParameters) ──────────────────────────────────
+neuron:
+  tau_mem_ms: 20.0
+  tau_syn_ms: 5.0
+  v_th: 1.0
+  v_reset: 0.0
+  v_leak: 0.0
+
+# ── Synapse ───────────────────────────────────────────────────────────────────
+synapse:
+  type: "current"                     # "current" | "conductance" | "stp"
+  tau_syn_ms: 5.0
+  e_rev_exc: 0.0
+  e_rev_inh: -70.0
+
+# ── Plasticity ────────────────────────────────────────────────────────────────
+plasticity:
+  rule: "reward_modulated_stdp"
+  A_plus: 0.01
+  A_minus: 0.012
+  tau_plus_ms: 20.0
+  tau_minus_ms: 20.0
+  tau_eligibility_ms: 100.0
+  eta: 1.0e-3
+  w_min: 0.0
+  w_max: 1.0
+
+# ── Task ──────────────────────────────────────────────────────────────────────
+task:
+  type: "working_memory"
+  n_patterns: 8
+  encode_ms: 100.0
+  delay_ms: 500.0
+  probe_ms: 100.0
+  noise_rate: 0.002
+
+# ── Reinforcement Learning Agent ─────────────────────────────────────────────
+rl:
+  agent: "random"                     # "random" | "ppo" | "dqn"
+  n_channels: 32
+  sparsity: 0.1
+  gamma: 0.99
+
+# ── Training ──────────────────────────────────────────────────────────────────
+training:
+  n_trials: 2000
+  seed: 42
+  device: "cpu"                       # "cpu" | "cuda" | "mps"
+  checkpoint_every: 200
+  log_every: 20
+  checkpoint_dir: "checkpoints"
+
+# ── Logging ───────────────────────────────────────────────────────────────────
+logging:
+  run_name: "baseline"
+  log_dir: "logs"
+  use_wandb: false
+  wandb_project: "brain-organoid-rl"
+  wandb_entity: null
