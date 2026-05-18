@@ -73,7 +73,39 @@ class IzhikevichNetwork(nn.Module):
         self.input_weights = nn.Parameter(
             torch.randn(n_neurons, 4, device=device) * 0.5,  # 4 inputs for cartpole
             requires_grad=False
-        )
+        )        # Place neurons on a 2D sheet (sqrt(n) x sqrt(n))
+        grid_size = int(np.ceil(np.sqrt(n_neurons)))
+        self.positions = torch.zeros(n_neurons, 2, device=device)
+        for i in range(n_neurons):
+            row = i // grid_size
+            col = i % grid_size
+            self.positions[i, 0] = row / grid_size  # normalized 0-1
+            self.positions[i, 1] = col / grid_size
+        
+        # Distance-dependent connectivity
+        C = 0.25        # max connection probability (local)
+        lambda_scale = 0.08  # spatial decay (8% of sheet size)
+        long_range_p = 0.08  # fraction of random long-range connections
+        
+        # Compute pairwise distances
+        diff = self.positions.unsqueeze(0) - self.positions.unsqueeze(1)  # (n, n, 2)
+        dist = torch.sqrt((diff ** 2).sum(dim=2))  # (n, n)
+        
+        # Distance-dependent probability
+        P_dist = C * torch.exp(-dist ** 2 / (2 * lambda_scale ** 2))
+        P_dist.fill_diagonal_(0.0)  # no autapses
+        
+        # Add long-range random connections
+        long_range_mask = (torch.rand(n_neurons, n_neurons, device=device) < long_range_p).float()
+        long_range_mask.fill_diagonal_(0.0)
+        
+        # Combined mask: distance-dependent OR long-range
+        conn_mask = ((torch.rand(n_neurons, n_neurons, device=device) < P_dist).float() + long_range_mask) > 0
+        conn_mask = conn_mask.float()
+        
+        # Weight matrix
+        W_raw = torch.randn(n_neurons, n_neurons, device=device) * 0.1
+        W_raw = W_raw * conn_mask
         
     def forward(self, x_ext=None):
         """
