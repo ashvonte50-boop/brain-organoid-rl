@@ -49,6 +49,7 @@ Three bugs compounded to make every previous run produce identical 0.0050
 import torch
 import numpy as np
 import matplotlib.pyplot as plt
+from scipy.stats import ttest_ind
 
 from neuron_models.izhikevich_network import IzhikevichNetwork
 
@@ -117,7 +118,7 @@ TAU_VERY_SLOW  = 200000.0
 
 # Experiment
 REST_STEPS_LIST = [0, 500, 1500, 4000]
-N_TRIALS        = 5
+N_TRIALS        = 20
 
 # Derived
 stim_steps          = int(STIM_DURATION_MS / DT)
@@ -263,6 +264,7 @@ print(f"  W_in (before training): {w0:.4f}")
 train_pattern(net, PATTERN)
 w1, _ = assembly_weight_mean(net)
 print(f"  W_in (after training):  {w1:.4f}  (gain {w1 - w0:+.4f})")
+print(f"  Saturation fraction:    {w1 / W_MAX:.3f}  (W_in / w_max = {w1:.4f} / {W_MAX})")
 if w1 <= w0 + 0.05:
     raise SystemExit("[FATAL] STDP failed to potentiate assembly.")
 
@@ -335,7 +337,16 @@ for cond_name, use_slow, results in [
         # Baseline (immediate, no rest)
         sp, isn = recall_run(net, CUE_NEURONS)
         sig_base, _, _, _ = recall_metrics(sp, isn)
-        print(f"    trial {trial+1}: baseline signal = {sig_base:+.4f}")
+
+        # Flag pathological trials (assembly failed to form).
+        # Mathematically: retention = sig/sig_base is meaningless when
+        # sig_base <= 0 because sign flips. These trials are kept in the
+        # results as ret=0.0 (worst case) and explicitly flagged.
+        if sig_base <= 0:
+            print(f"    trial {trial+1}: [WARN] baseline={sig_base:+.4f} "
+                  f"(assembly failed; retention set to 0 for all rests)")
+        else:
+            print(f"    trial {trial+1}: baseline={sig_base:+.4f}")
 
         for rest_n in REST_STEPS_LIST:
             net.W.data.copy_(W_train)
@@ -351,6 +362,7 @@ for cond_name, use_slow, results in [
             else:
                 ret = 0.0
             results[rest_n].append(float(ret))
+            print(f"      rest={rest_n:4d}  sig={sig:+.4f}  ret={ret:+.4f}")
 
 
 # ---- Report ----
@@ -362,6 +374,17 @@ for r in REST_STEPS_LIST:
     fm, fs = float(np.mean(results_fast[r])), float(np.std(results_fast[r]))
     sm, ss = float(np.mean(results_slow[r])), float(np.std(results_slow[r]))
     print(f"  {r:<8} {fm:+.3f} +/- {fs:.3f}     {sm:+.3f} +/- {ss:.3f}")
+
+# ---- Detailed summary per condition at longest rest ----
+print("\n" + "=" * 60)
+print(" SUMMARY STATISTICS  (longest rest)")
+print("=" * 60)
+for cond_label, vals in [("Fast Only",          results_fast[REST_STEPS_LIST[-1]]),
+                          ("Slow Consolidation", results_slow[REST_STEPS_LIST[-1]])]:
+    arr = np.array(vals)
+    print(f"  {cond_label}:")
+    print(f"    mean={arr.mean():+.4f}  std={arr.std():.4f}  "
+          f"median={np.median(arr):+.4f}  min={arr.min():+.4f}  max={arr.max():+.4f}")
 
 f_long = float(np.mean(results_fast[REST_STEPS_LIST[-1]]))
 s_long = float(np.mean(results_slow[REST_STEPS_LIST[-1]]))
@@ -375,6 +398,31 @@ elif s_long > f_long + 0.05:
     print(f"  [PARTIAL] Slow ({s_long:+.2f}) > Fast ({f_long:+.2f}).")
 else:
     print(f"  [FAIL] No gap: slow={s_long:+.2f}, fast={f_long:+.2f}.")
+
+# ---- Statistical significance ----
+print("\n" + "=" * 60)
+print(" STATISTICAL SIGNIFICANCE  (fast vs slow at longest rest)")
+print("=" * 60)
+f_arr = np.array(results_fast[REST_STEPS_LIST[-1]])
+s_arr = np.array(results_slow[REST_STEPS_LIST[-1]])
+t_stat, p_val = ttest_ind(s_arr, f_arr, equal_var=False)   # Welch's t-test
+# Cohen's d (pooled std)
+pooled_std = np.sqrt((f_arr.std() ** 2 + s_arr.std() ** 2) / 2.0)
+cohens_d   = (s_arr.mean() - f_arr.mean()) / max(pooled_std, 1e-9)
+# 95% CI on the mean difference (slow - fast)
+diff_mean = s_arr.mean() - f_arr.mean()
+se_diff   = np.sqrt(s_arr.std() ** 2 / len(s_arr) + f_arr.std() ** 2 / len(f_arr))
+ci_lo, ci_hi = diff_mean - 1.96 * se_diff, diff_mean + 1.96 * se_diff
+print(f"  t-statistic : {t_stat:+.4f}")
+print(f"  p-value     : {p_val:.4f}  "
+      f"({'***' if p_val < 0.001 else '**' if p_val < 0.01 else '*' if p_val < 0.05 else 'n.s.'})")
+print(f"  Cohen's d   : {cohens_d:.4f}  "
+      f"({'large' if abs(cohens_d) >= 0.8 else 'medium' if abs(cohens_d) >= 0.5 else 'small'})")
+print(f"  95% CI (slow-fast): [{ci_lo:+.4f}, {ci_hi:+.4f}]")
+if p_val < 0.05:
+    print(f"  [PASS] Significant consolidation advantage (p={p_val:.4f})")
+else:
+    print(f"  [WARN] Not yet significant (p={p_val:.4f}); consider more trials")
 
 
 # ============================================================
