@@ -7,9 +7,14 @@ class IzhikevichNetwork(nn.Module):
     """
     Recurrent Izhikevich spiking neural network with:
     - Multiple biological cell types
-    - Distance-dependent connectivity
+    - Distance-dependent connectivity (dense mode)
+    - Sparse modular connectivity (sparse_modular mode)
     - Pair-based STDP
     - Slow synaptic consolidation (Fusi-style cascade)
+
+    Two architecture modes:
+      "dense"          — original validated distance-dependent connectivity
+      "sparse_modular" — scalable modular topology with fan-in normalization
     """
 
     def __init__(
@@ -21,7 +26,13 @@ class IzhikevichNetwork(nn.Module):
         g_inh=-10.0,
         noise_std=8.0,
         dt=0.5,
-        device='cpu'
+        device='cpu',
+        arch_mode='dense',
+        n_modules=8,
+        intra_module_conn_prob=0.25,
+        inter_module_conn_prob=0.02,
+        inter_module_scale=0.05,
+        ee_sparsity=0.10,
     ):
         super().__init__()
 
@@ -32,6 +43,14 @@ class IzhikevichNetwork(nn.Module):
         self.dt = dt
         self.device = device
         self.noise_std = noise_std
+
+        # Architecture mode
+        self.arch_mode = arch_mode
+        self.n_modules = n_modules
+        self.intra_module_conn_prob = intra_module_conn_prob
+        self.inter_module_conn_prob = inter_module_conn_prob
+        self.inter_module_scale = inter_module_scale
+        self.ee_sparsity = ee_sparsity
 
         # =====================================================
         # CELL TYPES
@@ -125,7 +144,7 @@ class IzhikevichNetwork(nn.Module):
             self.u[i] = self.b[t] * (-70.0)
 
         # =====================================================
-        # DISTANCE-DEPENDENT CONNECTIVITY
+        # CONNECTIVITY
         # =====================================================
 
         grid_size = int(np.ceil(np.sqrt(n_neurons)))
@@ -143,55 +162,119 @@ class IzhikevichNetwork(nn.Module):
             self.positions[i, 0] = row / grid_size
             self.positions[i, 1] = col / grid_size
 
-        C = 0.25
-        lambda_scale = 0.08
-        long_range_p = 0.08
+        if arch_mode == "sparse_modular":
+            # -------------------------------------------------
+            # SPARSE MODULAR CONNECTIVITY
+            # -------------------------------------------------
+            # Biological rationale:
+            #   Cortex is organized into minicolumns/modules with dense
+            #   local recurrence and sparse long-range projections.
+            #   This prevents fan-in explosion at scale by keeping
+            #   each neuron's recurrent input localized to its module.
+            # -------------------------------------------------
 
-        diff = (
-            self.positions.unsqueeze(0)
-            - self.positions.unsqueeze(1)
-        )
+            # Assign each excitatory neuron to a module
+            module_id = torch.full(
+                (n_neurons,), -1, dtype=torch.long, device=device
+            )
+            exc_per_module = self.n_exc // n_modules
+            for m in range(n_modules):
+                start = m * exc_per_module
+                end = start + exc_per_module if m < n_modules - 1 else self.n_exc
+                module_id[start:end] = m
+            self.register_buffer('module_id', module_id)
 
-        dist = torch.sqrt((diff ** 2).sum(dim=2))
+            # Build modular connectivity mask (vectorized)
+            mod_i = self.module_id[:self.n_exc].unsqueeze(1)  # (n_exc, 1)
+            mod_j = self.module_id[:self.n_exc].unsqueeze(0)  # (1, n_exc)
+            same_module = (mod_i == mod_j) & (mod_i >= 0)     # (n_exc, n_exc)
 
-        P_dist = C * torch.exp(
-            -dist ** 2 / (2 * lambda_scale ** 2)
-        )
+            rand_mat = torch.rand(
+                self.n_exc, self.n_exc, device=device
+            )
+            intra_mask = (rand_mat < intra_module_conn_prob) & same_module
+            inter_mask = (rand_mat < inter_module_conn_prob) & ~same_module
+            ee_mask = (intra_mask | inter_mask).float()
+            ee_mask.fill_diagonal_(0.0)
 
-        P_dist.fill_diagonal_(0.0)
+            # Full connectivity: E→E from modular mask, I→ everywhere
+            conn_mask = torch.zeros(
+                n_neurons, n_neurons, device=device
+            )
+            conn_mask[:self.n_exc, :self.n_exc] = ee_mask
+            conn_mask[self.n_exc:, :] = 1.0
 
-        long_range_mask = (
-            torch.rand(
-                n_neurons,
-                n_neurons,
-                device=device
-            ) < long_range_p
-        ).float()
+            W_raw = (
+                torch.randn(n_neurons, n_neurons, device=device) * 0.1
+            )
+            W_raw = W_raw * conn_mask
 
-        long_range_mask.fill_diagonal_(0.0)
+            # Scale cross-module excitatory weights
+            cross_module = (~same_module).float()
+            cross_module.fill_diagonal_(0.0)
+            W_raw[:self.n_exc, :self.n_exc] *= (
+                1.0 + (inter_module_scale - 1.0) * cross_module
+            )
 
-        conn_mask = (
-            (
+        else:
+            # -------------------------------------------------
+            # DENSE DISTANCE-DEPENDENT CONNECTIVITY (original)
+            # -------------------------------------------------
+            C = 0.25
+            lambda_scale = 0.08
+            long_range_p = 0.08
+
+            diff = (
+                self.positions.unsqueeze(0)
+                - self.positions.unsqueeze(1)
+            )
+
+            dist = torch.sqrt((diff ** 2).sum(dim=2))
+
+            P_dist = C * torch.exp(
+                -dist ** 2 / (2 * lambda_scale ** 2)
+            )
+
+            P_dist.fill_diagonal_(0.0)
+
+            long_range_mask = (
                 torch.rand(
                     n_neurons,
                     n_neurons,
                     device=device
-                ) < P_dist
+                ) < long_range_p
             ).float()
-            + long_range_mask
-        ) > 0
 
-        conn_mask = conn_mask.float()
+            long_range_mask.fill_diagonal_(0.0)
 
-        W_raw = (
-            torch.randn(
-                n_neurons,
-                n_neurons,
-                device=device
-            ) * 0.1
-        )
+            conn_mask = (
+                (
+                    torch.rand(
+                        n_neurons,
+                        n_neurons,
+                        device=device
+                    ) < P_dist
+                ).float()
+                + long_range_mask
+            ) > 0
 
-        W_raw = W_raw * conn_mask
+            conn_mask = conn_mask.float()
+
+            W_raw = (
+                torch.randn(
+                    n_neurons,
+                    n_neurons,
+                    device=device
+                ) * 0.1
+            )
+
+            W_raw = W_raw * conn_mask
+
+            # module_id: all -1 in dense mode (no modular structure)
+            self.register_buffer(
+                'module_id',
+                torch.full((n_neurons,), -1, dtype=torch.long, device=device)
+            )
 
         # NOTE on sign convention: this mask selects ROWS (postsynaptic),
         # not columns (presynaptic) as biological Dale's-principle would
@@ -220,6 +303,16 @@ class IzhikevichNetwork(nn.Module):
             torch.abs(W_raw) * inh_mask * g_inh,
             requires_grad=False
         )
+
+        # Fan-in normalization for sparse_modular mode:
+        # scales each excitatory neuron's incoming E→E weights by
+        # 1/sqrt(fan_in), preserving stable recurrent drive at any N.
+        if arch_mode == "sparse_modular":
+            with torch.no_grad():
+                ee_sub = self.W.data[:self.n_exc, :self.n_exc]
+                fan_in = (ee_sub != 0).sum(dim=1, keepdim=True).clamp(min=1).float()
+                scale = 1.0 / torch.sqrt(fan_in)
+                ee_sub.mul_(scale)
 
         # Freeze initial weights as the decay target for both fast-only
         # and slow-consolidation conditions.

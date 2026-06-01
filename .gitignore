@@ -1,4 +1,4 @@
-# Python
+# ── Python bytecode ──────────────────────────────────────────────────
 __pycache__/
 *.py[cod]
 *.pyo
@@ -17,26 +17,122 @@ develop-eggs/
 lib/
 lib64/
 
-# Virtual environments
+# ── Virtual environments ─────────────────────────────────────────────
 venv/
 .venv/
 env/
 ENV/
 
-# Jupyter notebooks
+# ── Jupyter ──────────────────────────────────────────────────────────
 .ipynb_checkpoints/
 *.ipynb_checkpoints
+notebooks/.ipynb_checkpoints/
 
-# Experiment outputs
-logs/
-!logs/.gitkeep
+# ── IDE / editor ─────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ── OS ───────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+
+# ── Claude Code tool configuration ───────────────────────────────────
+.claude/
+
+# ── Model checkpoints and cached binaries (large, generated) ─────────
 checkpoints/
 !checkpoints/.gitkeep
+*.pt
+cached_masks.pt
+
+# ── TensorBoard / experiment tracking ────────────────────────────────
+logs/
+!logs/.gitkeep
 runs/
 wandb/
 mlruns/
 
-# Data (store large datasets externally)
+# ── Debug and temporary experiment scripts (single-use debris) ────────
+_debug_*.py
+_test_*.py
+_verify_*.py
+_quick_*.py
+__quick_verify.py
+_fix_*.py
+_nan_*.py
+_dream_runner*.py
+_find_first_nan.py
+_fix_and_test.py
+_multi_cycle.py
+_centroid_analysis.py
+_comprehensive.py
+_run_sweep.py
+_sweep2.py
+_sweep3.py
+_tune_params.py
+
+# ── Log files ─────────────────────────────────────────────────────────
+*.log
+ablation_dev.log
+ablation_dev_err.log
+ars_dev*.log
+actthr5_dev.log
+burst*.log
+comp_dev*.log
+endo_dev*.log
+final_dev.log
+nochain_dev.log
+overlap_excl_dev.log
+pers_dev*.log
+prod_run*.log
+rq_dev*.log
+reset_dev.log
+trace_reset_dev.log
+
+# ── Run output text files ─────────────────────────────────────────────
+run_cf*.txt
+run_out*.txt
+run_output.txt
+run_final.txt
+run_err*.txt
+run_extended_err.log
+run_extended_out.log
+gen_pubsummary_err.log
+gen_pubsummary_out.log
+pubsummary.log
+pubsummary_err.log
+test_out.txt
+run_out2.txt
+run_out_live.txt
+
+# ── Test output capture files ─────────────────────────────────────────
+_comprehensive_err.txt
+_comprehensive_out.txt
+_debug_nan_err.txt
+_debug_nan_out.txt
+_test_nan_source_err.txt
+_test_nan_source_out.txt
+_test_reduced_err.txt
+_test_reduced_out.txt
+_test_serial_err.txt
+_test_serial_out.txt
+_validate_err.txt
+_validate_out.txt
+
+# ── Legacy / superseded schema figures ───────────────────────────────
+# Publication figures are in figures/paper/ — these are superseded
+figures/schema/*.png
+figures/schema/*.pdf
+
+# ── Generated tabular outputs ─────────────────────────────────────────
+baseline_stats.csv
+
+# ── Debugging artifacts ───────────────────────────────────────────────
+hi, i am ash.txt
+
+# ── Data / datasets ───────────────────────────────────────────────────
 data/
 datasets/
 *.h5
@@ -44,30 +140,18 @@ datasets/
 *.npy
 *.npz
 
-# IDE
-.vscode/
-.idea/
-*.swp
-*.swo
-
-# OS
-.DS_Store
-Thumbs.db
-
-# Environment variables / secrets
+# ── Secrets / environment ─────────────────────────────────────────────
 .env
 .env.local
 secrets.yaml
 
-# Distribution / packaging
+# ── Distribution / packaging ──────────────────────────────────────────
 *.so
 *.dylib
 *.dll
 
-# Coverage
+# ── Coverage / testing ────────────────────────────────────────────────
 .coverage
 htmlcov/
 .pytest_cache/
-
-# MyPy
 .mypy_cache/
