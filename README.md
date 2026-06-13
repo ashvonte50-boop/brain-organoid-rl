@@ -12,7 +12,7 @@
 This repository contains the full experimental pipeline, analysis code, and publication materials for:
 
 > **"Replay-Gated Cascade Consolidation Produces the Serial Position Effect from Synaptic First Principles"**  
-> Ashwajit Warwatkar — BICA 2026 Submission
+> Ashwajit Warwatkar
 
 **Core finding:** A biologically plausible spiking neural network with two-timescale synaptic consolidation (W_fast → recency; W_slow → primacy) and harmonic-series replay scheduling spontaneously reproduces the Glanzer & Cunitz (1966) serial position effect — **without any special architectural assumptions**. Earlier-encoded memories receive more replay events (harmonic scheduling), accumulating disproportionately more W_slow consolidation, yielding primacy. W_fast decays rapidly, yielding recency. The serial position curve emerges from the interaction of these two mechanisms.
 
