@@ -1,0 +1,3 @@
+Running Python PIDs at session start (DO NOT KILL):
+7948 (heavy, started 7:45AM today, 32937s CPU)
+11644 (light, started 9:00PM yesterday)

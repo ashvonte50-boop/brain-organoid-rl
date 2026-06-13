@@ -1,0 +1,12 @@
+[INFO] DEV_MODE=True (via $env:DEV_MODE)
+[Q5] seed=42 core=20 unique=80 n_mem=4
+[Q5] Suppression levels: [1.0, 0.5, 0.2, 0.1, 0.0]
+
+[Q5] === bias_1.0 === bias=[1.0, 1.0, 1.0, 1.0] probs=[0.25, 0.25, 0.25, 0.25]
+[Q5] bias_1.0 done in 2114.3s
+[Q5]   replay_counts=[12, 8, 16, 9]
+[Q5]   retention=['0.2745', '0.2657', '0.2755', '0.2458']  mean=0.2654
+[Q5]   M0_retention=0.2745  M0_replays=12
+[Q5]   WScc=0.5905  WSuc=0.0719
+
+[Q5] === bias_0.5 === bias=[0.5, 1.0, 1.0, 1.0] probs=[0.14285714285714285, 0.2857142857142857, 0.2857142857142857, 0.2857142857142857]

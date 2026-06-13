@@ -24,11 +24,13 @@ import torch
 from .schema_core import register_schema_hooks
 from .schema_downscaling import DOWNSCALE_RATE
 
+import compare_catastrophic_forgetting as _ccf
 from compare_catastrophic_forgetting import (
-    N_NEURONS, N_EXC, MASTER_SEED, N_MEMORIES, ASSEMBLY_SIZE,
+    MASTER_SEED, N_MEMORIES, ASSEMBLY_SIZE,
     run_all_conditions as _run_all_conditions,
     make_overlapping_assemblies as _make_overlapping_assemblies,
 )
+# Live references — use _ccf.N_NEURONS / _ccf.N_EXC (not bare imports)
 
 # ── Hierarchical Schema Config ──────────────────────────────────────────
 SCHEMA_CORE_SIZE = 20       # shared core neurons (reduced from 40 to prevent runaway)
@@ -62,7 +64,7 @@ def make_schema_assemblies(n_memories=N_HIER_MEMORIES,
     """
     assert core_size + n_memories * unique_size <= total_neurons, \
         f"Need {core_size + n_memories * unique_size} neurons but only {total_neurons} available"
-    assert total_neurons <= N_EXC, "All assemblies must be within excitatory pool"
+    assert total_neurons <= _ccf.N_EXC, "All assemblies must be within excitatory pool"
 
     core_mask = np.arange(core_size, dtype=int)
     assemblies = []
@@ -83,7 +85,7 @@ def make_test_memory_e(assemblies, core_mask,
     n_existing = len(assemblies)
     start_unique = SCHEMA_CORE_SIZE + n_existing * unique_size
     end_unique = start_unique + unique_size
-    if end_unique > N_EXC:
+    if end_unique > _ccf.N_EXC:
         return None
     unique_e = np.arange(start_unique, end_unique, dtype=int)
     mem_e = np.concatenate([core_mask, unique_e])
@@ -99,7 +101,7 @@ def make_test_memory_f(core_size=SCHEMA_CORE_SIZE,
     """
     start_f = SCHEMA_CORE_SIZE + (n_hier_memories + 1) * unique_size
     end_f = start_f + ASSEMBLY_SIZE
-    if end_f > N_EXC:
+    if end_f > _ccf.N_EXC:
         return None
     mem_f = np.arange(start_f, end_f, dtype=int)
     return mem_f
@@ -114,8 +116,8 @@ def measure_schema_coherence(net, assemblies, core_mask):
     n_mem = len(assemblies)
     from compare_catastrophic_forgetting import CUE_STRENGTH, PROBE_STEPS, DEVICE
     probe_steps = 50
-    core_exc = core_mask[core_mask < N_EXC]
-    bg_exc = np.setdiff1d(np.arange(N_EXC), core_exc)
+    core_exc = core_mask[core_mask < _ccf.N_EXC]
+    bg_exc = np.setdiff1d(np.arange(_ccf.N_EXC), core_exc)
     if len(bg_exc) > 1000:
         bg_exc = np.random.choice(bg_exc, 1000, replace=False)
 
@@ -123,9 +125,9 @@ def measure_schema_coherence(net, assemblies, core_mask):
     bg_rates = []
     for aidx in range(min(n_mem, 4)):
         asm = assemblies[aidx]
-        asm_exc = asm[asm < N_EXC]
+        asm_exc = asm[asm < _ccf.N_EXC]
         cue_strength = CUE_STRENGTH
-        stim = torch.zeros(N_NEURONS, device=DEVICE)
+        stim = torch.zeros(_ccf.N_NEURONS, device=DEVICE)
         cue = np.random.choice(asm_exc, size=min(15, len(asm_exc)), replace=False)
         stim[cue] = cue_strength * 0.5
 
@@ -170,9 +172,9 @@ def measure_memory_specificity(net, assemblies, core_mask):
     results = {}
     for aidx in range(min(n_mem, 4)):
         asm = assemblies[aidx]
-        asm_exc = asm[asm < N_EXC]
+        asm_exc = asm[asm < _ccf.N_EXC]
         if core_mask is not None:
-            core_exc = core_mask[core_mask < N_EXC]
+            core_exc = core_mask[core_mask < _ccf.N_EXC]
             unique_exc = np.setdiff1d(asm_exc, core_exc)
         else:
             unique_exc = asm_exc
@@ -180,7 +182,7 @@ def measure_memory_specificity(net, assemblies, core_mask):
             continue
 
         cue = np.random.choice(asm_exc, size=min(15, len(asm_exc)), replace=False)
-        stim = torch.zeros(N_NEURONS, device=DEVICE)
+        stim = torch.zeros(_ccf.N_NEURONS, device=DEVICE)
         stim[cue] = CUE_STRENGTH * 0.5
 
         saved_v = net.v.detach().clone()
@@ -201,9 +203,9 @@ def measure_memory_specificity(net, assemblies, core_mask):
                         continue
                     oasm = assemblies[oidx]
                     if core_mask is not None:
-                        o_exc = np.setdiff1d(oasm[oasm < N_EXC], core_exc)
+                        o_exc = np.setdiff1d(oasm[oasm < _ccf.N_EXC], core_exc)
                     else:
-                        o_exc = oasm[oasm < N_EXC]
+                        o_exc = oasm[oasm < _ccf.N_EXC]
                     if len(o_exc) > 0:
                         other_unique_fired += int(net.spikes[o_exc].sum().item())
                         total_other += 1
@@ -227,11 +229,11 @@ def measure_memory_specificity(net, assemblies, core_mask):
 
 def compute_schema_extraction_index(net, core_mask):
     """(mean core weight - mean random weight) / (mean core + mean random)."""
-    ei = slice(0, N_EXC)
+    ei = slice(0, _ccf.N_EXC)
     w = net.W.data[ei, ei]
     if core_mask is None or len(core_mask) == 0:
         return 0.0
-    core_exc = core_mask[core_mask < N_EXC]
+    core_exc = core_mask[core_mask < _ccf.N_EXC]
     core_idx = torch.tensor(core_exc, device=w.device, dtype=torch.long)
     core_weights = w[core_idx[:, None], core_idx]
     core_mean = float(core_weights.mean().item())
@@ -252,20 +254,20 @@ def measure_schema_forward_transfer(net, mem_e, mem_f, n_steps=50):
     """
     from compare_catastrophic_forgetting import CUE_STRENGTH, DEVICE
     probe_steps = 5
-    stim_e = torch.zeros(N_NEURONS, device=DEVICE)
-    cue_e = np.random.choice(mem_e[mem_e < N_EXC],
+    stim_e = torch.zeros(_ccf.N_NEURONS, device=DEVICE)
+    cue_e = np.random.choice(mem_e[mem_e < _ccf.N_EXC],
                              size=min(10, len(mem_e)), replace=False)
     stim_e[cue_e] = CUE_STRENGTH
 
-    stim_f = torch.zeros(N_NEURONS, device=DEVICE)
-    cue_f = np.random.choice(mem_f[mem_f < N_EXC],
+    stim_f = torch.zeros(_ccf.N_NEURONS, device=DEVICE)
+    cue_f = np.random.choice(mem_f[mem_f < _ccf.N_EXC],
                              size=min(10, len(mem_f)), replace=False)
     stim_f[cue_f] = CUE_STRENGTH
 
     # Measure activity overlap after brief forward pass
     def _compute_overlap(stim, asm):
         net.reset_state()
-        asm_exc = asm[asm < N_EXC]
+        asm_exc = asm[asm < _ccf.N_EXC]
         with torch.no_grad():
             for _ in range(probe_steps):
                 net.forward(stim)

@@ -1,0 +1,21 @@
+SOURCE: major4_results\major4_summary.txt
+============================================================
+
+==============================================================================
+MAJOR-4: PROSPECTIVE NARRATIVE REFRAME — COMPLETE
+==============================================================================
+
+Outputs:
+  major4_results/major4_intro_rewrite.txt      — Full Introduction rewrite
+  major4_results/major4_e1_reframe.txt         — E1 reframed as H0-vs-H1 test
+  major4_results/major4_narrative_changes.txt   — Complete section-by-section changes
+
+Key reframes:
+  1. Hypothesis-first structure (temporal priority stated before experiments)
+  2. Three explicit predictions (P1: necessity, P2: asymmetry, P3: scheduling)
+  3. E1 Outcome B is now a POSITIVE result (falsifies H0)
+  4. All "we found" → "consistent with prediction PX"
+  5. Honest reporting preserved (E2 boost p=0.086, E3 attenuation ~60%)
+
+No simulations required.
+Status: MAJOR-4 COMPLETE ✓

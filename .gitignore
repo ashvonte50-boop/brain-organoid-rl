@@ -140,6 +140,22 @@ datasets/
 *.npy
 *.npz
 
+# ── Large binary simulation outputs ───────────────────────────────────
+*.pkl
+*.tiff
+*.tif
+
+# ── Heartbeat / maintenance scripts ───────────────────────────────────
+heartbeat*.ps1
+check_q5.ps1
+cpucheck.ps1
+mod3_watchdog.py
+_tmp_stdp.txt
+
+# ── Scale-copy backup directories ─────────────────────────────────────
+brain-organoid-rl scale/
+brain-organoid-rl scale - Copy/
+
 # ── Secrets / environment ─────────────────────────────────────────────
 .env
 .env.local

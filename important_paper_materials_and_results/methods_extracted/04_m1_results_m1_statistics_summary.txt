@@ -1,0 +1,26 @@
+SOURCE: m1_results\m1_statistics_summary.txt
+============================================================
+=== M1: Task 10.5 Across 20 Seeds -- Statistics Summary ===
+
+SUPPRESS M0: CTRL=0.2490+/-0.0107, SUPP=0.2224+/-0.0080
+  t(19)=12.113, p=0.000000, d=1.630
+  20/20 seeds showed degradation
+
+BOOST M3:    CTRL=0.2240+/-0.0062, BOOST=0.2227+/-0.0045
+  t(19)=1.716, p=0.102404, d=0.245
+  13/20 seeds showed no gain
+
+=== PASTE-READY PAPER TEXT ===
+
+"Replicating the Task 10.5 intervention across 20 independent seeds confirmed the
+suppression-boost asymmetry. Suppression of M0 replay significantly degraded M0
+retention (t(19) = 12.11, p = 0.0000, d = 1.63;
+20/20 seeds showed degradation: mean CTRL=0.2490,
+mean SUPP=0.2224). Boosting M3 replay produced no significant change
+in M3 retention (t(19) = 1.72, p = 0.1024, d = 0.24;
+13/20 seeds showed no gain: mean CTRL=0.2240,
+mean BOOST=0.2227). This asymmetry -- suppression effective,
+boosting ineffective -- is consistent with the encoding-seed threshold
+interpretation: replay can amplify traces above a W_slow threshold, but
+cannot inscribe new traces in memories whose W_slow seed is already
+saturated by interference."

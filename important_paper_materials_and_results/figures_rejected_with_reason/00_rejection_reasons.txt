@@ -1,0 +1,203 @@
+REJECTED FIGURES WITH REASONS
+============================================================
+
+Rank 16: major5_benna_fusi_comparison.png (score=9, 222KB)
+  Path: major5_results\major5_benna_fusi_comparison.png
+  Reasons: MED: comparison, recent, key results folder
+
+Rank 17: fig11_real_schema_validation.png (score=9, 302KB)
+  Path: figures\paper\fig11_real_schema_validation.png
+  Reasons: MED: schema, in figures/paper
+
+Rank 18: fig14_distortion_decomposition.png (score=9, 360KB)
+  Path: figures\paper\fig14_distortion_decomposition.png
+  Reasons: MED: position, in figures/paper
+
+Rank 19: fig1_wcc_decomposition.png (score=9, 872KB)
+  Path: ablation_results\task4\figures\fig1_wcc_decomposition.png
+  Reasons: MED: position, large file, key results folder
+
+Rank 20: fig2_retention.png (score=8, 144KB)
+  Path: figures\paper\fig2_retention.png
+  Reasons: MED: retention, in figures/paper
+
+Rank 21: fig3_real_schema.png (score=8, 109KB)
+  Path: figures\paper\fig3_real_schema.png
+  Reasons: MED: schema, in figures/paper
+
+Rank 22: fig4_schema_score.png (score=8, 97KB)
+  Path: figures\paper\fig4_schema_score.png
+  Reasons: MED: schema, in figures/paper
+
+Rank 23: fig9_functional_schema.png (score=8, 98KB)
+  Path: figures\paper\fig9_functional_schema.png
+  Reasons: MED: schema, in figures/paper
+
+Rank 24: fig_Q6_param_sensitivity.png (score=8, 363KB)
+  Path: ablation_results\q_fixes\fig_Q6_param_sensitivity.png
+  Reasons: MED: sensitivity, key results folder
+
+Rank 25: fig3_weight_decomposition.png (score=8, 200KB)
+  Path: ablation_results\task55\figures\fig3_weight_decomposition.png
+  Reasons: MED: position, key results folder
+
+Rank 26: fig1_schema_growth.png (score=8, 380KB)
+  Path: ablation_results\task3\figures\fig1_schema_growth.png
+  Reasons: MED: schema, key results folder
+
+Rank 27: fig3_retention_growth.png (score=8, 241KB)
+  Path: ablation_results\task3\figures\fig3_retention_growth.png
+  Reasons: MED: retention, key results folder
+
+Rank 28: fig04_retention_heatmap.png (score=7, 238KB)
+  Path: ablation_results\figures\fig04_retention_heatmap.png
+  Reasons: MED: retention, key results folder
+
+Rank 29: fig04_retention_heatmap.png (score=7, 282KB)
+  Path: ablation_results\pub_figures\fig04_retention_heatmap.png
+  Reasons: MED: retention, key results folder
+
+Rank 30: phase4_metric_comparison.png (score=7, 103KB)
+  Path: ablation_results\task26_figures\phase4_metric_comparison.png
+  Reasons: MED: comparison, key results folder
+
+Rank 31: fig5_sweep_C_replay.png (score=7, 82KB)
+  Path: ablation_results\task9\figures\fig5_sweep_C_replay.png
+  Reasons: MED: replay, key results folder
+
+Rank 32: fig2_replay_wslow.png (score=7, 95KB)
+  Path: ablation_results\task8\figures\fig2_replay_wslow.png
+  Reasons: MED: replay, key results folder
+
+Rank 33: fig1_retention_by_intervention.png (score=7, 144KB)
+  Path: ablation_results\task6\figures\fig1_retention_by_intervention.png
+  Reasons: MED: retention, key results folder
+
+Rank 34: fig2_destruction_schematic.png (score=7, 144KB)
+  Path: ablation_results\task6\figures\fig2_destruction_schematic.png
+  Reasons: MED: schema, key results folder
+
+Rank 35: fig3_pct_retention_remaining.png (score=7, 137KB)
+  Path: ablation_results\task6\figures\fig3_pct_retention_remaining.png
+  Reasons: MED: retention, key results folder
+
+Rank 36: fig1_retention.png (score=7, 127KB)
+  Path: ablation_results\task55\figures\fig1_retention.png
+  Reasons: MED: retention, key results folder
+
+Rank 37: fig1_retention.png (score=7, 133KB)
+  Path: ablation_results\task5\figures\fig1_retention.png
+  Reasons: MED: retention, key results folder
+
+Rank 38: fig3_retention_vs_wcc.png (score=7, 151KB)
+  Path: ablation_results\task5\figures\fig3_retention_vs_wcc.png
+  Reasons: MED: retention, key results folder
+
+Rank 39: fig1_real_schema.png (score=7, 127KB)
+  Path: ablation_results\task25\figures\fig1_real_schema.png
+  Reasons: MED: schema, key results folder
+
+Rank 40: fig2_retention.png (score=7, 105KB)
+  Path: ablation_results\task25\figures\fig2_retention.png
+  Reasons: MED: retention, key results folder
+
+Rank 41: fig4_permuted_core.png (score=7, 89KB)
+  Path: ablation_results\task25\figures\fig4_permuted_core.png
+  Reasons: MED: core, key results folder
+
+Rank 42: fig1_real_schema.png (score=7, 121KB)
+  Path: ablation_results\task2\figures\fig1_real_schema.png
+  Reasons: MED: schema, key results folder
+
+Rank 43: fig2_retention.png (score=7, 114KB)
+  Path: ablation_results\task2\figures\fig2_retention.png
+  Reasons: MED: retention, key results folder
+
+Rank 44: fig2_retention.png (score=7, 55KB)
+  Path: ablation_results\task105\figures\fig2_retention.png
+  Reasons: MED: retention, key results folder
+
+Rank 45: fig4_rank_comparison.png (score=7, 101KB)
+  Path: ablation_results\task105\figures\fig4_rank_comparison.png
+  Reasons: MED: comparison, key results folder
+
+Rank 46: fig2_early_replay_vs_wslow.png (score=7, 155KB)
+  Path: ablation_results\task10\figures\fig2_early_replay_vs_wslow.png
+  Reasons: MED: replay, key results folder
+
+Rank 47: fig5_model_comparison.png (score=7, 86KB)
+  Path: ablation_results\task10\figures\fig5_model_comparison.png
+  Reasons: MED: comparison, key results folder
+
+Rank 48: stdp_retention_test.png (score=6, 662KB)
+  Path: stdp_retention_test.png
+  Reasons: MED: retention, large file
+
+Rank 49: fig10_dai_validation.png (score=6, 274KB)
+  Path: figures\paper\fig10_dai_validation.png
+  Reasons: in figures/paper
+
+Rank 50: fig12_seed42_outlier.png (score=6, 286KB)
+  Path: figures\paper\fig12_seed42_outlier.png
+  Reasons: in figures/paper
+
+Rank 51: fig13_dai_discriminant.png (score=6, 432KB)
+  Path: figures\paper\fig13_dai_discriminant.png
+  Reasons: in figures/paper
+
+Rank 52: fig15_robustness_sweep.png (score=6, 389KB)
+  Path: figures\paper\fig15_robustness_sweep.png
+  Reasons: in figures/paper
+
+Rank 53: fig16_statistical_summary.png (score=6, 255KB)
+  Path: figures\paper\fig16_statistical_summary.png
+  Reasons: in figures/paper
+
+Rank 54: fig7_trajectories.png (score=6, 423KB)
+  Path: figures\paper\fig7_trajectories.png
+  Reasons: in figures/paper
+
+Rank 55: fig8_summary.png (score=6, 243KB)
+  Path: figures\paper\fig8_summary.png
+  Reasons: in figures/paper
+
+Rank 56: fig01_dai_core.png (score=6, 172KB)
+  Path: ablation_results\pub_figures\fig01_dai_core.png
+  Reasons: MED: core, key results folder
+
+Rank 57: fig02_real_schema.png (score=6, 128KB)
+  Path: ablation_results\pub_figures\fig02_real_schema.png
+  Reasons: MED: schema, key results folder
+
+Rank 58: fig2_per_memory.png (score=6, 44KB)
+  Path: ablation_results\task75\figures\fig2_per_memory.png
+  Reasons: MED: memory, key results folder
+
+Rank 59: fig3_rs_evolution.png (score=6, 565KB)
+  Path: ablation_results\task2\figures\fig3_rs_evolution.png
+  Reasons: large file, key results folder
+
+Rank 60: fig1_replay_counts.png (score=6, 50KB)
+  Path: ablation_results\task105\figures\fig1_replay_counts.png
+  Reasons: MED: replay, key results folder
+
+Rank 61: fig_similarity_heatmaps.png (score=5, 306KB)
+  Path: fig_similarity_heatmaps.png
+  Reasons: MED: heatmap
+
+Rank 62: replay_chain_trajectories.png (score=5, 208KB)
+  Path: replay_chain_trajectories.png
+  Reasons: MED: replay
+
+Rank 63: retention_surface_plot.png (score=5, 212KB)
+  Path: retention_surface_plot.png
+  Reasons: MED: retention
+
+Rank 64: e1_boost_adequate_seed.png (score=5, 139KB)
+  Path: e1_results\e1_boost_adequate_seed.png
+  Reasons: MED: boost
+
+Rank 65: m5_encoding_order_analysis.png (score=5, 276KB)
+  Path: m5_results\m5_encoding_order_analysis.png
+  Reasons: key results folder
+

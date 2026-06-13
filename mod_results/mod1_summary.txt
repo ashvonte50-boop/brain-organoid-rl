@@ -1,0 +1,3 @@
+MOD-1 N_MAX_REACHED = 1500
+  N=1000: FULL=0.300, NO_REPLAY=0.048, effect=+0.252, n_ok=6
+  N=1500: FULL=0.000, NO_REPLAY=0.006, effect=-0.006, n_ok=6

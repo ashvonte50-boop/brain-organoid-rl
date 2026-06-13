@@ -1,0 +1,46 @@
+[INFO] DEV_MODE=True (via $env:DEV_MODE)
+
+=== PHASE 2: 4-MEMORY (10 seeds x 6 fracs) ===
+  [1/60] skip seed=42 frac=0.0
+  [2/60] skip seed=42 frac=0.1
+  [3/60] skip seed=42 frac=0.25
+  [4/60] skip seed=42 frac=0.5
+  [5/60] skip seed=42 frac=0.75
+  [6/60] skip seed=42 frac=1.0
+  [7/60] skip seed=1042 frac=0.0
+  [8/60] skip seed=1042 frac=0.1
+  [9/60] skip seed=1042 frac=0.25
+  [10/60] skip seed=1042 frac=0.5
+  [11/60] skip seed=1042 frac=0.75
+  [12/60] skip seed=1042 frac=1.0
+  [13/60] skip seed=2042 frac=0.0
+  [14/60] skip seed=2042 frac=0.1
+  [15/60] skip seed=2042 frac=0.25
+  [16/60] skip seed=2042 frac=0.5
+  [17/60] skip seed=2042 frac=0.75
+  [18/60] skip seed=2042 frac=1.0
+  [19/60] skip seed=3042 frac=0.0
+  [20/60] skip seed=3042 frac=0.1
+  [21/60] skip seed=3042 frac=0.25
+  [22/60] skip seed=3042 frac=0.5
+  [23/60] skip seed=3042 frac=0.75
+  [24/60] skip seed=3042 frac=1.0
+  [25/60] skip seed=4042 frac=0.0
+  [26/60] skip seed=4042 frac=0.1
+  [27/60] skip seed=4042 frac=0.25
+  [28/60] skip seed=4042 frac=0.5
+  [29/60] skip seed=4042 frac=0.75
+  [30/60] skip seed=4042 frac=1.0
+  [31/60] skip seed=5042 frac=0.0
+  [32/60] skip seed=5042 frac=0.1
+  [33/60] skip seed=5042 frac=0.25
+  [34/60] skip seed=5042 frac=0.5
+  [35/60] skip seed=5042 frac=0.75
+  [36/60] skip seed=5042 frac=1.0
+  [37/60] skip seed=6042 frac=0.0
+  [38/60] skip seed=6042 frac=0.1
+  [39/60] skip seed=6042 frac=0.25
+  [40/60] skip seed=6042 frac=0.5
+  [41/60] seed=6042 frac=0.75: M0=0.1213 M3=0.0319 (687s)
+  [42/60] seed=6042 frac=1.00: M0=0.1614 M3=0.0278 (1371s)
+  [43/60] seed=7042 frac=0.00: M0=0.0258 M3=0.0400 (3024s)

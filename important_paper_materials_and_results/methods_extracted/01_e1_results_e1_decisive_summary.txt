@@ -1,0 +1,55 @@
+SOURCE: e1_results\e1_decisive_summary.txt
+============================================================
+=== E1: DECISIVE 2x2 (seed x boost on M3 retention) ===
+N seeds = 15  ADEQUATE_MULT=1
+
+Cell means (M3 retention):
+    normal seed, noboost: 0.2236 +/- 0.0014 (n=15)
+    normal seed,   boost: 0.2224 +/- 0.0013 (n=15)
+  adequate seed, noboost: 0.2238 +/- 0.0018 (n=15)
+  adequate seed,   boost: 0.2234 +/- 0.0013 (n=15)
+
+Measured W_encode[M3] by seed level:
+  normal: W_encode[M3]=0.03654
+  adequate: W_encode[M3]=0.03655
+  natural W_encode[M0] (target): 0.02198
+
+[Mixed-effects: m3_retention ~ seed_adequate * boosted]
+              Mixed Linear Model Regression Results
+=================================================================
+Model:               MixedLM   Dependent Variable:   m3_retention
+No. Observations:    60        Method:               ML          
+No. Groups:          15        Scale:                0.0000      
+Min. group size:     4         Log-Likelihood:       244.4731    
+Max. group size:     4         Converged:            Yes         
+Mean group size:     4.0                                         
+-----------------------------------------------------------------
+                      Coef.  Std.Err.    z    P>|z| [0.025 0.975]
+-----------------------------------------------------------------
+Intercept              0.224    0.001 161.696 0.000  0.221  0.226
+seed_adequate          0.000    0.001   0.203 0.839 -0.002  0.002
+boosted               -0.001    0.001  -1.068 0.286 -0.003  0.001
+seed_adequate:boosted  0.001    0.002   0.525 0.599 -0.002  0.004
+Group Var              0.000    0.003                            
+=================================================================
+
+
+--- Among ADEQUATE-seed M3: does boost help? (n=15) ---
+  noboost=0.2238  boost=0.2234  delta=-0.0004  t=-0.297  p=0.7709
+--- Among NORMAL-seed M3: does boost help? (n=15) ---
+  noboost=0.2236  boost=0.2224  delta=-0.0012  t=-0.893  p=0.3869
+
+seed x boost interaction: coef=0.0008526078192517321, p=0.5993199493133441
+
+=== E1 DECISIVE VERDICT ===
+>>> OUTCOME B: Boost STILL FAILS even with adequate seed.
+>>> The boundary is NOT the encoding seed. The amplifier framing must be revised.
+>>> Operative constraint is interference / replay-scheduling / encoding position.
+
+=== PASTE-READY TEXT (OUTCOME A) ===
+"The amplification boundary is the encoding-phase seed. To test whether the failure of boosted replay to rescue M3 reflects its small encoding seed rather than its position, we performed a 2x2 factorial (M3 encoding seed: normal vs adequate; M3 replay: normal vs boosted; 15 seeds). A significant seed x boost interaction (beta=0.0008526, p=0.5993) showed that boosted replay increased M3 retention only when M3 had received an adequate encoding seed (delta=-0.0004, p=0.7709), and produced no gain at the normal seed (delta=-0.0012, p=0.3869). This directly confirms that replay amplifies an existing encoding-phase trace: a sufficient seed is necessary for replay-driven consolidation, and once present, additional replay potentiates W_slow as predicted by RGCC."
+
+=== PASTE-READY TEXT (OUTCOME B) ===
+"Contrary to a pure encoding-seed-threshold account, providing M3 with an adequate encoding seed (W_encode[M3] 0.0366 vs natural M0 0.0220) did not unlock a benefit of boosted replay (seed x boost interaction p=0.5993; boost effect at adequate seed delta=-0.0004, p=0.7709, n.s.). This indicates the boundary on replay-driven consolidation is not solely the encoding-seed magnitude. We reframe the amplifier observation: replay does not rescue the last-encoded memory even when its seed is restored, pointing to encoding position / replay-scheduling as the operative constraint."
+
+>>> APPLIES: OUTCOME B

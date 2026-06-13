@@ -1,0 +1,22 @@
+======================================================================
+MAJOR-2: BEHAVIORAL READOUT — VERDICT
+======================================================================
+
+Overall correlation: r = 0.1329, p = 1.48e-01, n = 120
+
+VERDICT: WEAK VALIDATION (r < 0.3)
+  isyn_score is NOT a reliable proxy for behavioral recall.
+  MUST rerun headline experiments with behavioral metric.
+
+FULL:
+  isyn_score:      0.2892 ± 0.0057
+  recall_accuracy: 0.0076 ± 0.0014
+  binary_recall:   0.0000 ± 0.0000
+
+NO_REPLAY:
+  isyn_score:      0.0372 ± 0.0007
+  recall_accuracy: 0.0049 ± 0.0026
+  binary_recall:   0.0000 ± 0.0000
+
+FULL vs NO_REPLAY (behavioral): t=0.907, p=3.67e-01
+  WARNING: Replay necessity NOT confirmed by behavioral metric

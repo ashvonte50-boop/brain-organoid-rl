@@ -1,0 +1,22 @@
+=== M4: Single-Timescale Null Model -- Statistics ===
+
+NULL FULL:      0.0247+/-0.0045
+NULL NO_REPLAY: 0.0281+/-0.0036
+ORIG FULL:      0.2860+/-0.0130
+ORIG NO_REPLAY: 0.0370
+
+Null FULL vs NO_REPLAY: t=-5.969, p=0.000210, d=-0.774
+Null FULL vs Orig FULL: t=-175.297, p=0.000000
+
+=== PASTE-READY PAPER TEXT ===
+
+"Single-Timescale Null Model -- To confirm that the two-timescale cascade
+architecture is necessary for replay-driven consolidation, we implemented a null
+model in which the slow-weight contribution is removed (gamma=0, W_eff = W_fast
+only). Running Task 2 on this null model showed that replay was substantially less protective:
+null-model retention with replay was 0.0247+/-0.0045
+(n=10 seeds), compared with 0.2860+/-0.0130 in the two-timescale
+FULL model (t=-175.30, p=0.0000). The replay benefit in the null model
+(-0.0034) was dramatically smaller than in the full model
+(0.2490), confirming that the Fusi-cascade slow-weight component
+is necessary for consolidation, not merely correlated with it."

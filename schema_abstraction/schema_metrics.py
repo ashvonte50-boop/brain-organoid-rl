@@ -1,14 +1,15 @@
 import numpy as np
 import torch
 
-from compare_catastrophic_forgetting import DEVICE, N_NEURONS, N_EXC, CUE_STRENGTH, TEST_NOISE
+from compare_catastrophic_forgetting import DEVICE, CUE_STRENGTH, TEST_NOISE
+import compare_catastrophic_forgetting as _ccf
 from .schema_core import CENTROID_PROBE_STEPS, CENTROID_COSINE_EPS, CENTROID_INTERP_FACTOR
 
 
 def probe_assembly_centroid(net, assemblies, n_steps=CENTROID_PROBE_STEPS):
     """Probe each assembly and return centroid vectors without altering network state.
 
-    Uses I_syn[:N_EXC] averaged over a fixed-length probe window.  Unlike
+    Uses I_syn[:_ccf.N_EXC] averaged over a fixed-length probe window.  Unlike
     probe_memory (which computes a differential score against background),
     this returns the raw per-neuron activation vector for pairwise distance
     and schema-convergence tracking.
@@ -38,14 +39,14 @@ def probe_assembly_centroid(net, assemblies, n_steps=CENTROID_PROBE_STEPS):
         net.pre_trace.zero_()
         net.post_trace.zero_()
     for asm in assemblies:
-        centroid = np.zeros(N_EXC, dtype=np.float32)
+        centroid = np.zeros(_ccf.N_EXC, dtype=np.float32)
         cue = asm[:min(30, len(asm))]
-        stim = torch.zeros(N_NEURONS, device=DEVICE)
+        stim = torch.zeros(_ccf.N_NEURONS, device=DEVICE)
         stim[cue] = CUE_STRENGTH
         with torch.no_grad():
             for _ in range(n_steps):
                 net.forward(stim)
-                centroid += net.I_syn[:N_EXC].cpu().numpy()
+                centroid += net.I_syn[:_ccf.N_EXC].cpu().numpy()
         centroid /= n_steps
         centroids.append(centroid)
 

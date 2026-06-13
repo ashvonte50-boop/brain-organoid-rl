@@ -22,7 +22,8 @@ Three metrics that make this paper unique:
 import numpy as np
 from scipy.stats import pearsonr as _pearsonr
 
-from compare_catastrophic_forgetting import _safe_mean, N_EXC
+from compare_catastrophic_forgetting import _safe_mean
+import compare_catastrophic_forgetting as _ccf
 
 
 # ═════════════════════════════════════════════════════════════════════════
@@ -63,16 +64,16 @@ def compute_schema_crystallization_index(centroid_snapshots, assemblies,
         unique_parts = []
         for aidx in range(min(n_mem, len(centroids))):
             asm = assemblies[aidx]
-            asm_exc = asm[asm < N_EXC]
+            asm_exc = asm[asm < _ccf.N_EXC]
             cent = centroids[aidx].ravel() if hasattr(centroids[aidx], 'ravel') else np.asarray(centroids[aidx]).ravel()
 
             if core_mask is not None:
-                core_exc = core_mask[core_mask < N_EXC]
+                core_exc = core_mask[core_mask < _ccf.N_EXC]
                 unique_mask = np.setdiff1d(asm_exc, core_exc)
             else:
                 unique_mask = asm_exc
 
-            # The centroid is a vector over N_EXC; extract the unique positions
+            # The centroid is a vector over _ccf.N_EXC; extract the unique positions
             unique_part = cent[unique_mask] if len(unique_mask) <= len(cent) else cent[:len(unique_mask)]
             if len(unique_part) > 0:
                 unique_parts.append(unique_part)

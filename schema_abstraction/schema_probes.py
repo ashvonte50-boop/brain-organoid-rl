@@ -21,7 +21,8 @@ All probes use adaptive thresholds that scale with mean weight magnitude.
 import numpy as np
 import torch
 
-from compare_catastrophic_forgetting import DEVICE, N_NEURONS, N_EXC, CUE_STRENGTH, TEST_NOISE, _safe_mean
+from compare_catastrophic_forgetting import DEVICE, CUE_STRENGTH, TEST_NOISE, _safe_mean
+import compare_catastrophic_forgetting as _ccf
 
 # DEV_MODE speed-up
 try:
@@ -42,7 +43,7 @@ ADAPTIVE_THRESHOLD_MULT = 3.0
 
 def _adaptive_threshold(net):
     """Return a firing-rate threshold scaled by mean W_ee magnitude."""
-    ei = slice(0, N_EXC)
+    ei = slice(0, _ccf.N_EXC)
     mean_w = float(net.W.data[ei, ei].abs().mean().item())
     return mean_w * ADAPTIVE_THRESHOLD_MULT + 0.01
 
@@ -103,7 +104,7 @@ def test_partial_cue_retrieval(net, assemblies, core_mask=None,
     results = {}
     for aidx in range(min(n_mem, 8)):
         asm = assemblies[aidx]
-        asm_exc = asm[asm < N_EXC]
+        asm_exc = asm[asm < _ccf.N_EXC]
         asm_size = len(asm_exc)
         cue_results = {}
         for frac in cue_fractions:
@@ -111,7 +112,7 @@ def test_partial_cue_retrieval(net, assemblies, core_mask=None,
             for _ in range(n_trials):
                 cue_size = max(1, int(asm_size * frac))
                 if core_mask is not None:
-                    core_exc = core_mask[core_mask < N_EXC]
+                    core_exc = core_mask[core_mask < _ccf.N_EXC]
                     core_in_asm = np.intersect1d(asm_exc, core_exc)
                     unique_in_asm = np.setdiff1d(asm_exc, core_exc)
                     if len(core_in_asm) >= cue_size:
@@ -128,7 +129,7 @@ def test_partial_cue_retrieval(net, assemblies, core_mask=None,
                 else:
                     cue_neurons = np.random.choice(asm_exc, cue_size, replace=False)
 
-                stim = torch.zeros(N_NEURONS, device=DEVICE)
+                stim = torch.zeros(_ccf.N_NEURONS, device=DEVICE)
                 stim[cue_neurons] = CUE_STRENGTH * 0.5
 
                 net.reset_state()
@@ -200,20 +201,20 @@ def test_schema_core_generalization(net, assemblies, core_mask, n_trials=5):
         return {"blended_activation": 0.0, "specificity": 0.0,
                 "core_completion": 0.0, "activation_by_memory": []}
 
-    core_exc = core_mask[core_mask < N_EXC]
+    core_exc = core_mask[core_mask < _ccf.N_EXC]
     core_cue = np.random.choice(core_exc, size=min(15, len(core_exc)), replace=False)
 
     activation_by_memory = []
     for aidx in range(min(n_mem, 8)):
         asm = assemblies[aidx]
-        asm_exc = asm[asm < N_EXC]
+        asm_exc = asm[asm < _ccf.N_EXC]
         if core_mask is not None:
             unique_exc = np.setdiff1d(asm_exc, core_exc)
         else:
             unique_exc = asm_exc
         if len(unique_exc) == 0:
             continue
-        stim = torch.zeros(N_NEURONS, device=DEVICE)
+        stim = torch.zeros(_ccf.N_NEURONS, device=DEVICE)
         stim[core_cue] = CUE_STRENGTH * 0.5
 
         net.reset_state()
@@ -240,7 +241,7 @@ def test_schema_core_generalization(net, assemblies, core_mask, n_trials=5):
         specificity = 1.0
 
     # Core completion rate
-    stim = torch.zeros(N_NEURONS, device=DEVICE)
+    stim = torch.zeros(_ccf.N_NEURONS, device=DEVICE)
     stim[core_cue] = CUE_STRENGTH * 0.5
     net.reset_state()
     with torch.no_grad():
@@ -269,35 +270,35 @@ def create_schema_consistent_novel_input(net, assemblies, base_idx=0,
     If core_mask is provided, cues only the Schema Core neurons.
     """
     n_mem = len(assemblies)
-    stim = torch.zeros(N_NEURONS, device=DEVICE)
+    stim = torch.zeros(_ccf.N_NEURONS, device=DEVICE)
     threshold = _adaptive_threshold(net)
 
     if core_mask is not None and len(core_mask) > 0:
-        core_exc = core_mask[core_mask < N_EXC]
+        core_exc = core_mask[core_mask < _ccf.N_EXC]
         n_cue = min(10, len(core_exc))
         cue = np.random.choice(core_exc, n_cue, replace=False)
         stim[cue] = CUE_STRENGTH * 0.5
     else:
         if base_idx < n_mem:
             asm_a = assemblies[base_idx]
-            asm_a_exc = asm_a[asm_a < N_EXC]
+            asm_a_exc = asm_a[asm_a < _ccf.N_EXC]
             n_a = max(1, int(0.7 * len(asm_a_exc)))
             idx_a = np.random.choice(asm_a_exc, n_a, replace=False)
             stim[idx_a] = CUE_STRENGTH * 0.6
         if base_idx + 1 < n_mem:
             asm_b = assemblies[base_idx + 1]
-            asm_b_exc = asm_b[asm_b < N_EXC]
+            asm_b_exc = asm_b[asm_b < _ccf.N_EXC]
             n_b = max(1, int(0.3 * len(asm_b_exc)))
             idx_b = np.random.choice(asm_b_exc, n_b, replace=False)
             stim[idx_b] = CUE_STRENGTH * 0.4
 
-    stim += torch.randn(N_NEURONS, device=DEVICE) * 0.3
+    stim += torch.randn(_ccf.N_NEURONS, device=DEVICE) * 0.3
     return stim
 
 
 def create_high_fidelity_input(net, assemblies, base_idx=0):
     """Full, veridical input — the complete assembly with no mixing."""
-    stim = torch.zeros(N_NEURONS, device=DEVICE)
+    stim = torch.zeros(_ccf.N_NEURONS, device=DEVICE)
     if base_idx < len(assemblies):
         stim[assemblies[base_idx]] = CUE_STRENGTH
     return stim
@@ -349,7 +350,7 @@ def test_generalization(net, assemblies, core_mask=None,
                     correct_completions += 1
                 # Completion check: does target assembly fire?
                 target = assemblies[aidx]
-                target_exc = target[target < N_EXC]
+                target_exc = target[target < _ccf.N_EXC]
                 if len(target_exc) > 0:
                     target_rate = act[aidx] / max(1, len(target_exc))
                     if target_rate > threshold * 0.3:
@@ -410,14 +411,14 @@ def test_anti_prediction(net, assemblies, core_mask=None, n_trials=5):
 
             # Suppression depth: measure firing of non-target unique sets
             if core_mask is not None and len(core_mask) > 0:
-                core_exc = core_mask[core_mask < N_EXC]
-                target_unique = np.setdiff1d(assemblies[aidx][assemblies[aidx] < N_EXC], core_exc)
+                core_exc = core_mask[core_mask < _ccf.N_EXC]
+                target_unique = np.setdiff1d(assemblies[aidx][assemblies[aidx] < _ccf.N_EXC], core_exc)
                 other_unique_rates = []
                 for oi in range(n_mem):
                     if oi == aidx:
                         continue
                     other_asm = assemblies[oi]
-                    other_u = np.setdiff1d(other_asm[other_asm < N_EXC], core_exc)
+                    other_u = np.setdiff1d(other_asm[other_asm < _ccf.N_EXC], core_exc)
                     if len(other_u) > 0:
                         rate = act_nat[oi] / max(1, len(other_u))
                         other_unique_rates.append(rate)
@@ -472,7 +473,7 @@ def compute_basin_geometry(net, assemblies, core_mask=None, n_trials=20):
     results = {}
     for aidx in range(n_mem):
         asm = assemblies[aidx]
-        asm_exc = asm[asm < N_EXC]
+        asm_exc = asm[asm < _ccf.N_EXC]
         # Basin volume
         basin_hits = 0
         for _ in range(n_trials):
@@ -480,7 +481,7 @@ def compute_basin_geometry(net, assemblies, core_mask=None, n_trials=20):
             if net.stdp_enabled:
                 net.pre_trace.zero_()
                 net.post_trace.zero_()
-            noise_stim = torch.randn(N_NEURONS, device=DEVICE) * 0.5
+            noise_stim = torch.randn(_ccf.N_NEURONS, device=DEVICE) * 0.5
             with torch.no_grad():
                 for _ in range(PROBE_STEPS):
                     net.forward(noise_stim)
@@ -504,7 +505,7 @@ def compute_basin_geometry(net, assemblies, core_mask=None, n_trials=20):
                 net.post_trace.zero_()
 
             if core_mask is not None and len(core_mask) > 0:
-                core_exc = core_mask[core_mask < N_EXC]
+                core_exc = core_mask[core_mask < _ccf.N_EXC]
                 core_in_asm = np.intersect1d(asm_exc, core_exc)
                 if len(core_in_asm) >= 3:
                     cue = np.random.choice(core_in_asm, min(5, len(core_in_asm)), replace=False)
@@ -513,7 +514,7 @@ def compute_basin_geometry(net, assemblies, core_mask=None, n_trials=20):
             else:
                 cue = np.random.choice(asm_exc, max(1, len(asm_exc) // 3), replace=False)
 
-            stim = torch.zeros(N_NEURONS, device=DEVICE)
+            stim = torch.zeros(_ccf.N_NEURONS, device=DEVICE)
             stim[cue] = CUE_STRENGTH
             with torch.no_grad():
                 for _ in range(PROBE_STEPS):
@@ -529,7 +530,7 @@ def compute_basin_geometry(net, assemblies, core_mask=None, n_trials=20):
         if net.stdp_enabled:
             net.pre_trace.zero_()
             net.post_trace.zero_()
-        stim = torch.zeros(N_NEURONS, device=DEVICE)
+        stim = torch.zeros(_ccf.N_NEURONS, device=DEVICE)
         cue = np.random.choice(asm_exc, min(10, len(asm_exc)), replace=False)
         stim[cue] = CUE_STRENGTH
         with torch.no_grad():
@@ -647,12 +648,12 @@ def stabilize_attractor_basins(net, assemblies, core_mask=None):
     measurements reflect stable attractor states.
     """
     n_mem = len(assemblies)
-    ei = slice(0, N_EXC)
+    ei = slice(0, _ccf.N_EXC)
     w = net.W.data[ei, ei]
 
     for aidx in range(n_mem):
         asm = assemblies[aidx]
-        asm_exc = asm[asm < N_EXC]
+        asm_exc = asm[asm < _ccf.N_EXC]
         if len(asm_exc) < 2:
             continue
 
@@ -667,18 +668,18 @@ def stabilize_attractor_basins(net, assemblies, core_mask=None):
 
     # Adaptive inhibition scaling: maintain E/I balance
     n_total = net.W.shape[0]
-    if n_total > N_EXC:
+    if n_total > _ccf.N_EXC:
         mean_e = float(w[ei, ei].mean().item())
-        mean_ei = float(net.W.data[:N_EXC, N_EXC:].abs().mean().item())
+        mean_ei = float(net.W.data[:_ccf.N_EXC, _ccf.N_EXC:].abs().mean().item())
         if mean_e > 1e-6 and mean_ei > 1e-6:
             target_ei_ratio = 3.0
             current_ratio = mean_e / max(mean_ei, 1e-10)
             if current_ratio < target_ei_ratio * 0.5:
                 with torch.no_grad():
-                    net.W.data[:N_EXC, N_EXC:].mul_(1.05)
+                    net.W.data[:_ccf.N_EXC, _ccf.N_EXC:].mul_(1.05)
             elif current_ratio > target_ei_ratio * 2.0:
                 with torch.no_grad():
-                    net.W.data[:N_EXC, N_EXC:].mul_(0.95)
+                    net.W.data[:_ccf.N_EXC, _ccf.N_EXC:].mul_(0.95)
 
 
 # ── Hook callbacks ─────────────────────────────────────────────────────

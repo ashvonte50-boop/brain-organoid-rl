@@ -1,0 +1,94 @@
+SOURCE: ablation_resultsq6_sweepq6_log.txt
+============================================================
+[INFO] DEV_MODE=True (via $env:DEV_MODE)
+
+============================================================
+[Q6] Sweeping gamma: [0.3, 0.5, 0.8, 0.95]
+============================================================
+
+[Q6] gamma_0.3 ...
+[Q6] gamma_0.3: retention=0.1393 WScc=nan (2119.3s)
+
+[Q6] gamma_0.5 ...
+[Q6] gamma_0.5: retention=0.2223 WScc=nan (1071.2s)
+
+[Q6] gamma_0.8 ...
+[Q6] gamma_0.8: retention=0.5103 WScc=nan (573.6s)
+
+[Q6] gamma_0.95 ...
+[Q6] gamma_0.95: retention=0.0000 WScc=nan (539.8s)
+
+============================================================
+[Q6] Sweeping tau_slow: [500, 2000, 8000, 16000]
+============================================================
+
+[Q6] tau_slow_500 ...
+[Q6] tau_slow_500: retention=0.0000 WScc=nan (528.3s)
+
+[Q6] tau_slow_2000 ...
+[Q6] tau_slow_2000: retention=0.3088 WScc=nan (580.8s)
+
+[Q6] tau_slow_8000 ...
+[Q6] tau_slow_8000: retention=0.2815 WScc=nan (596.1s)
+
+[Q6] tau_slow_16000 ...
+[Q6] tau_slow_16000: retention=0.2791 WScc=nan (634.7s)
+
+============================================================
+[Q6] Sweeping core_size: [5, 10, 30]
+============================================================
+
+[Q6] core_size_5 ...
+[Q6] core_size_5: retention=0.1076 WScc=nan (634.1s)
+
+[Q6] core_size_10 ...
+[Q6] core_size_10: retention=0.1842 WScc=nan (538.9s)
+
+[Q6] core_size_30 ...
+[Q6] core_size_30: retention=0.0000 WScc=nan (533.2s)
+
+============================================================
+[Q6] Sweeping w_max: [0.5, 1.0, 2.0, 3.0]
+============================================================
+
+[Q6] w_max_0.5 ...
+[Q6] w_max_0.5: retention=0.2485 WScc=nan (673.3s)
+
+[Q6] w_max_1.0 ...
+[Q6] w_max_1.0: retention=0.3002 WScc=nan (518.5s)
+
+[Q6] w_max_2.0 ...
+[Q6] w_max_2.0: retention=0.3040 WScc=nan (505.9s)
+
+[Q6] w_max_3.0 ...
+[Q6] w_max_3.0: retention=0.2919 WScc=nan (523.6s)
+
+[Q6] ALL DONE in 10571.9s (176.2 min)
+
+[Q6] PARAMETER SENSITIVITY SUMMARY:
+Parameter    Value      Retention    WScc       vs Baseline 
+------------------------------------------------------------
+gamma        0.65       0.3064                 baseline    
+             0.3        0.1393       nan        -54.6%      
+             0.5        0.2223       nan        -27.4%      
+             0.8        0.5103       nan        +66.6%      
+             0.95       0.0000       nan        -100.0%     
+
+tau_slow     4000       0.3064                 baseline    
+             500        0.0000       nan        -100.0%     
+             2000       0.3088       nan        +0.8%       
+             8000       0.2815       nan        -8.1%       
+             16000      0.2791       nan        -8.9%       
+
+core_size    20         0.3064                 baseline    
+             5          0.1076       nan        -64.9%      
+             10         0.1842       nan        -39.9%      
+             30         0.0000       nan        -100.0%     
+
+w_max        1.5        0.3064                 baseline    
+             0.5        0.2485       nan        -18.9%      
+             1.0        0.3002       nan        -2.0%       
+             2.0        0.3040       nan        -0.8%       
+             3.0        0.2919       nan        -4.7%       
+
+[Q6] Results saved to C:\Users\Admin\brain-organoid-rl\ablation_results\q6_sweep\Q6_sweep_results.pkl

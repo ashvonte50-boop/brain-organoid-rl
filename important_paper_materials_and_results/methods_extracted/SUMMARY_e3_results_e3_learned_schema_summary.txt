@@ -1,0 +1,29 @@
+=== E3: LEARNED-SCHEMA VARIANT SUMMARY ===
+Pool=400, assembly_size=40, seeds=[42, 1042, 2042]
+
+-- Part 1: emergent core size vs input correlation --
+  shared_strength=0.0: mean emergent core size = 1.0
+  shared_strength=0.25: mean emergent core size = 3.3
+  shared_strength=0.5: mean emergent core size = 10.3
+  shared_strength=0.75: mean emergent core size = 26.7
+  Adequate strength selected: 0.75
+
+-- Part 2: RGCC signatures (learned vs hand-assigned) --
+  metric                    learned   handassigned
+  replay_necessity           0.1452         0.2490
+  W_slow[core-core]          0.3715         0.6100
+  W_slow[unique-unique]      0.0618         0.0410
+  freq_advantage               2.37           4.00
+  emergent core size           26.7           20.0
+
+=== E3 VERDICT ===
+>>> OUTCOME A: A schema core EMERGES from correlated inputs and RGCC HOLDS.
+>>> The frequency-advantage mechanism arises from input statistics, not hand-design.
+
+=== PASTE-READY TEXT (OUTCOME A) ===
+"The schema-core mechanism does not require hand-design. We generated four memories from partially shared latent input features (shared-feature strength 0.75) without designating any neuron as core, and let the network learn its assemblies. An emergent shared core of 27 neurons (active in >=3 of 4 assemblies) formed. This learned core reproduced the RGCC signatures: replay necessity (FULL-NO_REPLAY) = 0.145 (hand-assigned 0.249), elevated W_slow on core-core synapses (0.372) versus unique-unique (0.062), and a 2.4-fold structural co-activation advantage for core neurons. The structural frequency advantage central to RGCC therefore arises from input statistics, not imposed architecture."
+
+=== PASTE-READY TEXT (OUTCOME B) ===
+"When overlap had to be learned from correlated inputs rather than imposed, a stable shared core emerged only weakly (mean 27 neurons at strength 0.75) and the RGCC signatures were attenuated (replay necessity 0.145 vs 0.249; W_slow[core-core] 0.372). We therefore scope present claims to settings with substantial structural overlap, and identify learned-schema consolidation as an open problem."
+
+>>> APPLIES: OUTCOME A

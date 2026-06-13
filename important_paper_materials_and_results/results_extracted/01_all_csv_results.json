@@ -1,0 +1,2773 @@
+{
+  "baseline_stats.csv": {
+    "file": "baseline_stats.csv",
+    "rows": 6,
+    "columns": [
+      "label",
+      "n",
+      "mean",
+      "sem",
+      "ci_lo",
+      "ci_hi",
+      "cohens_d_vs_ref",
+      "rank_r_vs_ref",
+      "perm_p",
+      "perm_p_adj",
+      "reject_fdr"
+    ],
+    "numeric_summary": {
+      "n": {
+        "mean": 5.0,
+        "std": 0.0,
+        "min": 5.0,
+        "max": 5.0,
+        "n": 6
+      },
+      "mean": {
+        "mean": 0.513436,
+        "std": 0.536629,
+        "min": 0.012405,
+        "max": 1.256653,
+        "n": 6
+      },
+      "sem": {
+        "mean": 0.050704,
+        "std": 0.090321,
+        "min": 0.0,
+        "max": 0.233591,
+        "n": 6
+      },
+      "ci_lo": {
+        "mean": 0.44739,
+        "std": 0.471032,
+        "min": -0.010046,
+        "max": 0.980657,
+        "n": 6
+      },
+      "ci_hi": {
+        "mean": 0.611886,
+        "std": 0.674636,
+        "min": 0.035596,
+        "max": 1.724366,
+        "n": 6
+      },
+      "cohens_d_vs_ref": {
+        "mean": -5.964214,
+        "std": 7.635985,
+        "min": -13.320948,
+        "max": 1.724226,
+        "n": 6
+      },
+      "rank_r_vs_ref": {
+        "mean": 0.233333,
+        "std": 0.898146,
+        "min": -1.0,
+        "max": 1.0,
+        "n": 6
+      },
+      "perm_p": {
+        "mean": 0.1793,
+        "std": 0.402329,
+        "min": 0.0074,
+        "max": 1.0,
+        "n": 6
+      },
+      "perm_p_adj": {
+        "mean": 0.184387,
+        "std": 0.399893,
+        "min": 0.0132,
+        "max": 1.0,
+        "n": 6
+      }
+    }
+  },
+  "ablation_results\\pilot_ablations.csv": {
+    "file": "ablation_results\\pilot_ablations.csv",
+    "rows": 12,
+    "columns": [
+      "condition",
+      "mode",
+      "n",
+      "retention_A_mean",
+      "retention_A_sem",
+      "retention_B_mean",
+      "retention_B_sem",
+      "retention_C_mean",
+      "retention_C_sem",
+      "retention_D_mean",
+      "retention_D_sem",
+      "retention_mean_mean",
+      "retention_mean_sem",
+      "dai_core_mean",
+      "dai_core_sem",
+      "dai_unique_mean",
+      "dai_unique_sem",
+      "real_schema_mean",
+      "real_schema_sem",
+      "distortion_mean",
+      "distortion_sem"
+    ],
+    "numeric_summary": {
+      "n": {
+        "mean": 3.0,
+        "std": 0.0,
+        "min": 3.0,
+        "max": 3.0,
+        "n": 12
+      },
+      "retention_A_mean": {
+        "mean": 0.334149,
+        "std": 0.006431,
+        "min": 0.32691,
+        "max": 0.34326,
+        "n": 7
+      },
+      "retention_A_sem": {
+        "mean": 0.007874,
+        "std": 0.001842,
+        "min": 0.005732,
+        "max": 0.011315,
+        "n": 7
+      },
+      "retention_B_mean": {
+        "mean": 0.303213,
+        "std": 0.003119,
+        "min": 0.299266,
+        "max": 0.307808,
+        "n": 7
+      },
+      "retention_B_sem": {
+        "mean": 0.006113,
+        "std": 0.002519,
+        "min": 0.001587,
+        "max": 0.009487,
+        "n": 7
+      },
+      "retention_C_mean": {
+        "mean": 0.291084,
+        "std": 0.005458,
+        "min": 0.286148,
+        "max": 0.302205,
+        "n": 7
+      },
+      "retention_C_sem": {
+        "mean": 0.008605,
+        "std": 0.001774,
+        "min": 0.006453,
+        "max": 0.011931,
+        "n": 7
+      },
+      "retention_D_mean": {
+        "mean": 0.251097,
+        "std": 0.004148,
+        "min": 0.247132,
+        "max": 0.257591,
+        "n": 7
+      },
+      "retention_D_sem": {
+        "mean": 0.008041,
+        "std": 0.000406,
+        "min": 0.00736,
+        "max": 0.008537,
+        "n": 7
+      },
+      "retention_mean_mean": {
+        "mean": 0.294886,
+        "std": 0.004262,
+        "min": 0.29095,
+        "max": 0.302317,
+        "n": 7
+      },
+      "retention_mean_sem": {
+        "mean": 0.006836,
+        "std": 0.000844,
+        "min": 0.005939,
+        "max": 0.007841,
+        "n": 7
+      },
+      "dai_core_mean": {
+        "mean": 0.945864,
+        "std": 0.007324,
+        "min": 0.929953,
+        "max": 0.950625,
+        "n": 7
+      },
+      "dai_core_sem": {
+        "mean": 0.009195,
+        "std": 0.007835,
+        "min": 0.004172,
+        "max": 0.026712,
+        "n": 7
+      },
+      "dai_unique_mean": {
+        "mean": -0.001032,
+        "std": 0.001491,
+        "min": -0.003684,
+        "max": 0.0,
+        "n": 7
+      },
+      "dai_unique_sem": {
+        "mean": 0.000813,
+        "std": 0.001096,
+        "min": 0.0,
+        "max": 0.002458,
+        "n": 7
+      },
+      "real_schema_mean": {
+        "mean": 0.475717,
+        "std": 0.006241,
+        "min": 0.46307,
+        "max": 0.482883,
+        "n": 7
+      },
+      "real_schema_sem": {
+        "mean": 0.023138,
+        "std": 0.005018,
+        "min": 0.014595,
+        "max": 0.02991,
+        "n": 7
+      },
+      "distortion_mean": {
+        "mean": 0.074436,
+        "std": 0.000704,
+        "min": 0.072933,
+        "max": 0.074989,
+        "n": 7
+      },
+      "distortion_sem": {
+        "mean": 0.003804,
+        "std": 0.000237,
+        "min": 0.003502,
+        "max": 0.004117,
+        "n": 7
+      }
+    },
+    "retention_FULL": {
+      "mean": 0.006741,
+      "sem": 0.000803,
+      "n": 2
+    },
+    "retention_ABLATE_M1": {
+      "mean": 0.007707,
+      "sem": NaN,
+      "n": 2
+    },
+    "retention_ABLATE_M2": {
+      "mean": 0.006013,
+      "sem": NaN,
+      "n": 2
+    },
+    "retention_ABLATE_M5": {
+      "mean": 0.00668,
+      "sem": NaN,
+      "n": 2
+    },
+    "retention_ABLATE_M7": {
+      "mean": 0.006131,
+      "sem": NaN,
+      "n": 2
+    },
+    "retention_ABLATE_M10": {
+      "mean": 0.007841,
+      "sem": NaN,
+      "n": 2
+    }
+  },
+  "ablation_results\\pilot_ablations_per_seed.csv": {
+    "file": "ablation_results\\pilot_ablations_per_seed.csv",
+    "rows": 21,
+    "columns": [
+      "condition",
+      "seed_idx",
+      "seed",
+      "mode",
+      "retention_A",
+      "retention_B",
+      "retention_C",
+      "retention_D",
+      "retention_mean",
+      "dai_core",
+      "dai_unique",
+      "real_schema",
+      "distortion",
+      "n_events"
+    ],
+    "numeric_summary": {
+      "seed_idx": {
+        "mean": 1.0,
+        "std": 0.83666,
+        "min": 0.0,
+        "max": 2.0,
+        "n": 21
+      },
+      "seed": {
+        "mean": 1042.0,
+        "std": 836.660027,
+        "min": 42.0,
+        "max": 2042.0,
+        "n": 21
+      },
+      "retention_A": {
+        "mean": 0.334149,
+        "std": 0.013173,
+        "min": 0.309272,
+        "max": 0.357016,
+        "n": 21
+      },
+      "retention_B": {
+        "mean": 0.303213,
+        "std": 0.009932,
+        "min": 0.284112,
+        "max": 0.319633,
+        "n": 21
+      },
+      "retention_C": {
+        "mean": 0.291084,
+        "std": 0.01371,
+        "min": 0.268431,
+        "max": 0.317095,
+        "n": 21
+      },
+      "retention_D": {
+        "mean": 0.251097,
+        "std": 0.012311,
+        "min": 0.234367,
+        "max": 0.273877,
+        "n": 21
+      },
+      "retention_mean": {
+        "mean": 0.294886,
+        "std": 0.01076,
+        "min": 0.280257,
+        "max": 0.313762,
+        "n": 21
+      },
+      "dai_core": {
+        "mean": 0.945864,
+        "std": 0.01834,
+        "min": 0.876662,
+        "max": 0.962706,
+        "n": 21
+      },
+      "dai_unique": {
+        "mean": -0.001032,
+        "std": 0.002356,
+        "min": -0.007442,
+        "max": 0.0,
+        "n": 21
+      },
+      "real_schema": {
+        "mean": 0.475717,
+        "std": 0.034708,
+        "min": 0.419195,
+        "max": 0.529482,
+        "n": 21
+      },
+      "distortion": {
+        "mean": 0.074436,
+        "std": 0.005562,
+        "min": 0.067396,
+        "max": 0.081645,
+        "n": 21
+      },
+      "n_events": {
+        "mean": 45.428571,
+        "std": 0.507093,
+        "min": 45.0,
+        "max": 46.0,
+        "n": 21
+      }
+    },
+    "retention_FULL": {
+      "mean": 0.297752,
+      "sem": 0.004754,
+      "n": 6
+    },
+    "retention_ABLATE_M1": {
+      "mean": 0.292123,
+      "sem": 0.007707,
+      "n": 3
+    },
+    "retention_ABLATE_M2": {
+      "mean": 0.2917,
+      "sem": 0.006013,
+      "n": 3
+    },
+    "retention_ABLATE_M5": {
+      "mean": 0.294842,
+      "sem": 0.00668,
+      "n": 3
+    },
+    "retention_ABLATE_M7": {
+      "mean": 0.299083,
+      "sem": 0.006131,
+      "n": 3
+    },
+    "retention_ABLATE_M10": {
+      "mean": 0.29095,
+      "sem": 0.007841,
+      "n": 3
+    }
+  },
+  "ablation_results\\pilot_importance.csv": {
+    "file": "ablation_results\\pilot_importance.csv",
+    "rows": 5,
+    "columns": [
+      "condition",
+      "delta_dai",
+      "delta_rs",
+      "delta_ret",
+      "cohens_d",
+      "p",
+      "sig",
+      "full_dai",
+      "abl_dai"
+    ],
+    "numeric_summary": {
+      "delta_dai": {
+        "mean": -0.006568,
+        "std": 0.008133,
+        "min": -0.020672,
+        "max": -0.001094,
+        "n": 5
+      },
+      "delta_rs": {
+        "mean": 0.015062,
+        "std": 0.003327,
+        "min": 0.011311,
+        "max": 0.019813,
+        "n": 5
+      },
+      "delta_ret": {
+        "mean": 0.000552,
+        "std": 0.003329,
+        "min": -0.002237,
+        "max": 0.005896,
+        "n": 5
+      },
+      "cohens_d": {
+        "mean": 0.320759,
+        "std": 0.228984,
+        "min": 0.084595,
+        "max": 0.603951,
+        "n": 5
+      },
+      "p": {
+        "mean": 0.731154,
+        "std": 0.18084,
+        "min": 0.525714,
+        "max": 0.922561,
+        "n": 5
+      },
+      "full_dai": {
+        "mean": 0.950625,
+        "std": 0.0,
+        "min": 0.950625,
+        "max": 0.950625,
+        "n": 5
+      },
+      "abl_dai": {
+        "mean": 0.944057,
+        "std": 0.008133,
+        "min": 0.929953,
+        "max": 0.949531,
+        "n": 5
+      }
+    }
+  },
+  "brain-organoid-rl scale\\baseline_stats.csv": {
+    "file": "brain-organoid-rl scale\\baseline_stats.csv",
+    "rows": 6,
+    "columns": [
+      "label",
+      "n",
+      "mean",
+      "sem",
+      "ci_lo",
+      "ci_hi",
+      "cohens_d_vs_ref",
+      "rank_r_vs_ref",
+      "perm_p",
+      "perm_p_adj",
+      "reject_fdr"
+    ],
+    "numeric_summary": {
+      "n": {
+        "mean": 5.0,
+        "std": 0.0,
+        "min": 5.0,
+        "max": 5.0,
+        "n": 6
+      },
+      "mean": {
+        "mean": 0.513436,
+        "std": 0.536629,
+        "min": 0.012405,
+        "max": 1.256653,
+        "n": 6
+      },
+      "sem": {
+        "mean": 0.050704,
+        "std": 0.090321,
+        "min": 0.0,
+        "max": 0.233591,
+        "n": 6
+      },
+      "ci_lo": {
+        "mean": 0.44739,
+        "std": 0.471032,
+        "min": -0.010046,
+        "max": 0.980657,
+        "n": 6
+      },
+      "ci_hi": {
+        "mean": 0.611886,
+        "std": 0.674636,
+        "min": 0.035596,
+        "max": 1.724366,
+        "n": 6
+      },
+      "cohens_d_vs_ref": {
+        "mean": -5.964214,
+        "std": 7.635985,
+        "min": -13.320948,
+        "max": 1.724226,
+        "n": 6
+      },
+      "rank_r_vs_ref": {
+        "mean": 0.233333,
+        "std": 0.898146,
+        "min": -1.0,
+        "max": 1.0,
+        "n": 6
+      },
+      "perm_p": {
+        "mean": 0.1793,
+        "std": 0.402329,
+        "min": 0.0074,
+        "max": 1.0,
+        "n": 6
+      },
+      "perm_p_adj": {
+        "mean": 0.184387,
+        "std": 0.399893,
+        "min": 0.0132,
+        "max": 1.0,
+        "n": 6
+      }
+    }
+  },
+  "e1_results\\e1_boost_adequate_seed.csv": {
+    "file": "e1_results\\e1_boost_adequate_seed.csv",
+    "rows": 60,
+    "columns": [
+      "seed",
+      "condition",
+      "m3_seed_level",
+      "m3_boost",
+      "m3_pres",
+      "m3_W_encode",
+      "m0_W_encode",
+      "m3_replay_count",
+      "m3_retention",
+      "m3_wslow",
+      "m0_retention",
+      "m1_retention",
+      "m2_retention"
+    ],
+    "numeric_summary": {
+      "seed": {
+        "mean": 7042.0,
+        "std": 4356.954309,
+        "min": 42.0,
+        "max": 14042.0,
+        "n": 60
+      },
+      "m3_boost": {
+        "mean": 1.5,
+        "std": 0.504219,
+        "min": 1.0,
+        "max": 2.0,
+        "n": 60
+      },
+      "m3_pres": {
+        "mean": 7.0,
+        "std": 0.0,
+        "min": 7.0,
+        "max": 7.0,
+        "n": 60
+      },
+      "m3_W_encode": {
+        "mean": 0.036545,
+        "std": 0.001632,
+        "min": 0.034385,
+        "max": 0.041765,
+        "n": 60
+      },
+      "m0_W_encode": {
+        "mean": 0.021976,
+        "std": 0.00318,
+        "min": 0.019644,
+        "max": 0.033245,
+        "n": 60
+      },
+      "m3_replay_count": {
+        "mean": 14.716667,
+        "std": 4.926895,
+        "min": 5.0,
+        "max": 26.0,
+        "n": 60
+      },
+      "m3_retention": {
+        "mean": 0.223306,
+        "std": 0.00543,
+        "min": 0.211433,
+        "max": 0.234432,
+        "n": 60
+      },
+      "m3_wslow": {
+        "mean": 0.018234,
+        "std": 0.001349,
+        "min": 0.015455,
+        "max": 0.020541,
+        "n": 60
+      },
+      "m0_retention": {
+        "mean": 0.243398,
+        "std": 0.013142,
+        "min": 0.212045,
+        "max": 0.268088,
+        "n": 60
+      },
+      "m1_retention": {
+        "mean": 0.237437,
+        "std": 0.007626,
+        "min": 0.224059,
+        "max": 0.262306,
+        "n": 60
+      },
+      "m2_retention": {
+        "mean": 0.239781,
+        "std": 0.010522,
+        "min": 0.212922,
+        "max": 0.264834,
+        "n": 60
+      }
+    },
+    "retention_M3_normalseed_noboost": {
+      "mean": 0.243915,
+      "sem": 0.002586,
+      "n": 15
+    },
+    "retention_M3_normalseed_boost": {
+      "mean": 0.236747,
+      "sem": 0.002237,
+      "n": 15
+    },
+    "retention_M3_adequateseed_noboost": {
+      "mean": 0.242391,
+      "sem": 0.003337,
+      "n": 15
+    },
+    "retention_M3_adequateseed_boost": {
+      "mean": 0.236072,
+      "sem": 0.00222,
+      "n": 15
+    }
+  },
+  "e2_results\\e2_task105_30seeds.csv": {
+    "file": "e2_results\\e2_task105_30seeds.csv",
+    "rows": 360,
+    "columns": [
+      "seed",
+      "condition",
+      "memory_id",
+      "replay_count",
+      "retention",
+      "w_slow"
+    ],
+    "numeric_summary": {
+      "seed": {
+        "mean": 14542.0,
+        "std": 8667.487998,
+        "min": 42.0,
+        "max": 29042.0,
+        "n": 360
+      },
+      "memory_id": {
+        "mean": 1.5,
+        "std": 1.11959,
+        "min": 0.0,
+        "max": 3.0,
+        "n": 360
+      },
+      "replay_count": {
+        "mean": 11.288889,
+        "std": 4.895554,
+        "min": 0.0,
+        "max": 28.0,
+        "n": 360
+      },
+      "retention": {
+        "mean": 0.235624,
+        "std": 0.013119,
+        "min": 0.20798,
+        "max": 0.285182,
+        "n": 360
+      },
+      "w_slow": {
+        "mean": 0.050679,
+        "std": 0.024973,
+        "min": 0.014799,
+        "max": 0.111342,
+        "n": 360
+      }
+    },
+    "retention_CONTROL": {
+      "mean": 0.239141,
+      "sem": 0.001145,
+      "n": 120
+    },
+    "retention_BOOST_MEM3": {
+      "mean": 0.233025,
+      "sem": 0.000939,
+      "n": 120
+    },
+    "retention_SUPPRESS_MEM0": {
+      "mean": 0.234705,
+      "sem": 0.001402,
+      "n": 120
+    }
+  },
+  "e3_results\\e3_emergent_core_detection.csv": {
+    "file": "e3_results\\e3_emergent_core_detection.csv",
+    "rows": 12,
+    "columns": [
+      "shared_strength",
+      "seed",
+      "emergent_core_size",
+      "mean_offdiag_jaccard",
+      "max_offdiag_jaccard"
+    ],
+    "numeric_summary": {
+      "shared_strength": {
+        "mean": 0.375,
+        "std": 0.291937,
+        "min": 0.0,
+        "max": 0.75,
+        "n": 12
+      },
+      "seed": {
+        "mean": 1042.0,
+        "std": 852.802865,
+        "min": 42.0,
+        "max": 2042.0,
+        "n": 12
+      },
+      "emergent_core_size": {
+        "mean": 10.333333,
+        "std": 10.516942,
+        "min": 1.0,
+        "max": 27.0,
+        "n": 12
+      },
+      "mean_offdiag_jaccard": {
+        "mean": 0.175172,
+        "std": 0.130542,
+        "min": 0.050657,
+        "max": 0.425484,
+        "n": 12
+      },
+      "max_offdiag_jaccard": {
+        "mean": 0.218684,
+        "std": 0.143039,
+        "min": 0.081081,
+        "max": 0.509434,
+        "n": 12
+      }
+    }
+  },
+  "e3_results\\e3_rgcc_learned_vs_handassigned.csv": {
+    "file": "e3_results\\e3_rgcc_learned_vs_handassigned.csv",
+    "rows": 3,
+    "columns": [
+      "strength",
+      "seed",
+      "core_size",
+      "ret_full",
+      "ret_noreplay",
+      "replay_necessity",
+      "wslow_cc",
+      "wslow_uc",
+      "wslow_uu",
+      "freq_advantage"
+    ],
+    "numeric_summary": {
+      "strength": {
+        "mean": 0.75,
+        "std": 0.0,
+        "min": 0.75,
+        "max": 0.75,
+        "n": 3
+      },
+      "seed": {
+        "mean": 1042.0,
+        "std": 1000.0,
+        "min": 42.0,
+        "max": 2042.0,
+        "n": 3
+      },
+      "core_size": {
+        "mean": 26.666667,
+        "std": 0.57735,
+        "min": 26.0,
+        "max": 27.0,
+        "n": 3
+      },
+      "ret_full": {
+        "mean": 0.170818,
+        "std": 0.037136,
+        "min": 0.142175,
+        "max": 0.212776,
+        "n": 3
+      },
+      "ret_noreplay": {
+        "mean": 0.025643,
+        "std": 0.003663,
+        "min": 0.021719,
+        "max": 0.028973,
+        "n": 3
+      },
+      "replay_necessity": {
+        "mean": 0.145176,
+        "std": 0.036049,
+        "min": 0.120456,
+        "max": 0.186539,
+        "n": 3
+      },
+      "wslow_cc": {
+        "mean": 0.37152,
+        "std": 0.044726,
+        "min": 0.344513,
+        "max": 0.423146,
+        "n": 3
+      },
+      "wslow_uc": {
+        "mean": 0.14006,
+        "std": 0.016246,
+        "min": 0.129953,
+        "max": 0.158799,
+        "n": 3
+      },
+      "wslow_uu": {
+        "mean": 0.061825,
+        "std": 0.005088,
+        "min": 0.057916,
+        "max": 0.067577,
+        "n": 3
+      },
+      "freq_advantage": {
+        "mean": 2.370177,
+        "std": 0.088593,
+        "min": 2.268238,
+        "max": 2.428571,
+        "n": 3
+      }
+    }
+  },
+  "m1_results\\m1_task105_20seeds.csv": {
+    "file": "m1_results\\m1_task105_20seeds.csv",
+    "rows": 240,
+    "columns": [
+      "seed",
+      "condition",
+      "memory_id",
+      "replay_count",
+      "retention",
+      "w_slow_contrib"
+    ],
+    "numeric_summary": {
+      "seed": {
+        "mean": 9542.0,
+        "std": 5778.332055,
+        "min": 42.0,
+        "max": 19042.0,
+        "n": 240
+      },
+      "memory_id": {
+        "mean": 1.5,
+        "std": 1.120371,
+        "min": 0.0,
+        "max": 3.0,
+        "n": 240
+      },
+      "replay_count": {
+        "mean": 11.3,
+        "std": 4.800802,
+        "min": 0.0,
+        "max": 24.0,
+        "n": 240
+      },
+      "retention": {
+        "mean": 0.235531,
+        "std": 0.013642,
+        "min": 0.20798,
+        "max": 0.285182,
+        "n": 240
+      },
+      "w_slow_contrib": {
+        "mean": 0.051206,
+        "std": 0.02557,
+        "min": 0.015479,
+        "max": 0.111342,
+        "n": 240
+      }
+    },
+    "retention_CONTROL": {
+      "mean": 0.239076,
+      "sem": 0.001491,
+      "n": 80
+    },
+    "retention_BOOST_MEM3": {
+      "mean": 0.232618,
+      "sem": 0.001175,
+      "n": 80
+    },
+    "retention_SUPPRESS_MEM0": {
+      "mean": 0.234899,
+      "sem": 0.001778,
+      "n": 80
+    }
+  },
+  "m2_results\\m2_attractor_diagnostics.csv": {
+    "file": "m2_results\\m2_attractor_diagnostics.csv",
+    "rows": 108,
+    "columns": [
+      "seed",
+      "memory_id",
+      "cue_fraction",
+      "n_cue_neurons",
+      "full_completion",
+      "core_completion",
+      "unique_completion"
+    ],
+    "numeric_summary": {
+      "seed": {
+        "mean": 1042.0,
+        "std": 820.303112,
+        "min": 42.0,
+        "max": 2042.0,
+        "n": 108
+      },
+      "memory_id": {
+        "mean": 1.5,
+        "std": 1.123246,
+        "min": 0.0,
+        "max": 3.0,
+        "n": 108
+      },
+      "cue_fraction": {
+        "mean": 0.5,
+        "std": 0.259403,
+        "min": 0.1,
+        "max": 0.9,
+        "n": 108
+      },
+      "n_cue_neurons": {
+        "mean": 10.0,
+        "std": 5.188052,
+        "min": 2.0,
+        "max": 18.0,
+        "n": 108
+      },
+      "full_completion": {
+        "mean": 0.080718,
+        "std": 0.041773,
+        "min": 0.0125,
+        "max": 0.1775,
+        "n": 108
+      },
+      "core_completion": {
+        "mean": 0.010972,
+        "std": 0.009508,
+        "min": 0.0,
+        "max": 0.065,
+        "n": 108
+      },
+      "unique_completion": {
+        "mean": 0.150463,
+        "std": 0.080258,
+        "min": 0.02,
+        "max": 0.33,
+        "n": 108
+      }
+    }
+  },
+  "m3_results\\m3_dual_metrics.csv": {
+    "file": "m3_results\\m3_dual_metrics.csv",
+    "rows": 80,
+    "columns": [
+      "seed",
+      "condition",
+      "memory_id",
+      "isyn_score",
+      "hit_rate",
+      "false_alarm",
+      "dprime",
+      "accuracy"
+    ],
+    "numeric_summary": {
+      "seed": {
+        "mean": 4542.0,
+        "std": 2890.403152,
+        "min": 42.0,
+        "max": 9042.0,
+        "n": 80
+      },
+      "memory_id": {
+        "mean": 1.5,
+        "std": 1.125088,
+        "min": 0.0,
+        "max": 3.0,
+        "n": 80
+      },
+      "isyn_score": {
+        "mean": 0.159427,
+        "std": 0.125065,
+        "min": 0.028452,
+        "max": 0.339179,
+        "n": 80
+      },
+      "hit_rate": {
+        "mean": 0.03625,
+        "std": 0.026949,
+        "min": 0.0,
+        "max": 0.125,
+        "n": 80
+      },
+      "false_alarm": {
+        "mean": 0.009472,
+        "std": 0.003578,
+        "min": 0.002817,
+        "max": 0.019718,
+        "n": 80
+      },
+      "dprime": {
+        "mean": 0.304117,
+        "std": 0.33881,
+        "min": -0.397927,
+        "max": 0.892542,
+        "n": 80
+      },
+      "accuracy": {
+        "mean": 0.026778,
+        "std": 0.026824,
+        "min": -0.016901,
+        "max": 0.109507,
+        "n": 80
+      }
+    }
+  },
+  "m4_results\\m4_null_model_raw.csv": {
+    "file": "m4_results\\m4_null_model_raw.csv",
+    "rows": 80,
+    "columns": [
+      "seed",
+      "condition",
+      "memory_id",
+      "retention",
+      "use_replay"
+    ],
+    "numeric_summary": {
+      "seed": {
+        "mean": 4542.0,
+        "std": 2890.403152,
+        "min": 42.0,
+        "max": 9042.0,
+        "n": 80
+      },
+      "memory_id": {
+        "mean": 1.5,
+        "std": 1.125088,
+        "min": 0.0,
+        "max": 3.0,
+        "n": 80
+      },
+      "retention": {
+        "mean": 0.026445,
+        "std": 0.005912,
+        "min": 0.01666,
+        "max": 0.03882,
+        "n": 80
+      }
+    },
+    "retention_NULL_FULL": {
+      "mean": 0.024744,
+      "sem": 0.000955,
+      "n": 40
+    },
+    "retention_NULL_NOREPLAY": {
+      "mean": 0.028147,
+      "sem": 0.000842,
+      "n": 40
+    }
+  },
+  "m5_results\\m5_randomised_order.csv": {
+    "file": "m5_results\\m5_randomised_order.csv",
+    "rows": 48,
+    "columns": [
+      "order_name",
+      "order",
+      "seed",
+      "condition",
+      "first_encoded",
+      "last_encoded",
+      "replay_seq0",
+      "replay_seq1",
+      "replay_seq2",
+      "replay_seq3",
+      "retention_m0",
+      "retention_m1",
+      "retention_m2",
+      "retention_m3"
+    ],
+    "numeric_summary": {
+      "seed": {
+        "mean": 542.0,
+        "std": 505.291153,
+        "min": 42.0,
+        "max": 1042.0,
+        "n": 48
+      },
+      "first_encoded": {
+        "mean": 1.25,
+        "std": 1.211646,
+        "min": 0.0,
+        "max": 3.0,
+        "n": 48
+      },
+      "last_encoded": {
+        "mean": 1.75,
+        "std": 1.406671,
+        "min": 0.0,
+        "max": 3.0,
+        "n": 48
+      },
+      "replay_seq0": {
+        "mean": 6.791667,
+        "std": 5.052736,
+        "min": 0.0,
+        "max": 16.0,
+        "n": 48
+      },
+      "replay_seq1": {
+        "mean": 12.3125,
+        "std": 3.004651,
+        "min": 7.0,
+        "max": 18.0,
+        "n": 48
+      },
+      "replay_seq2": {
+        "mean": 12.041667,
+        "std": 4.217281,
+        "min": 2.0,
+        "max": 21.0,
+        "n": 48
+      },
+      "replay_seq3": {
+        "mean": 13.895833,
+        "std": 4.006588,
+        "min": 7.0,
+        "max": 25.0,
+        "n": 48
+      },
+      "retention_m0": {
+        "mean": 0.232748,
+        "std": 0.016089,
+        "min": 0.204752,
+        "max": 0.270956,
+        "n": 48
+      },
+      "retention_m1": {
+        "mean": 0.240318,
+        "std": 0.013237,
+        "min": 0.205797,
+        "max": 0.268519,
+        "n": 48
+      },
+      "retention_m2": {
+        "mean": 0.236807,
+        "std": 0.015405,
+        "min": 0.205448,
+        "max": 0.268486,
+        "n": 48
+      },
+      "retention_m3": {
+        "mean": 0.224651,
+        "std": 0.008697,
+        "min": 0.208828,
+        "max": 0.238395,
+        "n": 48
+      }
+    },
+    "retention_CONTROL": {
+      "mean": 0.226928,
+      "sem": 0.002146,
+      "n": 16
+    },
+    "retention_BOOST_LAST": {
+      "mean": 0.223716,
+      "sem": 0.002268,
+      "n": 16
+    },
+    "retention_SUPPRESS_FIRST": {
+      "mean": 0.223309,
+      "sem": 0.002131,
+      "n": 16
+    }
+  },
+  "major1_results\\major1_decoupling.csv": {
+    "file": "major1_results\\major1_decoupling.csv",
+    "rows": 45,
+    "columns": [
+      "seed",
+      "condition",
+      "M0_retention",
+      "M0_replay",
+      "M0_wslow",
+      "M0_W_encode",
+      "M1_retention",
+      "M1_replay",
+      "M1_wslow",
+      "M1_W_encode",
+      "M2_retention",
+      "M2_replay",
+      "M2_wslow",
+      "M2_W_encode",
+      "M3_retention",
+      "M3_replay",
+      "M3_wslow",
+      "M3_W_encode"
+    ],
+    "numeric_summary": {
+      "seed": {
+        "mean": 7042.0,
+        "std": 4369.314488,
+        "min": 42.0,
+        "max": 14042.0,
+        "n": 45
+      },
+      "M0_retention": {
+        "mean": 0.328486,
+        "std": 0.011638,
+        "min": 0.305415,
+        "max": 0.34933,
+        "n": 45
+      },
+      "M0_replay": {
+        "mean": 18.844444,
+        "std": 13.480551,
+        "min": 0.0,
+        "max": 29.0,
+        "n": 45
+      },
+      "M0_wslow": {
+        "mean": 0.196698,
+        "std": 0.009667,
+        "min": 0.177452,
+        "max": 0.218254,
+        "n": 45
+      },
+      "M0_W_encode": {
+        "mean": 0.021976,
+        "std": 0.003189,
+        "min": 0.019644,
+        "max": 0.033245,
+        "n": 45
+      },
+      "M1_retention": {
+        "mean": 0.275088,
+        "std": 0.015261,
+        "min": 0.256926,
+        "max": 0.317086,
+        "n": 45
+      },
+      "M1_replay": {
+        "mean": 8.0,
+        "std": 5.720776,
+        "min": 0.0,
+        "max": 12.0,
+        "n": 45
+      },
+      "M1_wslow": {
+        "mean": 0.105772,
+        "std": 0.016292,
+        "min": 0.090608,
+        "max": 0.141917,
+        "n": 45
+      },
+      "M1_W_encode": {
+        "mean": 0.044384,
+        "std": 0.002894,
+        "min": 0.040694,
+        "max": 0.055548,
+        "n": 45
+      },
+      "M2_retention": {
+        "mean": 0.264442,
+        "std": 0.012677,
+        "min": 0.243491,
+        "max": 0.294241,
+        "n": 45
+      },
+      "M2_replay": {
+        "mean": 3.333333,
+        "std": 2.383656,
+        "min": 0.0,
+        "max": 5.0,
+        "n": 45
+      },
+      "M2_wslow": {
+        "mean": 0.079482,
+        "std": 0.014545,
+        "min": 0.066333,
+        "max": 0.1179,
+        "n": 45
+      },
+      "M2_W_encode": {
+        "mean": 0.045232,
+        "std": 0.003128,
+        "min": 0.041716,
+        "max": 0.055825,
+        "n": 45
+      },
+      "M3_retention": {
+        "mean": 0.234037,
+        "std": 0.007858,
+        "min": 0.221513,
+        "max": 0.254896,
+        "n": 45
+      },
+      "M3_replay": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 45
+      },
+      "M3_wslow": {
+        "mean": 0.01848,
+        "std": 0.00141,
+        "min": 0.015531,
+        "max": 0.020857,
+        "n": 45
+      },
+      "M3_W_encode": {
+        "mean": 0.036931,
+        "std": 0.001825,
+        "min": 0.034656,
+        "max": 0.043227,
+        "n": 45
+      }
+    },
+    "retention_NATURAL": {
+      "mean": 0.237227,
+      "sem": 0.002377,
+      "n": 15
+    },
+    "retention_EQUALIZED": {
+      "mean": 0.231427,
+      "sem": 0.001676,
+      "n": 15
+    },
+    "retention_EQUALIZED_POS": {
+      "mean": 0.233456,
+      "sem": 0.001799,
+      "n": 15
+    }
+  },
+  "major2_results\\major2_behavioral_readout.csv": {
+    "file": "major2_results\\major2_behavioral_readout.csv",
+    "rows": 120,
+    "columns": [
+      "seed",
+      "experiment",
+      "condition",
+      "memory",
+      "memory_idx",
+      "isyn_score",
+      "recall_accuracy",
+      "recall_std",
+      "binary_recall"
+    ],
+    "numeric_summary": {
+      "seed": {
+        "mean": 4542.0,
+        "std": 2884.324484,
+        "min": 42.0,
+        "max": 9042.0,
+        "n": 120
+      },
+      "memory_idx": {
+        "mean": 1.5,
+        "std": 1.122722,
+        "min": 0.0,
+        "max": 3.0,
+        "n": 120
+      },
+      "isyn_score": {
+        "mean": 0.205236,
+        "std": 0.122763,
+        "min": 0.027561,
+        "max": 0.355807,
+        "n": 120
+      },
+      "recall_accuracy": {
+        "mean": 0.007587,
+        "std": 0.012659,
+        "min": 0.0,
+        "max": 0.075,
+        "n": 120
+      },
+      "recall_std": {
+        "mean": 0.012904,
+        "std": 0.022247,
+        "min": 0.0,
+        "max": 0.15,
+        "n": 120
+      },
+      "binary_recall": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 120
+      }
+    }
+  },
+  "major5_results\\major5_benna_fusi_results.csv": {
+    "file": "major5_results\\major5_benna_fusi_results.csv",
+    "rows": 20,
+    "columns": [
+      "seed",
+      "condition",
+      "use_replay",
+      "M0_retention",
+      "M1_retention",
+      "M2_retention",
+      "M3_retention",
+      "deep_weight_mean"
+    ],
+    "numeric_summary": {
+      "seed": {
+        "mean": 4542.0,
+        "std": 2946.898459,
+        "min": 42.0,
+        "max": 9042.0,
+        "n": 20
+      },
+      "M0_retention": {
+        "mean": 0.020661,
+        "std": 0.005763,
+        "min": 0.01023,
+        "max": 0.030167,
+        "n": 20
+      },
+      "M1_retention": {
+        "mean": 0.019199,
+        "std": 0.003025,
+        "min": 0.013023,
+        "max": 0.024279,
+        "n": 20
+      },
+      "M2_retention": {
+        "mean": 0.020902,
+        "std": 0.003659,
+        "min": 0.012786,
+        "max": 0.026385,
+        "n": 20
+      },
+      "M3_retention": {
+        "mean": 0.016777,
+        "std": 0.002399,
+        "min": 0.014147,
+        "max": 0.022251,
+        "n": 20
+      },
+      "deep_weight_mean": {
+        "mean": 1.2e-05,
+        "std": 4e-06,
+        "min": 1e-06,
+        "max": 1.4e-05,
+        "n": 20
+      }
+    },
+    "retention_BF_FULL": {
+      "mean": 0.016762,
+      "sem": 0.000784,
+      "n": 10
+    },
+    "retention_BF_NO_REPLAY": {
+      "mean": 0.016792,
+      "sem": 0.000775,
+      "n": 10
+    }
+  },
+  "mod_results\\mod1_scaling_results.csv": {
+    "file": "mod_results\\mod1_scaling_results.csv",
+    "rows": 6,
+    "columns": [
+      "N",
+      "seed",
+      "condition",
+      "time_sec",
+      "mem_peak_MB",
+      "available_RAM_GB",
+      "mean_retention",
+      "M0_retention",
+      "M1_retention",
+      "M2_retention",
+      "M3_retention",
+      "ok",
+      "error"
+    ],
+    "numeric_summary": {
+      "N": {
+        "mean": 1000.0,
+        "std": 0.0,
+        "min": 1000.0,
+        "max": 1000.0,
+        "n": 6
+      },
+      "seed": {
+        "mean": 1042.0,
+        "std": 894.427191,
+        "min": 42.0,
+        "max": 2042.0,
+        "n": 6
+      },
+      "time_sec": {
+        "mean": 538.028829,
+        "std": 41.138185,
+        "min": 492.993829,
+        "max": 611.360008,
+        "n": 6
+      },
+      "mem_peak_MB": {
+        "mean": 68.838741,
+        "std": 55.715489,
+        "min": 20.074496,
+        "max": 177.188864,
+        "n": 6
+      },
+      "available_RAM_GB": {
+        "mean": 0.553463,
+        "std": 0.09349,
+        "min": 0.457224,
+        "max": 0.702976,
+        "n": 6
+      },
+      "mean_retention": {
+        "mean": 0.173924,
+        "std": 0.138441,
+        "min": 0.044946,
+        "max": 0.31746,
+        "n": 6
+      },
+      "M0_retention": {
+        "mean": 0.190035,
+        "std": 0.159893,
+        "min": 0.038844,
+        "max": 0.351157,
+        "n": 6
+      },
+      "M1_retention": {
+        "mean": 0.175698,
+        "std": 0.145395,
+        "min": 0.037682,
+        "max": 0.332877,
+        "n": 6
+      },
+      "M2_retention": {
+        "mean": 0.176225,
+        "std": 0.133756,
+        "min": 0.051219,
+        "max": 0.317845,
+        "n": 6
+      },
+      "M3_retention": {
+        "mean": 0.153738,
+        "std": 0.115213,
+        "min": 0.045302,
+        "max": 0.267961,
+        "n": 6
+      },
+      "error": {
+        "mean": NaN,
+        "std": NaN,
+        "min": NaN,
+        "max": NaN,
+        "n": 0
+      }
+    },
+    "retention_FULL": {
+      "mean": 0.258757,
+      "sem": 0.005264,
+      "n": 3
+    },
+    "retention_NO_REPLAY": {
+      "mean": 0.048718,
+      "sem": 0.002214,
+      "n": 3
+    }
+  },
+  "mod_results\\mod2_law_data.csv": {
+    "file": "mod_results\\mod2_law_data.csv",
+    "rows": 60,
+    "columns": [
+      "seed",
+      "memory_idx",
+      "retention",
+      "predicted",
+      "residual"
+    ],
+    "numeric_summary": {
+      "seed": {
+        "mean": 7042.0,
+        "std": 4356.954309,
+        "min": 42.0,
+        "max": 14042.0,
+        "n": 60
+      },
+      "memory_idx": {
+        "mean": 1.5,
+        "std": 1.127469,
+        "min": 0.0,
+        "max": 3.0,
+        "n": 60
+      },
+      "retention": {
+        "mean": 0.282182,
+        "std": 0.033234,
+        "min": 0.224639,
+        "max": 0.345017,
+        "n": 60
+      },
+      "predicted": {
+        "mean": 0.282182,
+        "std": 0.03024,
+        "min": 0.246755,
+        "max": 0.326852,
+        "n": 60
+      },
+      "residual": {
+        "mean": -0.0,
+        "std": 0.013786,
+        "min": -0.024441,
+        "max": 0.029002,
+        "n": 60
+      }
+    }
+  },
+  "mod_results\\mod3_learned_schema_15seeds.csv": {
+    "file": "mod_results\\mod3_learned_schema_15seeds.csv",
+    "rows": 70,
+    "columns": [
+      "condition",
+      "corr_strength",
+      "seed",
+      "use_replay",
+      "time_sec",
+      "mean_retention",
+      "emergent_core_size",
+      "wslow_cc",
+      "wslow_uu",
+      "wslow_uc",
+      "ok",
+      "error"
+    ],
+    "numeric_summary": {
+      "corr_strength": {
+        "mean": 0.5,
+        "std": 0.344447,
+        "min": 0.0,
+        "max": 1.0,
+        "n": 60
+      },
+      "seed": {
+        "mean": 2042.0,
+        "std": 1424.424623,
+        "min": 42.0,
+        "max": 4042.0,
+        "n": 70
+      },
+      "time_sec": {
+        "mean": 1029.169897,
+        "std": 378.819117,
+        "min": 512.478442,
+        "max": 2669.357471,
+        "n": 70
+      },
+      "mean_retention": {
+        "mean": 0.085891,
+        "std": 0.085659,
+        "min": 0.0,
+        "max": 0.31746,
+        "n": 70
+      },
+      "emergent_core_size": {
+        "mean": 17.685714,
+        "std": 13.598319,
+        "min": 0.0,
+        "max": 40.0,
+        "n": 70
+      },
+      "wslow_cc": {
+        "mean": 0.225863,
+        "std": 0.2386,
+        "min": 0.012304,
+        "max": 0.905376,
+        "n": 60
+      },
+      "wslow_uu": {
+        "mean": 0.034443,
+        "std": 0.019345,
+        "min": 0.014777,
+        "max": 0.079285,
+        "n": 58
+      },
+      "wslow_uc": {
+        "mean": 0.071812,
+        "std": 0.050133,
+        "min": 0.017368,
+        "max": 0.171553,
+        "n": 58
+      },
+      "error": {
+        "mean": NaN,
+        "std": NaN,
+        "min": NaN,
+        "max": NaN,
+        "n": 0
+      }
+    },
+    "retention_hand_assigned": {
+      "mean": 0.173371,
+      "sem": 0.041998,
+      "n": 10
+    },
+    "retention_learned_0.00": {
+      "mean": 0.05829,
+      "sem": 0.010129,
+      "n": 10
+    },
+    "retention_learned_0.20": {
+      "mean": 0.059995,
+      "sem": 0.010923,
+      "n": 10
+    },
+    "retention_learned_0.40": {
+      "mean": 0.064068,
+      "sem": 0.012348,
+      "n": 10
+    },
+    "retention_learned_0.60": {
+      "mean": 0.085691,
+      "sem": 0.017892,
+      "n": 9
+    },
+    "retention_nan": {
+      "mean": NaN,
+      "sem": NaN,
+      "n": 0
+    },
+    "retention_learned_0.80": {
+      "mean": 0.141489,
+      "sem": 0.036055,
+      "n": 10
+    },
+    "retention_learned_1.00": {
+      "mean": 0.023738,
+      "sem": 0.007958,
+      "n": 10
+    }
+  },
+  "mod_results\\mod4_istdp_results.csv": {
+    "file": "mod_results\\mod4_istdp_results.csv",
+    "rows": 40,
+    "columns": [
+      "cond",
+      "seed",
+      "use_replay",
+      "time_sec",
+      "mean_retention",
+      "M0_retention",
+      "M1_retention",
+      "M2_retention",
+      "M3_retention",
+      "ok",
+      "error"
+    ],
+    "numeric_summary": {
+      "seed": {
+        "mean": 4542.0,
+        "std": 2908.872369,
+        "min": 42.0,
+        "max": 9042.0,
+        "n": 40
+      },
+      "time_sec": {
+        "mean": 812.227219,
+        "std": 406.061086,
+        "min": 476.72206,
+        "max": 2212.32036,
+        "n": 40
+      },
+      "mean_retention": {
+        "mean": 0.174837,
+        "std": 0.130324,
+        "min": 0.040788,
+        "max": 0.328416,
+        "n": 40
+      },
+      "M0_retention": {
+        "mean": 0.192839,
+        "std": 0.152517,
+        "min": 0.032059,
+        "max": 0.390459,
+        "n": 40
+      },
+      "M1_retention": {
+        "mean": 0.176011,
+        "std": 0.136654,
+        "min": 0.037141,
+        "max": 0.353599,
+        "n": 40
+      },
+      "M2_retention": {
+        "mean": 0.175069,
+        "std": 0.122853,
+        "min": 0.0489,
+        "max": 0.318371,
+        "n": 40
+      },
+      "M3_retention": {
+        "mean": 0.15543,
+        "std": 0.109683,
+        "min": 0.042502,
+        "max": 0.288106,
+        "n": 40
+      },
+      "error": {
+        "mean": NaN,
+        "std": NaN,
+        "min": NaN,
+        "max": NaN,
+        "n": 0
+      }
+    }
+  },
+  "mod_results\\mod5_bio_param_sweep.csv": {
+    "file": "mod_results\\mod5_bio_param_sweep.csv",
+    "rows": 72,
+    "columns": [
+      "param",
+      "value",
+      "seed",
+      "condition",
+      "time_sec",
+      "mean_retention",
+      "M0_retention",
+      "M1_retention",
+      "M2_retention",
+      "M3_retention",
+      "ok"
+    ],
+    "numeric_summary": {
+      "value": {
+        "mean": 1000.658333,
+        "std": 1791.628519,
+        "min": 0.4,
+        "max": 6000.0,
+        "n": 72
+      },
+      "seed": {
+        "mean": 1042.0,
+        "std": 822.226452,
+        "min": 42.0,
+        "max": 2042.0,
+        "n": 72
+      },
+      "time_sec": {
+        "mean": 506.333871,
+        "std": 30.539572,
+        "min": 475.969685,
+        "max": 627.374368,
+        "n": 72
+      },
+      "mean_retention": {
+        "mean": 0.181851,
+        "std": 0.17182,
+        "min": 0.0,
+        "max": 1.048902,
+        "n": 72
+      },
+      "M0_retention": {
+        "mean": 0.207324,
+        "std": 0.227055,
+        "min": 0.035077,
+        "max": 1.562436,
+        "n": 71
+      },
+      "M1_retention": {
+        "mean": 0.1932,
+        "std": 0.219199,
+        "min": 0.033745,
+        "max": 1.571719,
+        "n": 71
+      },
+      "M2_retention": {
+        "mean": 0.178921,
+        "std": 0.138642,
+        "min": 0.043819,
+        "max": 0.661587,
+        "n": 71
+      },
+      "M3_retention": {
+        "mean": 0.158204,
+        "std": 0.121894,
+        "min": 0.041263,
+        "max": 0.567379,
+        "n": 71
+      }
+    },
+    "retention_FULL": {
+      "mean": 0.269222,
+      "sem": 0.012575,
+      "n": 36
+    },
+    "retention_NO_REPLAY": {
+      "mean": 0.05027,
+      "sem": 0.000952,
+      "n": 36
+    }
+  },
+  "serial_position_experiment\\results\\phase1_diagnostic.csv": {
+    "file": "serial_position_experiment\\results\\phase1_diagnostic.csv",
+    "rows": 12,
+    "columns": [
+      "seed",
+      "probe_fraction",
+      "memory_id",
+      "encoding_position",
+      "isyn_score",
+      "w_slow",
+      "w_fast",
+      "assembly_w_fast",
+      "gamma0_retention",
+      "elapsed_seconds"
+    ],
+    "numeric_summary": {
+      "seed": {
+        "mean": 42.0,
+        "std": 0.0,
+        "min": 42.0,
+        "max": 42.0,
+        "n": 12
+      },
+      "probe_fraction": {
+        "mean": 0.5,
+        "std": 0.426401,
+        "min": 0.0,
+        "max": 1.0,
+        "n": 12
+      },
+      "memory_id": {
+        "mean": 1.5,
+        "std": 1.167748,
+        "min": 0.0,
+        "max": 3.0,
+        "n": 12
+      },
+      "encoding_position": {
+        "mean": 1.5,
+        "std": 1.167748,
+        "min": 0.0,
+        "max": 3.0,
+        "n": 12
+      },
+      "isyn_score": {
+        "mean": 0.072338,
+        "std": 0.040607,
+        "min": 0.029586,
+        "max": 0.17393,
+        "n": 12
+      },
+      "w_slow": {
+        "mean": 0.072992,
+        "std": 0.055386,
+        "min": 0.027491,
+        "max": 0.205665,
+        "n": 12
+      },
+      "w_fast": {
+        "mean": 0.085945,
+        "std": 0.033199,
+        "min": 0.060574,
+        "max": 0.143505,
+        "n": 12
+      },
+      "assembly_w_fast": {
+        "mean": 0.086507,
+        "std": 0.031421,
+        "min": 0.063493,
+        "max": 0.141519,
+        "n": 12
+      },
+      "gamma0_retention": {
+        "mean": 0.032462,
+        "std": 0.01944,
+        "min": 0.018258,
+        "max": 0.061165,
+        "n": 4
+      },
+      "elapsed_seconds": {
+        "mean": 803.661418,
+        "std": 25.173921,
+        "min": 776.917907,
+        "max": 835.335144,
+        "n": 12
+      }
+    }
+  },
+  "serial_position_experiment\\results\\phase2_results.csv": {
+    "file": "serial_position_experiment\\results\\phase2_results.csv",
+    "rows": 240,
+    "columns": [
+      "seed",
+      "probe_fraction",
+      "memory_id",
+      "encoding_position",
+      "isyn_score",
+      "w_slow",
+      "w_fast",
+      "assembly_w_fast",
+      "gamma0_retention",
+      "elapsed_seconds"
+    ],
+    "numeric_summary": {
+      "seed": {
+        "mean": 4542.0,
+        "std": 2878.284008,
+        "min": 42.0,
+        "max": 9042.0,
+        "n": 240
+      },
+      "probe_fraction": {
+        "mean": 0.433333,
+        "std": 0.356255,
+        "min": 0.0,
+        "max": 1.0,
+        "n": 240
+      },
+      "memory_id": {
+        "mean": 1.5,
+        "std": 1.120371,
+        "min": 0.0,
+        "max": 3.0,
+        "n": 240
+      },
+      "encoding_position": {
+        "mean": 1.5,
+        "std": 1.120371,
+        "min": 0.0,
+        "max": 3.0,
+        "n": 240
+      },
+      "isyn_score": {
+        "mean": 0.059414,
+        "std": 0.033798,
+        "min": 0.019093,
+        "max": 0.163467,
+        "n": 240
+      },
+      "w_slow": {
+        "mean": 0.064468,
+        "std": 0.043922,
+        "min": 0.024998,
+        "max": 0.195976,
+        "n": 240
+      },
+      "w_fast": {
+        "mean": 0.054291,
+        "std": 0.029636,
+        "min": 0.0115,
+        "max": 0.143505,
+        "n": 240
+      },
+      "assembly_w_fast": {
+        "mean": 0.054463,
+        "std": 0.032284,
+        "min": 0.007706,
+        "max": 0.160014,
+        "n": 240
+      },
+      "gamma0_retention": {
+        "mean": 0.018291,
+        "std": 0.017734,
+        "min": 0.001793,
+        "max": 0.061165,
+        "n": 40
+      },
+      "elapsed_seconds": {
+        "mean": 1016.830414,
+        "std": 422.59816,
+        "min": 687.231507,
+        "max": 3024.000324,
+        "n": 240
+      }
+    }
+  },
+  "serial_position_experiment\\results\\phase3_8memories.csv": {
+    "file": "serial_position_experiment\\results\\phase3_8memories.csv",
+    "rows": 160,
+    "columns": [
+      "seed",
+      "probe_fraction",
+      "memory_id",
+      "encoding_position",
+      "n_memories",
+      "isyn_score",
+      "w_slow",
+      "w_fast",
+      "assembly_w_fast",
+      "elapsed_seconds"
+    ],
+    "numeric_summary": {
+      "seed": {
+        "mean": 4545.144654,
+        "std": 2890.127705,
+        "min": 42.0,
+        "max": 9042.0,
+        "n": 159
+      },
+      "probe_fraction": {
+        "mean": 0.5,
+        "std": 0.50157,
+        "min": 0.0,
+        "max": 1.0,
+        "n": 160
+      },
+      "memory_id": {
+        "mean": 3.5,
+        "std": 2.298482,
+        "min": 0.0,
+        "max": 7.0,
+        "n": 160
+      },
+      "encoding_position": {
+        "mean": 3.5,
+        "std": 2.298482,
+        "min": 0.0,
+        "max": 7.0,
+        "n": 160
+      },
+      "n_memories": {
+        "mean": 8.0,
+        "std": 0.0,
+        "min": 8.0,
+        "max": 8.0,
+        "n": 160
+      },
+      "isyn_score": {
+        "mean": 0.043915,
+        "std": 0.037425,
+        "min": 0.002756,
+        "max": 0.151379,
+        "n": 160
+      },
+      "w_slow": {
+        "mean": 0.055449,
+        "std": 0.041719,
+        "min": 0.018939,
+        "max": 0.184064,
+        "n": 160
+      },
+      "w_fast": {
+        "mean": 0.059423,
+        "std": 0.025205,
+        "min": 0.017385,
+        "max": 0.157759,
+        "n": 160
+      },
+      "assembly_w_fast": {
+        "mean": 0.057056,
+        "std": 0.035511,
+        "min": 0.0,
+        "max": 0.174018,
+        "n": 160
+      },
+      "elapsed_seconds": {
+        "mean": 1632.070227,
+        "std": 145.343369,
+        "min": 1538.158597,
+        "max": 2222.265285,
+        "n": 160
+      }
+    }
+  },
+  "ablation_results\\task105\\task105_summary.csv": {
+    "file": "ablation_results\\task105\\task105_summary.csv",
+    "rows": 12,
+    "columns": [
+      "condition",
+      "memory",
+      "replay_count",
+      "replay_frac",
+      "retention",
+      "wslow_unique"
+    ],
+    "numeric_summary": {
+      "memory": {
+        "mean": 1.5,
+        "std": 1.167748,
+        "min": 0.0,
+        "max": 3.0,
+        "n": 12
+      },
+      "replay_count": {
+        "mean": 11.25,
+        "std": 5.361903,
+        "min": 1.0,
+        "max": 20.0,
+        "n": 12
+      },
+      "replay_frac": {
+        "mean": 0.250083,
+        "std": 0.11917,
+        "min": 0.022,
+        "max": 0.444,
+        "n": 12
+      },
+      "retention": {
+        "mean": 0.2607,
+        "std": 0.013251,
+        "min": 0.2437,
+        "max": 0.2855,
+        "n": 12
+      },
+      "wslow_unique": {
+        "mean": 0.054992,
+        "std": 0.026106,
+        "min": 0.019,
+        "max": 0.0891,
+        "n": 12
+      }
+    },
+    "retention_CONTROL": {
+      "mean": 0.265375,
+      "sem": 0.006886,
+      "n": 4
+    },
+    "retention_BOOST_MEM3": {
+      "mean": 0.2536,
+      "sem": 0.003391,
+      "n": 4
+    },
+    "retention_SUPPRESS_MEM0": {
+      "mean": 0.263125,
+      "sem": 0.008718,
+      "n": 4
+    }
+  },
+  "ablation_results\\task45\\replay_stdp_summary.csv": {
+    "file": "ablation_results\\task45\\replay_stdp_summary.csv",
+    "rows": 135,
+    "columns": [
+      "seed",
+      "event_idx",
+      "memory_idx",
+      "mean_coherence",
+      "peak_coherence",
+      "smooth_coh_last",
+      "n_coh_steps",
+      "stdp_calls",
+      "pot_updates",
+      "dep_updates"
+    ],
+    "numeric_summary": {
+      "seed": {
+        "mean": 1042.0,
+        "std": 819.537547,
+        "min": 42.0,
+        "max": 2042.0,
+        "n": 135
+      },
+      "event_idx": {
+        "mean": 67.0,
+        "std": 39.115214,
+        "min": 0.0,
+        "max": 134.0,
+        "n": 135
+      },
+      "memory_idx": {
+        "mean": 0.703704,
+        "std": 0.773383,
+        "min": 0.0,
+        "max": 2.0,
+        "n": 135
+      },
+      "mean_coherence": {
+        "mean": 0.036851,
+        "std": 0.048254,
+        "min": 0.0,
+        "max": 0.259592,
+        "n": 135
+      },
+      "peak_coherence": {
+        "mean": 0.092218,
+        "std": 0.10464,
+        "min": 0.0,
+        "max": 0.435957,
+        "n": 135
+      },
+      "smooth_coh_last": {
+        "mean": 0.01256,
+        "std": 0.028575,
+        "min": 0.0,
+        "max": 0.192498,
+        "n": 135
+      },
+      "n_coh_steps": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 135
+      },
+      "stdp_calls": {
+        "mean": 0.044444,
+        "std": 0.240232,
+        "min": 0.0,
+        "max": 2.0,
+        "n": 135
+      },
+      "pot_updates": {
+        "mean": 0.022222,
+        "std": 0.258199,
+        "min": 0.0,
+        "max": 3.0,
+        "n": 135
+      },
+      "dep_updates": {
+        "mean": 0.022222,
+        "std": 0.258199,
+        "min": 0.0,
+        "max": 3.0,
+        "n": 135
+      }
+    }
+  },
+  "ablation_results\\task5\\task5_summary.csv": {
+    "file": "ablation_results\\task5\\task5_summary.csv",
+    "rows": 20,
+    "columns": [
+      "seed",
+      "condition",
+      "Wcc",
+      "Wuc",
+      "Wuu",
+      "S1",
+      "retention_mean",
+      "retrieval_mean",
+      "replay_events"
+    ],
+    "numeric_summary": {
+      "seed": {
+        "mean": 2042.0,
+        "std": 1450.9525,
+        "min": 42.0,
+        "max": 4042.0,
+        "n": 20
+      },
+      "Wcc": {
+        "mean": 0.05182,
+        "std": 0.040931,
+        "min": 0.0,
+        "max": 0.135386,
+        "n": 20
+      },
+      "Wuc": {
+        "mean": 0.024059,
+        "std": 0.006369,
+        "min": 0.018959,
+        "max": 0.036074,
+        "n": 20
+      },
+      "Wuu": {
+        "mean": 0.010482,
+        "std": 0.003761,
+        "min": 0.008149,
+        "max": 0.017788,
+        "n": 20
+      },
+      "S1": {
+        "mean": 0.027761,
+        "std": 0.040157,
+        "min": -0.036074,
+        "max": 0.099313,
+        "n": 20
+      },
+      "retention_mean": {
+        "mean": 0.285478,
+        "std": 0.014958,
+        "min": 0.256925,
+        "max": 0.318145,
+        "n": 20
+      },
+      "retrieval_mean": {
+        "mean": 0.04,
+        "std": 0.016524,
+        "min": 0.00625,
+        "max": 0.0625,
+        "n": 20
+      },
+      "replay_events": {
+        "mean": 45.4,
+        "std": 0.502625,
+        "min": 45.0,
+        "max": 46.0,
+        "n": 20
+      }
+    },
+    "retention_FULL": {
+      "mean": 0.288463,
+      "sem": 0.005671,
+      "n": 5
+    },
+    "retention_WCC_WEAKEN": {
+      "mean": 0.280936,
+      "sem": 0.00538,
+      "n": 5
+    },
+    "retention_WCC_DESTROY": {
+      "mean": 0.273974,
+      "sem": 0.005069,
+      "n": 5
+    },
+    "retention_WCC_ENHANCE": {
+      "mean": 0.298539,
+      "sem": 0.00653,
+      "n": 5
+    }
+  },
+  "ablation_results\\task55\\task55_summary.csv": {
+    "file": "ablation_results\\task55\\task55_summary.csv",
+    "rows": 8,
+    "columns": [
+      "seed",
+      "condition",
+      "Wcc",
+      "Wuc",
+      "Wuu",
+      "S1",
+      "retention_mean",
+      "retrieval_mean",
+      "replay_events"
+    ],
+    "numeric_summary": {
+      "seed": {
+        "mean": 542.0,
+        "std": 534.522484,
+        "min": 42.0,
+        "max": 1042.0,
+        "n": 8
+      },
+      "Wcc": {
+        "mean": 0.026831,
+        "std": 0.034005,
+        "min": 0.0,
+        "max": 0.090258,
+        "n": 8
+      },
+      "Wuc": {
+        "mean": 0.027272,
+        "std": 0.007428,
+        "min": 0.018822,
+        "max": 0.036074,
+        "n": 8
+      },
+      "Wuu": {
+        "mean": 0.012743,
+        "std": 0.005143,
+        "min": 0.00749,
+        "max": 0.017788,
+        "n": 8
+      },
+      "S1": {
+        "mean": -0.000441,
+        "std": 0.031577,
+        "min": -0.033117,
+        "max": 0.054184,
+        "n": 8
+      },
+      "retention_mean": {
+        "mean": 0.271795,
+        "std": 0.017907,
+        "min": 0.246678,
+        "max": 0.305767,
+        "n": 8
+      },
+      "retrieval_mean": {
+        "mean": 0.046094,
+        "std": 0.014538,
+        "min": 0.03125,
+        "max": 0.06875,
+        "n": 8
+      },
+      "replay_events": {
+        "mean": 45.5,
+        "std": 0.534522,
+        "min": 45.0,
+        "max": 46.0,
+        "n": 8
+      }
+    },
+    "retention_FULL": {
+      "mean": 0.293444,
+      "sem": 0.012323,
+      "n": 2
+    },
+    "retention_WCC_FROZEN": {
+      "mean": 0.266757,
+      "sem": 0.00573,
+      "n": 2
+    },
+    "retention_WCC_CLAMPED_ZERO": {
+      "mean": 0.255266,
+      "sem": 0.008588,
+      "n": 2
+    },
+    "retention_WCC_NO_STDP": {
+      "mean": 0.271714,
+      "sem": 0.00983,
+      "n": 2
+    }
+  },
+  "ablation_results\\task6\\task6_summary.csv": {
+    "file": "ablation_results\\task6\\task6_summary.csv",
+    "rows": 18,
+    "columns": [
+      "seed",
+      "condition",
+      "Wcc",
+      "Wuc",
+      "Wuu",
+      "S1",
+      "retention_mean",
+      "retrieval_mean",
+      "replay_events"
+    ],
+    "numeric_summary": {
+      "seed": {
+        "mean": 1042.0,
+        "std": 840.16805,
+        "min": 42.0,
+        "max": 2042.0,
+        "n": 18
+      },
+      "Wcc": {
+        "mean": 0.060126,
+        "std": 0.030172,
+        "min": 0.0,
+        "max": 0.090258,
+        "n": 18
+      },
+      "Wuc": {
+        "mean": 0.008693,
+        "std": 0.013345,
+        "min": 0.0,
+        "max": 0.036074,
+        "n": 18
+      },
+      "Wuu": {
+        "mean": 0.003914,
+        "std": 0.006237,
+        "min": 0.0,
+        "max": 0.017788,
+        "n": 18
+      },
+      "S1": {
+        "mean": 0.051433,
+        "std": 0.028335,
+        "min": 0.0,
+        "max": 0.090258,
+        "n": 18
+      },
+      "retention_mean": {
+        "mean": 0.284476,
+        "std": 0.012224,
+        "min": 0.262439,
+        "max": 0.30698,
+        "n": 18
+      },
+      "retrieval_mean": {
+        "mean": 0.038889,
+        "std": 0.012602,
+        "min": 0.00625,
+        "max": 0.0625,
+        "n": 18
+      },
+      "replay_events": {
+        "mean": 45.666667,
+        "std": 0.485071,
+        "min": 45.0,
+        "max": 46.0,
+        "n": 18
+      }
+    },
+    "retention_CONTROL": {
+      "mean": 0.290699,
+      "sem": 0.007626,
+      "n": 3
+    },
+    "retention_DESTROY_WUC": {
+      "mean": 0.284993,
+      "sem": 0.005956,
+      "n": 3
+    },
+    "retention_DESTROY_WUU": {
+      "mean": 0.292383,
+      "sem": 0.007305,
+      "n": 3
+    },
+    "retention_DESTROY_WUC_WUU": {
+      "mean": 0.285027,
+      "sem": 0.007033,
+      "n": 3
+    },
+    "retention_DESTROY_ALL_NON_CORE": {
+      "mean": 0.285099,
+      "sem": 0.005684,
+      "n": 3
+    },
+    "retention_DESTROY_ALL": {
+      "mean": 0.268651,
+      "sem": 0.004277,
+      "n": 3
+    }
+  },
+  "ablation_results\\task9\\task9_summary.csv": {
+    "file": "ablation_results\\task9\\task9_summary.csv",
+    "rows": 15,
+    "columns": [
+      "cond_name",
+      "seed",
+      "n_mem",
+      "core_size",
+      "replay",
+      "retention_mean",
+      "retrieval_mean",
+      "WScc",
+      "WSuc",
+      "WSuu",
+      "Wcc",
+      "Wuc",
+      "Wuu",
+      "schema_strength"
+    ],
+    "numeric_summary": {
+      "seed": {
+        "mean": 442.0,
+        "std": 736.788398,
+        "min": 42.0,
+        "max": 2042.0,
+        "n": 15
+      },
+      "n_mem": {
+        "mean": 4.266667,
+        "std": 1.279881,
+        "min": 2.0,
+        "max": 8.0,
+        "n": 15
+      },
+      "core_size": {
+        "mean": 28.666667,
+        "std": 22.949219,
+        "min": 0.0,
+        "max": 80.0,
+        "n": 15
+      },
+      "replay": {
+        "mean": 0.666667,
+        "std": 0.48795,
+        "min": 0.0,
+        "max": 1.0,
+        "n": 15
+      },
+      "retention_mean": {
+        "mean": 0.096917,
+        "std": 0.114314,
+        "min": 0.0,
+        "max": 0.305767,
+        "n": 15
+      },
+      "retrieval_mean": {
+        "mean": 0.437326,
+        "std": 0.496881,
+        "min": 0.008333,
+        "max": 1.0,
+        "n": 12
+      },
+      "WScc": {
+        "mean": 0.825867,
+        "std": 0.599843,
+        "min": 0.0,
+        "max": 1.497909,
+        "n": 12
+      },
+      "WSuc": {
+        "mean": 0.619421,
+        "std": 0.660683,
+        "min": 0.0,
+        "max": 1.490136,
+        "n": 12
+      },
+      "WSuu": {
+        "mean": 0.5962,
+        "std": 0.657027,
+        "min": 0.014059,
+        "max": 1.475203,
+        "n": 12
+      },
+      "Wcc": {
+        "mean": 0.176393,
+        "std": 0.149446,
+        "min": 0.0,
+        "max": 0.346229,
+        "n": 12
+      },
+      "Wuc": {
+        "mean": 0.077638,
+        "std": 0.08403,
+        "min": 0.0,
+        "max": 0.232653,
+        "n": 12
+      },
+      "Wuu": {
+        "mean": 0.09991,
+        "std": 0.108628,
+        "min": 0.008511,
+        "max": 0.259419,
+        "n": 12
+      },
+      "schema_strength": {
+        "mean": 0.206447,
+        "std": 0.213776,
+        "min": 0.0,
+        "max": 0.486892,
+        "n": 12
+      }
+    }
+  }
+}

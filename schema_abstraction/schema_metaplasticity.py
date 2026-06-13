@@ -11,7 +11,8 @@ a continuous measure of how "cortical" vs "hippocampal" each memory is.
 import numpy as np
 import torch
 
-from compare_catastrophic_forgetting import N_EXC, N_NEURONS, DEVICE
+from compare_catastrophic_forgetting import DEVICE
+import compare_catastrophic_forgetting as _ccf
 
 
 # ── Config ──────────────────────────────────────────────────────────────

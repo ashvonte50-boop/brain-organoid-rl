@@ -1,0 +1,171 @@
+==============================================================================
+MAJOR-3: ATTRACTOR LANGUAGE PURGE — TEXT REPLACEMENT MAP
+==============================================================================
+Generated: 2026-06-08
+Basis: M2 null result — W_slow[cc] does NOT form a recurrent attractor hub.
+       Core completion never exceeded 1.5% (vs unique 6-26%).
+       The schema core is a CONSOLIDATION SUBSTRATE, not an attractor.
+
+RULE: Replace "attractor" language with mechanistically accurate alternatives.
+      Keep "attractor" ONLY when explicitly discussing the M2 null result,
+      citing Hopfield networks, or in the extensions/baselines code.
+
+==============================================================================
+SECTION 1: PAPER TEXT REPLACEMENTS (for manuscript)
+==============================================================================
+
+OLD: "W_slow creates deeper attractor basins that survive interference"
+NEW: "W_slow consolidates synaptic traces that survive fast-weight interference"
+
+OLD: "stable attractor states"
+NEW: "stable consolidated weight configurations"
+
+OLD: "attractor dynamics driven by W_eff"
+NEW: "recurrent reactivation dynamics driven by W_eff"
+
+OLD: "attractor basin" / "basin of attraction"
+NEW: "consolidated weight substrate" or "synaptic consolidation buffer"
+
+OLD: "deepens the attractor basin"
+NEW: "strengthens the consolidated weight substrate"
+
+OLD: "attractor occupancy"
+NEW: "reactivation fidelity" or "pattern reactivation strength"
+
+OLD: "attractor lifetime"
+NEW: "reactivation persistence" or "coherent reactivation duration"
+
+OLD: "long-lived attractors"
+NEW: "persistent reactivation episodes"
+
+OLD: "attractor stability"
+NEW: "consolidation stability" or "reactivation robustness"
+
+OLD: "attractor collapse under competition"
+NEW: "consolidation erosion under interference"
+
+OLD: "attractor RESTORATION"
+NEW: "consolidation RESTORATION" (this is actually fine — replay restores W_slow)
+
+OLD: "attractor hub"
+NEW: "consolidation hub" or "recurrent consolidation substrate"
+
+OLD: "fragile attractor"
+NEW: "fragile reactivation" or "weak synaptic substrate"
+
+OLD: "Schema attractor"  (in DAI/schema context)
+NEW: "Schema centroid" (this is what the code actually computes)
+
+OLD: "attractor competition between overlapping memories"
+NEW: "synaptic competition between overlapping assemblies"
+
+OLD: "pattern completion fills rest"
+NEW: "recurrent reactivation propagates through assembly"
+
+OLD: "Slow consolidation creates stable attractor basins"
+NEW: "Slow consolidation creates robust synaptic substrates"
+
+OLD: "attractor persistence current"
+NEW: "reverberatory persistence current"
+
+OLD: "cross-attractor runaway"
+NEW: "cross-assembly saturation" or "runaway potentiation"
+
+==============================================================================
+SECTION 2: FILE-BY-FILE CHANGES NEEDED
+==============================================================================
+
+--- README.md ---
+Line 173: "stable memory attractors" → "stable memory substrates"
+Line 200: "attractor dynamics complete pattern" → "recurrent dynamics reactivate assembly"
+Line 202: Remove or reword "(positive feedback loop) deepens attractor basin"
+          → "consolidation strengthens the recurrent weight substrate"
+Line 269: "pattern completion quality (recall fidelity)" → keep "recall fidelity", drop "pattern completion"
+Line 538: "DAI and attractor error per trial" → "DAI and schema centroid error per trial"
+
+--- FINDINGS_REPORT.md ---
+Lines 1649-1704: KEEP AS-IS — this is the M2 null result section, properly documented
+                 The word "attractor" is used correctly here (to state it was tested and rejected)
+
+--- compare_catastrophic_forgetting.py (COMMENTS ONLY — code is READ-ONLY) ---
+NOTE: The main simulation code is READ-ONLY per project rules.
+      These are comment-level changes only, for future code cleanup.
+      ALL code-level "attractor" references are in comments, variable names, or
+      docstrings — they do not affect simulation behavior.
+
+Key comment blocks to revise in future cleanup:
+  Lines 522-582: "Attractor persistence" block → "Reverberatory persistence"
+  Lines 792-803: "Attractor landscapes" literature block → add caveat re M2 null
+  Line 311:  "genuine attractor competition" → "genuine synaptic competition"
+  Line 333:  "attractors drift" → "assemblies drift"
+  Lines 6175-6301: fig_attractor_dynamics → rename to fig_reactivation_dynamics
+  Lines 6304-6418: fig_competition_dynamics → update captions
+
+--- task11_figures.py ---
+Lines 425-481: Panel F title "Attractor hub formation" →
+               "Consolidation substrate: W_slow[cc] recurrence"
+Line 447: "Weak, noisy attractors" → "Weak, noisy reactivation"
+Line 478: "Deep core attractor" → "Strong core consolidation"
+
+--- ablation_report.py ---
+Line 531: "schema attractor" → "schema centroid"
+
+--- reports/ directory ---
+04_figure_selection_report.md: Rewrite Fig 3 description entirely
+  - Remove "attractor dynamics" framing
+  - Replace with "consolidation substrate" framing
+  - Rename figure if possible: "consolidation_dynamics.png"
+05_biological_validation_report.md: Section 2.7 "Attractor Dynamics"
+  - Reframe as "Reverberatory Dynamics"
+  - Keep NMDA biological parallel but drop attractor basin language
+07_publication_readiness_assessment.md: Line 20 conditional claim
+  - "Attractor dynamics explain mechanism" → mark as REJECTED by M2
+08_recommended_figure_order.md: Fig 3 rewrite needed
+10_mechanistic_narrative_summary.md: Lines 82-99
+  - Entire section uses attractor language heavily
+  - Replace with consolidation-substrate narrative
+
+==============================================================================
+SECTION 3: WHAT TO KEEP
+==============================================================================
+
+KEEP "attractor" in these contexts:
+1. M2 results section — explicitly states the null result
+2. References to Hopfield networks or attractor network literature
+3. extensions/baselines.py "Hopfield Attractor" baseline comparison
+4. extensions/failure_analysis.py "attractor fusion" analysis (technical term)
+5. extensions/benchmark.py "basin-of-attraction robustness" (standard benchmark)
+6. schema_abstraction/ basin geometry code (measures a different thing)
+7. Any sentence that explicitly says "NOT an attractor" or "does not form an attractor"
+
+==============================================================================
+SECTION 4: REPLACEMENT FIGURE CAPTION
+==============================================================================
+
+OLD Fig 3 caption:
+  "Slow consolidation creates stable attractor basins that support coherent replay"
+
+NEW Fig 3 caption:
+  "W_slow[cc] consolidation creates a persistent synaptic substrate that supports
+   coherent replay. (A) Mean weight in each W_slow block (cc, cu, uc, uu) after
+   sequential 4-memory learning. Core-core weights are 15x higher than other blocks.
+   (B) Weight trajectories across rest periods showing consolidation accumulation.
+   (C) M2 diagnostic: pattern completion from partial cues confirms W_slow[cc]
+   does NOT function as a Hopfield-type attractor hub — core completion never
+   exceeds 1.5%. The mechanism is synaptic consolidation, not attractor dynamics."
+
+==============================================================================
+SECTION 5: KEY NARRATIVE REFRAME
+==============================================================================
+
+WRONG (old narrative):
+  "Replay deepens attractor basins in W_slow, creating stable memory states
+   that resist interference. The mechanism is attractor dynamics."
+
+RIGHT (corrected narrative):
+  "Replay drives synaptic tag consolidation from W_fast into W_slow, creating
+   a durable weight substrate that resists fast-weight interference. The schema
+   core (neurons 0-19) accumulates disproportionate W_slow potentiation because
+   it participates in every memory's replay events. This is a consolidation
+   mechanism, not an attractor mechanism — M2 confirms that W_slow[cc] does not
+   support classical pattern completion from partial cues."

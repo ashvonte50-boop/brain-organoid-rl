@@ -1,0 +1,221 @@
+
+======================================================================
+PART 1: STATIC CODE ANALYSIS
+======================================================================
+Tracing compute_real_schema_index call path:
+  ablation_pipeline.py:174   rs = compute_real_schema_index(net, assemblies, core_mask) if net else 0.0
+  ablation_pipeline.py:174       where net = r.get("net")
+  ablation_pipeline.py:138       where r = ccf.run_sequential_experiment(...)
+
+Checking run_sequential_experiment return value (CCF.py:4229-4257):
+  Returns dict with keys: retention_matrix, weight_evolution, snapshots,
+  rsm_matrix, tag_evolution, baseline_scores, final_scores, replay_metrics,
+  completion_accuracy, decoding_separation, noisy_retrieval,
+  replay_statistics, hc_ctx_transfer, transfer_curves, hc_drift, ctx_drift,
+  basin_stability, spectral_radius, participation_ratio, metastable_states,
+  energy_metrics, hook_extra
+
+>>> "net" is NOT in the return dict! <<<
+
+Therefore:
+  r.get("net") -> None  (always)
+  net is None -> compute_real_schema_index short-circuits to 0.0
+    (see _distortion_paper.py:194-195)
+
+CONFIRMED ROOT CAUSE OF REAL_SCHEMA = 0:
+  Bug in ablation_pipeline.py. The pipeline tries to read r["net"]
+  but run_sequential_experiment never puts "net" into its result.
+  The downstream early-return at _distortion_paper.py:194 returns 0.0.
+
+======================================================================
+PART 2: AUDIT OF SAVED PILOT DATA
+======================================================================
+
+  PILOT_ABLATE_M1.pkl:  3 seeds
+    seed[0].natural: real_schema=0.0, dai_core=0.9380, dai_unique=0.0000, n_events=45
+    seed[0].hyper: real_schema=0.0, dai_core=0.9370, dai_unique=0.0000, n_events=45
+    seed[1].natural: real_schema=0.0, dai_core=0.9542, dai_unique=0.0014, n_events=45
+    seed[1].hyper: real_schema=0.0, dai_core=0.9603, dai_unique=-0.0060, n_events=46
+    seed[2].natural: real_schema=0.0, dai_core=0.9535, dai_unique=0.0000, n_events=46
+    seed[2].hyper: real_schema=0.0, dai_core=0.9545, dai_unique=0.0000, n_events=46
+
+  PILOT_ABLATE_M10.pkl:  3 seeds
+    seed[0].natural: real_schema=0.0, dai_core=0.9349, dai_unique=0.0000, n_events=45
+    seed[0].hyper: real_schema=0.0, dai_core=0.9389, dai_unique=0.0000, n_events=45
+    seed[1].natural: real_schema=0.0, dai_core=0.9599, dai_unique=0.0000, n_events=46
+    seed[1].hyper: real_schema=0.0, dai_core=0.9621, dai_unique=0.0000, n_events=46
+    seed[2].natural: real_schema=0.0, dai_core=0.9479, dai_unique=0.0000, n_events=45
+    seed[2].hyper: real_schema=0.0, dai_core=0.9553, dai_unique=0.0000, n_events=46
+
+  PILOT_ABLATE_M2.pkl:  3 seeds
+    seed[0].natural: real_schema=0.0, dai_core=0.9349, dai_unique=0.0000, n_events=45
+    seed[0].hyper: real_schema=0.0, dai_core=0.9368, dai_unique=0.0000, n_events=45
+    seed[1].natural: real_schema=0.0, dai_core=0.9627, dai_unique=0.0000, n_events=46
+    seed[1].hyper: real_schema=0.0, dai_core=0.9602, dai_unique=0.0000, n_events=46
+    seed[2].natural: real_schema=0.0, dai_core=0.9542, dai_unique=0.0000, n_events=46
+    seed[2].hyper: real_schema=0.0, dai_core=0.9534, dai_unique=0.0000, n_events=46
+
+  PILOT_ABLATE_M5.pkl:  3 seeds
+    seed[0].natural: real_schema=0.0, dai_core=0.9379, dai_unique=0.0000, n_events=45
+    seed[0].hyper: real_schema=0.0, dai_core=0.9370, dai_unique=0.0000, n_events=45
+    seed[1].natural: real_schema=0.0, dai_core=0.9549, dai_unique=0.0000, n_events=45
+    seed[1].hyper: real_schema=0.0, dai_core=0.9604, dai_unique=0.0000, n_events=46
+    seed[2].natural: real_schema=0.0, dai_core=0.9535, dai_unique=0.0000, n_events=46
+    seed[2].hyper: real_schema=0.0, dai_core=0.9545, dai_unique=0.0000, n_events=46
+
+  PILOT_ABLATE_M7.pkl:  3 seeds
+    seed[0].natural: real_schema=0.0, dai_core=0.9365, dai_unique=0.0000, n_events=45
+    seed[0].hyper: real_schema=0.0, dai_core=0.9380, dai_unique=0.0000, n_events=45
+    seed[1].natural: real_schema=0.0, dai_core=0.9546, dai_unique=0.0000, n_events=45
+    seed[1].hyper: real_schema=0.0, dai_core=0.9612, dai_unique=0.0000, n_events=46
+    seed[2].natural: real_schema=0.0, dai_core=0.9523, dai_unique=0.0000, n_events=46
+    seed[2].hyper: real_schema=0.0, dai_core=0.9561, dai_unique=0.0000, n_events=46
+
+  PILOT_FULL.pkl:  3 seeds
+    seed[0].natural: real_schema=0.0, dai_core=0.9349, dai_unique=0.0000, n_events=45
+    seed[0].hyper: real_schema=0.0, dai_core=0.9368, dai_unique=0.0000, n_events=45
+    seed[1].natural: real_schema=0.0, dai_core=0.9627, dai_unique=0.0000, n_events=46
+    seed[1].hyper: real_schema=0.0, dai_core=0.9602, dai_unique=0.0000, n_events=46
+    seed[2].natural: real_schema=0.0, dai_core=0.9542, dai_unique=0.0000, n_events=46
+    seed[2].hyper: real_schema=0.0, dai_core=0.9534, dai_unique=0.0000, n_events=46
+
+Observations:
+  - real_schema = 0.0 EXACTLY in every single record
+  - dai_unique = 0.0 EXACTLY in every single record
+  - dai_core in narrow band 0.93-0.96
+  - This pattern (two metrics literally 0.0) is the fingerprint of
+    a None-shortcircuit, not noise or genuine zero values
+
+======================================================================
+PART 3: INSTRUMENTED MINI-EXPERIMENT (~3 min)
+======================================================================
+
+Assembly layout (SCHEMA_CORE_SIZE=20, UNIQUE_SIZE=20):
+  core_mask:   [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+  Memory A:  core [0, 1, 2]..19  + unique [20, 21, 22]..39  (total 40 neurons)
+  Memory B:  core [0, 1, 2]..19  + unique [40, 41, 42]..59  (total 40 neurons)
+  Memory C:  core [0, 1, 2]..19  + unique [60, 61, 62]..79  (total 40 neurons)
+  Memory D:  core [0, 1, 2]..19  + unique [80, 81, 82]..99  (total 40 neurons)
+
+Running ONE short experiment with the FULL model (~3-5 min)...
+  Done (510s)
+
+Replay events triggered: 45
+r.keys() returned by run_sequential_experiment:
+  ['baseline_scores', 'basin_stability', 'completion_accuracy', 'ctx_drift', 'decoding_separation', 'energy_metrics', 'final_scores', 'hc_ctx_transfer', 'hc_drift', 'hook_extra', 'metastable_states', 'noisy_retrieval', 'participation_ratio', 'replay_metrics', 'replay_statistics', 'retention_matrix', 'rsm_matrix', 'snapshots', 'spectral_radius', 'tag_evolution', 'transfer_curves', 'weight_evolution']
+  "net" present?  False
+  r.get("net")  ->  None
+
+capture.net captured directly:  True
+
+─── REAL_SCHEMA — CORRECT computation (using captured net) ───
+  W shape: (750, 750),  W.min=0.0000,  W.max=0.7499,  W.mean=0.0092
+  core_core (20x20) block:
+    mean = 0.090258
+    max  = 0.505253
+    nonzero entries = 100 / 400
+  Memory A  W[unique, core] mean = 0.035415  (block (20, 20), nonzero 98/400)
+  Memory B  W[unique, core] mean = 0.037621  (block (20, 20), nonzero 103/400)
+  Memory C  W[unique, core] mean = 0.044445  (block (20, 20), nonzero 108/400)
+  Memory D  W[unique, core] mean = 0.026814  (block (20, 20), nonzero 62/400)
+
+  mean_core_core = 0.090258
+  mean_unique    = 0.036074
+  REAL_SCHEMA    = (CC - U)/(CC + U) = +0.428904
+
+─── REAL_SCHEMA — BUGGED pipeline call (net=None) ───
+  compute_real_schema_index(None, ...) -> 0.0  (early-return at line 194)
+
+─── REAL_SCHEMA — using the captured net via the same function ───
+  compute_real_schema_index(captured_net, ...) -> 0.428904
+
+CONCLUSION:
+  The reported "real_schema = 0.000" is NOT a real measurement.
+  Schema structure IS forming. True RS for FULL model seed=42: +0.4289
+
+======================================================================
+PART 4: NETWORK STRUCTURE VISUALIZATIONS
+======================================================================
+  Saved C:\Users\Admin\brain-organoid-rl\ablation_results\diagnostic\figA_weight_matrix.png
+  Saved C:\Users\Admin\brain-organoid-rl\ablation_results\diagnostic\figB_rs_evolution.png
+  Saved C:\Users\Admin\brain-organoid-rl\ablation_results\diagnostic\figC_dai_distribution.png
+  DAI_core all-conditions range: [0.9349, 0.9627]
+  Spread = 0.0278  (very narrow → ceiling effect likely)
+
+======================================================================
+PART 5: ROOT-CAUSE ANALYSIS
+======================================================================
+
+CLAIM A — REAL_SCHEMA implementation bug:                    CONFIRMED
+   compute_real_schema_index expects a net argument.
+   ablation_pipeline.py:174 calls it with r.get("net").
+   run_sequential_experiment never puts "net" in its return dict.
+   -> r.get("net") = None for ALL conditions.
+   -> _distortion_paper.py:194-195 short-circuits to 0.0.
+   Manual recompute on captured net gives RS = +0.4289
+   (so RS is being formed correctly; only the storage is broken.)
+
+CLAIM B — REAL_SCHEMA measures the wrong thing:               NO
+   The metric formula (CC - U) / (CC + U) is sound.
+   In our captured net:
+     mean_core_core = 0.0903  (boosted to ceiling)
+     mean_unique    = 0.0361
+   -> RS = +0.4289  (positive, schema present)
+
+CLAIM C — Schema formation never occurred:                   NO
+   Weight block evolution shows core-core weights grow >> unique→core.
+   See figB_rs_evolution.png — RS climbs from 0 to +0.4289
+   over 45 replay events.
+
+CLAIM D — DAI_core saturation masks effects:                 LIKELY YES
+   DAI_core sits in [0.93, 0.96] across all conditions (range ≈ 0.03).
+   MB (core-boost) multiplies core-core by 1.3 every replay event,
+   so after ~50 events the core block is fully saturated at W_MAX.
+   The centroid movement is dominated by this fixed multiplicative
+   force, and the schema_attractor is computed from those same
+   centroids -> very high cosine alignment by construction.
+   When MB is left ON, removing M1/M2/M5/M7/M10 cannot meaningfully
+   change the direction of movement -> ceiling effect.
+
+CLAIM E — Other:                                              MINOR
+   - mode="hyper" adds Gaussian noise to W after the experiment,
+     but the noise (~0.008 stddev) is dwarfed by the boost saturation.
+   - "dai_unique = 0.0 always" is suspicious; the metric computes
+     cos(delta, toward) on unique-block of centroids — needs follow-up.
+
+======================================================================
+PART 6: RECOMMENDATIONS
+======================================================================
+
+IMMEDIATE FIXES (before any more ablations):
+
+1) FIX REAL_SCHEMA storage.  Two equivalent options:
+
+   (a) Modify the wrapper in ablation_pipeline.py to keep a reference
+       to the net (the wrapper IS called with net as the first arg).
+       Store it on a module-level capture object and use that for RS.
+
+   (b) Patch run_sequential_experiment to include "net" in its return.
+       More invasive but cleaner.  CCF is "do not modify" by convention,
+       so prefer (a).
+
+2) Re-examine DAI_core to confirm ceiling effect:
+
+   (a) Run FULL vs ABLATE_MB.  If removing only MB drops DAI from
+       ~0.95 down to <0.5, the saturation hypothesis is confirmed and
+       the metric needs a less-saturated formulation.
+
+   (b) Consider replacing DAI with a per-event distribution analysis
+       (median, IQR) or use a normalized direction score that subtracts
+       the baseline drift toward the attractor.
+
+3) Verify dai_unique = 0.0 across all conditions:
+   Suspicious that it is exactly 0 every time.  Could indicate that
+   the unique-block of the centroid vector is also degenerate or that
+   the metric is being computed on an empty slice.
+
+DO NOT yet:
+  - Run 10-seed full ablation.  Results would be uninterpretable
+    while DAI_core saturation persists and RS is mis-stored.
+  - Generate publication figures.  Until both metrics are validated,
+    any figures would mislead.

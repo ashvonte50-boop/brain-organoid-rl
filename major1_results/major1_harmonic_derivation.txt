@@ -1,0 +1,58 @@
+
+==============================================================================
+MAJOR-1 Part 1a: ANALYTICAL HARMONIC-SERIES DERIVATION
+==============================================================================
+
+SETUP:
+  - N memories encoded sequentially: M0, M1, ..., M_{N-1}
+  - After encoding memory k, there is a rest period with R total replay events
+  - Memory k is first eligible for replay starting at rest period k
+  - Total rest periods: N-1 (between consecutive memories)
+
+REPLAY ALLOCATION UNDER UNIFORM SCHEDULING:
+  At rest period r (after encoding M_r), memories M_0..M_r are eligible.
+  Under uniform scheduling, each eligible memory gets R/(r+1) replay events.
+
+  Expected total replay for memory k across all rest periods:
+    E[replay(k)] = Sum_{r=k}^{N-2} R/(r+1)
+                 = R * Sum_{r=k}^{N-2} 1/(r+1)
+                 = R * (H(N-1) - H(k))
+
+  where H(n) = Sum_{j=1}^{n} 1/j is the n-th harmonic number.
+
+FOR N=4 MEMORIES, R=15 REPLAY EVENTS PER REST:
+  H(1) = 1.000
+  H(2) = 1.500
+  H(3) = 1.833
+
+  E[replay(M0)] = R * (H(3) - H(0)) = 15 * 1.833 = 27.5
+  E[replay(M1)] = R * (H(3) - H(1)) = 15 * 0.833 = 12.5
+  E[replay(M2)] = R * (H(3) - H(2)) = 15 * 0.333 = 5.0
+  E[replay(M3)] = 0 (last memory, no rest follows)
+
+  RATIO M0:M3 = 27.5:0 = infinity (M3 gets zero replay!)
+
+  More conservatively, under interference_aware mode (which weights by
+  retention deficit), the allocation is biased toward struggling memories,
+  but earlier memories still get exposed to more rest periods.
+
+ACTUAL REST STRUCTURE:
+  Rest 0 (after M0): M0 eligible  → all R events go to M0
+  Rest 1 (after M1): M0, M1      → ~R/2 each (or biased)
+  Rest 2 (after M2): M0, M1, M2  → ~R/3 each (or biased)
+  No rest after M3 (last memory).
+
+TOTAL EXPOSURE:
+  M0: 3 rest periods (rests 0, 1, 2)
+  M1: 2 rest periods (rests 1, 2)
+  M2: 1 rest period  (rest 2)
+  M3: 0 rest periods (never replayed)
+
+PREDICTION:
+  Under EQUALIZED replay (forced round-robin at each rest), the per-rest
+  allocation is equalized, but M0 still benefits from more rest periods.
+  The scheduling artifact should be REDUCED but may not be fully eliminated
+  because M0 undergoes consolidation EARLIER (temporal position effect).
+
+  If the gradient vanishes completely → pure scheduling artifact
+  If the gradient persists significantly → consolidation-order effect exists

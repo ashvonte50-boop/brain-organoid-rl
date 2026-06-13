@@ -1,0 +1,5 @@
+Natural W_encode gradient (normal seed): M0=0.03324 M1=0.05448 M2=0.05382 M3=0.04143
+Target (natural W_encode[M0]) = 0.03324
+Natural W_encode[M3] = 0.04143
+M3 natural seed already >= M0 target; ADEQUATE_MULT=1 (IMPORTANT: M3 is NOT seed-deficient in fast weights).
+ADEQUATE_MULT=1

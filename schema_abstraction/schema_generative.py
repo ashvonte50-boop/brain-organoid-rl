@@ -4,9 +4,9 @@ Replaces the failed VAE with a simple online autoencoder that learns
 from REM replay data.
 
 Architecture:
-  Input:  cortical state vector (net.v or spike raster, size N_EXC)
+  Input:  cortical state vector (net.v or spike raster, size _ccf.N_EXC)
   Hidden: 64 ReLU units
-  Output: N_EXC linear units (reconstructed cortical state)
+  Output: _ccf.N_EXC linear units (reconstructed cortical state)
 
 Training data: during each REM phase, every 10th step, capture the
 cortical state vector and the corresponding memory label.
@@ -24,7 +24,8 @@ Tests:
 import numpy as np
 import torch
 
-from compare_catastrophic_forgetting import N_EXC, N_NEURONS, DEVICE
+from compare_catastrophic_forgetting import DEVICE
+import compare_catastrophic_forgetting as _ccf
 
 # DEV_MODE speed-up
 try:
@@ -44,13 +45,15 @@ class CorticalAutoencoder:
     """Online autoencoder that learns cortical state patterns during REM.
 
     Architecture:
-      Input (N_EXC) → Dense(64, ReLU) → Dense(N_EXC, linear)
+      Input (_ccf.N_EXC) → Dense(64, ReLU) → Dense(_ccf.N_EXC, linear)
 
     The autoencoder is trained online during REM phases and tested on
     schema completion and novel memory generalization.
     """
 
-    def __init__(self, n_input=N_EXC, n_hidden=N_HIDDEN, lr=AE_LEARNING_RATE):
+    def __init__(self, n_input=None, n_hidden=N_HIDDEN, lr=AE_LEARNING_RATE):
+        if n_input is None:
+            n_input = _ccf.N_EXC
         self.n_input = n_input
         self.n_hidden = n_hidden
         self.lr = lr
@@ -118,10 +121,10 @@ class CorticalAutoencoder:
         Reads the spike raster (net.spikes) as the state representation.
         """
         with torch.no_grad():
-            state = net.spikes[:N_EXC].float().cpu().numpy().copy()
+            state = net.spikes[:_ccf.N_EXC].float().cpu().numpy().copy()
         # Ensure nonzero
         if state.sum() < 0.01:
-            state = np.random.randn(N_EXC).astype(np.float32) * 0.01
+            state = np.random.randn(_ccf.N_EXC).astype(np.float32) * 0.01
         if memory_label is not None:
             self.training_data.append((state, memory_label))
         return state
@@ -160,23 +163,23 @@ class CorticalAutoencoder:
         if core_mask is None or asm_idx >= len(assemblies):
             return 0.0
 
-        core_exc = core_mask[core_mask < N_EXC]
+        core_exc = core_mask[core_mask < _ccf.N_EXC]
         asm = assemblies[asm_idx]
-        asm_exc = asm[asm < N_EXC]
+        asm_exc = asm[asm < _ccf.N_EXC]
 
         # Build noisy core cue
         n_cue = max(1, min(10, len(core_exc)))
         cue = np.random.choice(core_exc, n_cue, replace=False)
-        stim_np = np.zeros(N_EXC, dtype=np.float32)
+        stim_np = np.zeros(_ccf.N_EXC, dtype=np.float32)
         stim_np[cue] = 1.0
         # Add small noise
-        stim_np += np.random.randn(N_EXC).astype(np.float32) * 0.1
+        stim_np += np.random.randn(_ccf.N_EXC).astype(np.float32) * 0.1
 
         # Get autoencoder output
         recon = self.forward(stim_np)
 
         # True memory pattern
-        true_pattern = np.zeros(N_EXC, dtype=np.float32)
+        true_pattern = np.zeros(_ccf.N_EXC, dtype=np.float32)
         true_pattern[asm_exc] = 1.0
 
         mse = float(np.mean((recon - true_pattern) ** 2))
@@ -194,13 +197,13 @@ class CorticalAutoencoder:
         if core_mask is None:
             return {}
 
-        core_exc = core_mask[core_mask < N_EXC]
+        core_exc = core_mask[core_mask < _ccf.N_EXC]
         n_mem = len(assemblies)
         results = {}
 
         for aidx in range(min(n_mem, 8)):
             asm = assemblies[aidx]
-            asm_exc = asm[asm < N_EXC]
+            asm_exc = asm[asm < _ccf.N_EXC]
             unique_exc = np.setdiff1d(asm_exc, core_exc)
             if len(unique_exc) == 0:
                 continue
@@ -208,7 +211,7 @@ class CorticalAutoencoder:
             # Build noisy core cue
             n_cue = max(1, min(10, len(core_exc)))
             cue = np.random.choice(core_exc, n_cue, replace=False)
-            stim_np = np.zeros(N_EXC, dtype=np.float32)
+            stim_np = np.zeros(_ccf.N_EXC, dtype=np.float32)
             stim_np[cue] = 1.0
 
             recon = self.forward(stim_np)
@@ -220,7 +223,7 @@ class CorticalAutoencoder:
                 if oi == aidx:
                     continue
                 oasm = assemblies[oi]
-                ou = np.setdiff1d(oasm[oasm < N_EXC], core_exc)
+                ou = np.setdiff1d(oasm[oasm < _ccf.N_EXC], core_exc)
                 if len(ou) > 0:
                     other_unique_means.append(float(np.mean(recon[ou])))
 
@@ -244,13 +247,13 @@ class CorticalAutoencoder:
         if core_mask is None or mem_e is None:
             return 0.0
 
-        core_exc = core_mask[core_mask < N_EXC]
-        mem_e_exc = mem_e[mem_e < N_EXC]
+        core_exc = core_mask[core_mask < _ccf.N_EXC]
+        mem_e_exc = mem_e[mem_e < _ccf.N_EXC]
         unique_e = np.setdiff1d(mem_e_exc, core_exc)
 
         n_cue = max(1, min(10, len(core_exc)))
         cue = np.random.choice(core_exc, n_cue, replace=False)
-        stim_np = np.zeros(N_EXC, dtype=np.float32)
+        stim_np = np.zeros(_ccf.N_EXC, dtype=np.float32)
         stim_np[cue] = 1.0
 
         recon = self.forward(stim_np)
@@ -261,7 +264,7 @@ class CorticalAutoencoder:
         else:
             unique_e_act = 0.0
 
-        bg = np.random.choice(N_EXC, 100, replace=False)
+        bg = np.random.choice(_ccf.N_EXC, 100, replace=False)
         bg_act = float(np.mean(recon[bg]))
 
         score = unique_e_act / max(bg_act, 1e-10)

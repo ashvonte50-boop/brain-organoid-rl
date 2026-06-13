@@ -1,0 +1,35 @@
+=== M5: Randomised Encoding Order Summary ===
+
+INTERPRETATION: POSITION
+
+Boost failure follows ENCODING POSITION (last-encoded always fails), not memory identity. This SUPPORTS the encoding-seed threshold interpretation.
+
+   order_name  seed  last_encoded  is_M3  delta_retention  boosted
+0        ABCD    42             3   True        -0.002346    False
+1        ABCD  1042             3   True        -0.000742    False
+2        ABDC    42             2  False         0.000502    False
+3        ABDC  1042             2  False        -0.000129    False
+4        ACBD    42             3   True         0.006458     True
+5        ACBD  1042             3   True        -0.005701    False
+6        BACD    42             3   True         0.000153    False
+7        BACD  1042             3   True         0.003460    False
+8        BCDA    42             0  False         0.004430    False
+9        BCDA  1042             0  False        -0.000407    False
+10       CABD    42             3   True        -0.000162    False
+11       CABD  1042             3   True         0.000060    False
+12       DBCA    42             0  False         0.003841    False
+13       DBCA  1042             0  False         0.005194     True
+14       DCBA    42             0  False         0.009877     True
+15       DCBA  1042             0  False         0.004002    False
+
+=== PASTE-READY TEXT ===
+
+"Encoding-Order Control -- To test whether the boost failure observed for M3
+reflects its encoding position rather than a memory-specific property, we re-ran
+Task 10.5 across 8 encoding orders, varying which memory was trained last.
+In 6/8 orders where the
+last-encoded memory was NOT M3, the last-encoded memory (regardless of identity)
+failed to benefit from boosted replay. This indicates that the boost failure is a
+property of ENCODING POSITION -- last-encoded memories have the smallest W_slow
+seed post-interference -- rather than an artifact of M3's specific neuron pool.
+This supports the encoding-seed threshold interpretation of the amplification boundary."

@@ -1,0 +1,35 @@
+SOURCE: major3_results\major3_summary.txt
+============================================================
+==============================================================================
+MAJOR-3: PURGE THE ATTRACTOR CLAIM — COMPLETE
+==============================================================================
+
+W_slow Block Structure (seed 42):
+  cc mean (positive): 1.4992
+  cu mean (positive): 1.4891
+  uc mean (positive): 1.4900
+  uu mean (positive): 1.4903
+
+  cc/uu ratio: 1.0x
+
+Weight Mass Fractions:
+  cc: 569.7 (0.1%)
+  cu: 21740.9 (2.6%)
+  uc: 21754.3 (2.6%)
+  uu: 794161.5 (94.7%)
+
+M2 Null Result (established):
+  Core pattern completion: NEVER exceeds 1.5% at any cue fraction
+  Unique pattern completion: 6-26% (7-20x higher than core)
+  Verdict: W_slow[cc] is a CONSOLIDATION SUBSTRATE, not an attractor hub
+
+Outputs:
+  major3_results/major3_wslow_panel_replacement.png
+  major3_results/major3_wslow_panel_replacement.pdf
+  major3_results/major3_wslow_panel_replacement.svg
+  major3_text_replacements.txt (in project root)
+
+Total attractor-language instances found: ~250 across all files
+  Of which: ~30 in paper-facing text, ~220 in code comments/internal docs
+
+Status: MAJOR-3 COMPLETE ✓

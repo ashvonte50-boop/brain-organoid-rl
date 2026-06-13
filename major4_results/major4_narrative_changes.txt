@@ -1,0 +1,123 @@
+
+==============================================================================
+MAJOR-4 OUTPUT 3: COMPLETE NARRATIVE CHANGE LIST
+==============================================================================
+
+OVERALL PRINCIPLE:
+  The paper should read as if the temporal-priority hypothesis was the
+  STARTING POINT, and every experiment was designed to test specific
+  predictions derived from it. No post-hoc reinterpretation.
+
+──────────────────────────────────────────────────────────────────────────────
+SECTION-BY-SECTION CHANGES
+──────────────────────────────────────────────────────────────────────────────
+
+1. TITLE
+   OLD: [whatever it was]
+   NEW: Consider: "Replay-Gated Cascade Consolidation: Temporal Priority
+        Emerges from Replay Scheduling in Spiking Neural Networks"
+   Or keep original if temporal priority is too specific for title.
+
+2. ABSTRACT
+   - Lead with "We hypothesize that temporal priority in sequential memory..."
+   - NOT "We find that..." or "We observe that..."
+   - State the three predictions explicitly
+   - Results paragraph: "All three predictions were confirmed: ..."
+
+3. INTRODUCTION (see major4_intro_rewrite.txt for full text)
+   - Hypothesis → Predictions → Experimental Design → Results
+   - NOT: Observations → Post-hoc Explanation
+
+4. METHODS
+   No changes needed — methods describe what was done, not why.
+   BUT: Add a "Predictions" subsection in each experiment's methods:
+   - "We predicted that equalized replay would reduce the primacy gradient
+     (MAJOR-1, testing P3)"
+   - "We predicted that encoding boost alone would fail to rescue M3
+     (E1, discriminating H0 vs H1)"
+
+5. RESULTS — Task 2 (Replay Necessity)
+   OLD: "We tested whether replay protects memories..."
+   NEW: "Testing prediction P1 (replay necessity): Without replay, we
+         predicted all memories would degrade equally..."
+   Result: P1 confirmed. FULL: 0.286 ± X, NO_REPLAY: 0.037 ± X, p < 0.001.
+
+6. RESULTS — E2/Task 10.5 (Causal Asymmetry)
+   OLD: "We found that suppressing replay for one memory..."
+   NEW: "Testing prediction P2 (causal asymmetry): We predicted that
+         selectively suppressing replay for memory k would reduce k's
+         retention while sparing others..."
+   Result: P2 confirmed. Suppress p = 1.67e-14, Boost p = 0.086 (ns).
+
+7. RESULTS — E1 (Decisive Test)
+   See major4_e1_reframe.txt for full rewrite.
+   Key: Frame as H0-vs-H1 discrimination, not as "boost experiment."
+
+8. RESULTS — MAJOR-1 (Scheduling Test)
+   [To be written after MAJOR-1 runs]
+   Frame: "Testing prediction P3 (scheduling dependence)..."
+   If equalized replay eliminates gradient: P3 confirmed, temporal priority
+   is a scheduling artifact (in the best sense — it's the mechanism).
+   If gradient persists: P3 rejected, revise hypothesis.
+
+9. RESULTS — Step 0 (Encoding Characterization)
+   OLD: "We characterized encoding strength..."
+   NEW: "As additional evidence against H0, we measured fast-weight
+         encoding immediately after training..."
+   Key datum: M3 W_encode = 0.043 > M0 W_encode = 0.033
+   This REVERSES the expected gradient under H0.
+
+10. DISCUSSION
+    Lead with: "Our results support the temporal-priority hypothesis (H1)
+    over the seed-threshold hypothesis (H0)."
+
+    Structure:
+    a) Summary of which predictions were confirmed/falsified
+    b) Mechanistic explanation (replay scheduling → consolidation gradient)
+    c) Relation to CLS theory (McClelland et al., 1995)
+    d) Relation to prioritized replay in RL (Schaul et al., 2015)
+    e) Limitations (MAJOR-1 result constrains interpretation)
+    f) Future work
+
+11. FIGURES
+    - Fig 1: Model schematic (no changes needed)
+    - Fig 2: Replay necessity (add P1 annotation)
+    - Fig 3: W_slow substrate (REPLACE — see MAJOR-3)
+    - Fig 4: Causal asymmetry (add P2 annotation)
+    - Fig 5: E1 discrimination test (reframe as H0 vs H1)
+    - Fig 6: MAJOR-1 scheduling test (NEW — P3 test)
+    - Fig 7: MAJOR-2 behavioral validation (NEW)
+
+──────────────────────────────────────────────────────────────────────────────
+LANGUAGE PATTERNS TO CHANGE GLOBALLY
+──────────────────────────────────────────────────────────────────────────────
+
+OLD: "We found that..."     → NEW: "Consistent with prediction PX, ..."
+OLD: "Surprisingly, ..."    → NEW: "As predicted by H1, ..."
+OLD: "This suggests..."     → NEW: "This confirms/falsifies prediction ..."
+OLD: "Interestingly, ..."   → DELETE (never use in prospective framing)
+OLD: "We observed that..."  → NEW: "Testing PX, we measured..."
+OLD: "Post-hoc analysis..." → DELETE (nothing should be post-hoc)
+OLD: "Unexpected finding..." → Reframe as designed test with predicted outcome
+
+──────────────────────────────────────────────────────────────────────────────
+HONESTY CONSTRAINTS
+──────────────────────────────────────────────────────────────────────────────
+
+1. E2 Boost p = 0.086 (ns): Report honestly. Do NOT claim significance.
+   Frame: "The boost condition showed a trend (p = 0.086) that did not
+   reach significance, consistent with a weak or absent reverse effect."
+
+2. E1 Outcome B: Report honestly. Do NOT hide it.
+   Frame: "As predicted by H1, encoding boost alone failed to rescue M3."
+   (This is now a POSITIVE finding under the temporal-priority hypothesis.)
+
+3. E3 attenuation: Learned assemblies show ~60% of hand-designed effects.
+   Frame: "Effect magnitudes were attenuated (~60%), likely reflecting
+   noisier assembly boundaries in the self-organized case."
+
+4. MAJOR-1: If equalized replay does NOT eliminate the gradient,
+   report honestly and revise the temporal-priority hypothesis.
+   There may be a consolidation-order effect beyond pure replay counts.
+
+Status: MAJOR-4 COMPLETE ✓

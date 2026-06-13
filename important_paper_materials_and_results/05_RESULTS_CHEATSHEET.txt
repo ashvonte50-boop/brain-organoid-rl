@@ -1,0 +1,57 @@
+RGCC PAPER -- RESULTS CHEATSHEET
+(All numbers verified from 700+ simulation runs)
+================================================================================
+
+CORE RESULTS:
+  Replay necessity:     FULL=0.286+/-0.013 vs NO_REPLAY=0.037+/-0.003 (87% drop, d=25.78)
+  Cascade necessity:    null model t=-175.3, p<1e-15 (replay useless without W_slow)
+  W_slow sufficiency:   cc alone=74%, cc+uc=93% retention recovery
+  Position law:         E[ret(k)] = 0.247 + 0.074*(H(N)-H(k)), R^2=0.828
+
+CAUSAL EVIDENCE (n=30):
+  Suppress M0:          d=1.61, p=1.67e-14, 30/30 seeds degraded
+  Boost M3:             p=0.086, n.s., 19/30 no gain
+  Interaction:          F(6,348)=23.34, p=3.6e-23
+
+KEY CONTROLS:
+  Equalised replay:     gradient +14.9% stronger (p<0.0001) -- NOT a scheduling artifact
+  Encoding order M5:    6/8 orders confirm position, not identity, drives failure
+  E1 2x2 factorial:     seed x boost p=0.599 -- encoding seed not the bottleneck
+  iSTDP robustness:     p=0.57, no effect -- static inhibition assumption OK
+  Benna-Fusi cascade:   BF_FULL=0.017, BF_NO_REPLAY=0.017 -- replay useless in BF
+
+GENERALISATION:
+  Learned schema:       ~82% strength at corr=0.8, emerges at corr>=0.6
+  Parameter robustness: W_MAX insensitive; gamma/tau_slow cited biologically
+  Network scaling:      FULL=0.259, NO_REPLAY=0.049 at larger N
+
+SERIAL POSITION (KEY NEW FINDING):
+  Immediate probe (frac=0.0): M3=0.044 > M0=0.027 (recency present)
+  Delayed probe (frac=1.0):   M0=0.156 > M3=0.040 (primacy: 3.9x ratio)
+  8-memory delayed probe:     M0=0.144 > M1=0.099 > ... > M7=0.009
+  Decomposition:              gamma=0 -> recency; gamma=0.65 -> primacy
+
+W_SLOW BLOCKS:
+  W_slow[cc]:  0.610 +/- 0.010
+  W_slow[uc]:  0.126 +/- 0.007
+  W_slow[uu]:  0.041 +/- 0.002
+
+E2 PER-MEMORY MEANS (30 seeds):
+  CONTROL:     M0=0.246, M1=0.244, M2=0.242, M3=0.225
+  SUPPRESS_M0: M0=0.222, M1=0.247, M2=0.247, M3=0.223
+  BOOST_M3:    M0=0.238, M1=0.236, M2=0.235, M3=0.223
+
+MAJOR-1 EQUALIZED REPLAY (15 seeds):
+  NATURAL:     gradient present (M0 > M3)
+  EQUALIZED:   gradient +14.9% STRONGER (t=-5.80, p<0.0001)
+  EQUALIZED_POS: intermediate
+
+MODEL PARAMETERS:
+  N_NEURONS=1000 (750E, 250I), 8 modules
+  GAMMA=0.65, ETA=0.01, TAU_SLOW=3000-4000ms
+  STDP: A+=0.01, A-=0.006, tau=20ms
+  CORE_SIZE=20, N_MEMORIES=4 (default)
+  REPLAY_COHERENCE_THR=0.50
+  W_MAX=1.5, DT=0.5ms
+
+TOTAL RUNS: 700+

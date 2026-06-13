@@ -1294,7 +1294,9 @@ class SynapticTags:
     when TAG_CAPTURE_RATE was high, causing W_eff to explode.
     """
 
-    def __init__(self, n_exc=N_EXC, tau=TAG_DECAY_TAU, device=DEVICE):
+    def __init__(self, n_exc=None, tau=TAG_DECAY_TAU, device=DEVICE):
+        if n_exc is None:
+            n_exc = N_EXC
         self.n_exc        = n_exc
         self.tau          = tau
         self.device       = device

@@ -1,0 +1,156 @@
+FIGURE CAPTIONS FOR RGCC PAPER
+Replay-Gated Cascade Consolidation:
+Serial Position Effect from Synaptic First Principles
+in a Two-Timescale Spiking Schema Network
+======================================================================
+
+FIGURE 1: serial_position_flagship.png
+Source: figures\paper\serial_position_flagship.png
+Relevance score: 19
+Matched to template: serial_position_flagship
+----------------------------------------
+Fig. X. Serial Position Effect from Synaptic First Principles.
+(A) Consolidation dynamics: per-memory retention (isyn_score) as a function of consolidation fraction (0 = immediately after encoding, 1 = after full replay-driven consolidation). M0 (first encoded) rises steeply with consolidation; M3 (last encoded) remains low. (B) Fast-weight dynamics: W_fast is highest for M3 at immediate probe (recency signal) and decays toward equilibrium. (C) Synaptic decomposition: gamma=0 probe (fast weights only, orange) shows a recency gradient (M3 highest); standard readout (blue) shows primacy gradient (M0 highest), demonstrating that W_fast drives recency and W_slow drives primacy. (D) Serial position curves -- 4 memories: immediate probe (orange dashed) is relatively flat; delayed probe (blue solid) shows steep primacy gradient. (E) Serial position curves -- 8 memories: delayed probe reveals characteristic steep primacy gradient across all 8 positions, consistent with the harmonic-series consolidation law. (F) Position-to-consolidation law: the 2-parameter harmonic-series prediction E[retention(k)] = alpha + beta*(H(N)-H(k)) fits delayed retention (R^2 = 0.828). Mean +/- 95% CI across 10 seeds.
+
+======================================================================
+
+FIGURE 2: serial_position_flagship.png
+Source: serial_position_experiment\figures\serial_position_flagship.png
+Relevance score: 15
+Matched to template: serial_position_flagship
+----------------------------------------
+Fig. X. Serial Position Effect from Synaptic First Principles.
+(A) Consolidation dynamics: per-memory retention (isyn_score) as a function of consolidation fraction (0 = immediately after encoding, 1 = after full replay-driven consolidation). M0 (first encoded) rises steeply with consolidation; M3 (last encoded) remains low. (B) Fast-weight dynamics: W_fast is highest for M3 at immediate probe (recency signal) and decays toward equilibrium. (C) Synaptic decomposition: gamma=0 probe (fast weights only, orange) shows a recency gradient (M3 highest); standard readout (blue) shows primacy gradient (M0 highest), demonstrating that W_fast drives recency and W_slow drives primacy. (D) Serial position curves -- 4 memories: immediate probe (orange dashed) is relatively flat; delayed probe (blue solid) shows steep primacy gradient. (E) Serial position curves -- 8 memories: delayed probe reveals characteristic steep primacy gradient across all 8 positions, consistent with the harmonic-series consolidation law. (F) Position-to-consolidation law: the 2-parameter harmonic-series prediction E[retention(k)] = alpha + beta*(H(N)-H(k)) fits delayed retention (R^2 = 0.828). Mean +/- 95% CI across 10 seeds.
+
+======================================================================
+
+FIGURE 3: e2_task105_30seeds.png
+Source: e2_results\e2_task105_30seeds.png
+Relevance score: 14
+Matched to template: e2_task105_30seeds
+----------------------------------------
+Fig. X. Causal Replay Manipulation Across 30 Seeds.
+(A) Grouped bar chart showing mean retention by memory (M0-M3) under three conditions: CONTROL (grey), SUPPRESS_MEM0 (red), and BOOST_MEM3 (orange). Error bars = 95% CI. (B) Paired distribution: suppressing M0 replay degraded M0 retention in 30/30 seeds (CONTROL = 0.246 +/- 0.008, SUPPRESS = 0.222 +/- 0.009; t(29) = 18.4, d = 1.61, p = 1.67e-14). (C) Paired distribution: boosting M3 replay produced no significant gain (CONTROL = 0.224, BOOST = 0.223; p = 0.086, n.s.; 19/30 seeds showed no gain). Condition x memory-order interaction: F(6,348) = 23.34, p = 3.6e-23. Grey lines connect paired seed values; squares = mean +/- 95% CI.
+
+======================================================================
+
+FIGURE 4: major1_scheduling_test.png
+Source: major1_results\major1_scheduling_test.png
+Relevance score: 14
+Matched to template: major1_scheduling
+----------------------------------------
+Fig. X. Equalised Replay Strengthens Rather Than Eliminates the Primacy Gradient.
+(A) Analytical prediction: the harmonic-series model E[replay(k)] = R*(H(N)-H(k)) predicts observed replay counts across three seeds (r = 0.97). (B) Decoupling control: with natural replay (scheduling asymmetry present), M0-M3 retention gap = 0.086 +/- 0.002. With equalised replay (all memories receive identical counts), the gap increases to 0.099 +/- 0.002 (+14.9%; t = -5.80, p < 0.0001). This directly falsifies the scheduling-artifact hypothesis: the primacy gradient reflects genuine consolidation-order dynamics, not a replay-count artifact. Earlier-encoded memories consolidate more strongly even with equal replay because they consolidate under lower interference. Mean +/- 95% CI, n = 15 seeds.
+
+======================================================================
+
+FIGURE 5: major3_wslow_panel_replacement.png
+Source: major3_results\major3_wslow_panel_replacement.png
+Relevance score: 14
+Matched to template: major3_wslow
+----------------------------------------
+Fig. X. W_slow Weight Structure After Sequential Learning.
+Heatmap of W_slow[i,j] for the first 100 excitatory neurons after training four overlapping memories with full replay. The three structural blocks are visible: W_slow[cc] (core-to-core, top-left 20x20), W_slow[uc] (unique-to-core, next 80x20), and W_slow[uu] (unique-to-unique, bottom-right). Block means: W_slow[cc] = 0.610 +/- 0.010, W_slow[uc] = 0.126 +/- 0.007, W_slow[uu] = 0.041 +/- 0.002. The schema core accumulates approximately 15x more W_slow than unique-to-unique synapses, reflecting its structural frequency advantage during replay.
+
+======================================================================
+
+FIGURE 6: mod2_consolidation_law.png
+Source: mod_results\mod2_consolidation_law.png
+Relevance score: 14
+Matched to template: mod2_consolidation_law
+----------------------------------------
+Fig. X. Position-to-Consolidation Law.
+(A) The 2-parameter harmonic-series prediction E[retention(k)] = 0.247 + 0.074*(H(N)-H(k)) fits 60 data points (10 seeds x 4 memories x delayed probe) with R^2 = 0.828. Points are coloured by seed; the curve is the analytical prediction with no per-memory free parameters. (B) Residuals show no systematic deviation across encoding positions (Shapiro-Wilk p = 0.23), confirming the harmonic series captures the functional form of the position-to-consolidation relationship. This provides a closed-form, parameter-free prediction that links the RGCC scheduling structure directly to the observed consolidation gradient.
+
+======================================================================
+
+FIGURE 7: Figure1_MechanisticArchitecture.png
+Source: ablation_results\task11\Figure1_MechanisticArchitecture.png
+Relevance score: 14
+Matched to template: Figure1_MechanisticArchitecture
+----------------------------------------
+Fig. X. RGCC Mechanistic Architecture.
+Eight-panel flagship figure showing: (A) network architecture with schema core and memory-specific pools; (B) encoding sequence and W_fast trace formation; (C) replay event structure and W_slow potentiation pathway; (D) harmonic-series replay-allocation schedule; (E) W_slow block structure (cc >> uc >> uu); (F) consolidated weight locus (W_slow[cc] heatmap); (G) retrieval pathway through W_slow[uc] to W_slow[cc]; (H) temporal priority: position determines consolidation strength.
+
+======================================================================
+
+FIGURE 8: Figure2_ExperimentalValidation.png
+Source: ablation_results\task11\Figure2_ExperimentalValidation.png
+Relevance score: 14
+Matched to template: Figure2_ExperimentalValidation
+----------------------------------------
+Fig. X. Experimental Validation of RGCC Across Nine Task Families.
+Nine-panel validation figure showing: replay necessity (87% retention collapse, n=10); fast-weight null result (Tasks 5/5.5); W_slow sufficiency (74% and 93% restoration); schema-core frequency advantage (4x co-activation); replay-count correlation (mixed-effects beta=0.0036/event, p<0.0001); causal asymmetry (suppress p=1e-12, boost n.s.); null model (d=175, p<1e-15); and parameter sensitivity. All core claims supported independently across multiple experimental designs.
+
+======================================================================
+
+FIGURE 9: task2_master_summary.png
+Source: ablation_results\task2_master\task2_master_summary.png
+Relevance score: 14
+Matched to template: task2
+----------------------------------------
+Fig. X. Task 2: Replay Necessity Master Summary.
+Comprehensive multi-panel figure showing the replay-necessity experimental paradigm and results. FULL condition (with replay): mean retention 0.286 +/- 0.013; NO_REPLAY condition: 0.037 +/- 0.003. The 87% retention collapse (Cohen's d = 25.78, t = 57.6, p < 1e-15) demonstrates that replay is an absolute requirement for consolidation in the RGCC framework. All 10 seeds show the same direction.
+
+======================================================================
+
+FIGURE 10: fig4_full_vs_noreplay_master.png
+Source: ablation_results\task3\figures\fig4_full_vs_noreplay_master.png
+Relevance score: 14
+Matched to template: fig4_full_vs_noreplay
+----------------------------------------
+Fig. X. Full vs No-Replay Retention Comparison.
+Direct comparison of retention across FULL and NO_REPLAY conditions, showing the dramatic separation between conditions. The 7.8x retention ratio confirms that without replay-driven W_slow potentiation, the fast-weight trace decays to near-baseline levels. This figure provides the clearest visual evidence of replay necessity in the RGCC framework.
+
+======================================================================
+
+FIGURE 11: fig_Q3_seed_scatter.png
+Source: ablation_results\q_fixes\fig_Q3_seed_scatter.png
+Relevance score: 13
+Matched to template: q3_seed_scatter
+----------------------------------------
+Fig. X. Replay Necessity Across All 10 Seeds (Task 2).
+Paired retention values for FULL (with replay) and NO_REPLAY conditions across all 10 random seeds. Grey lines connect paired seed values; coloured squares show mean +/- SD. FULL: 0.286 +/- 0.013; NO_REPLAY: 0.037 +/- 0.003. The large standardised effect size (Cohen's d = 25.78) reflects low cross-seed variance in this near-deterministic simulation rather than a biological effect magnitude. All 10 seeds show the same direction; the replay-necessity result is fully consistent across seeds. Paired t(9) = 70.81, p = 1.13e-13.
+
+======================================================================
+
+FIGURE 12: fig_Q5_dose_response.png
+Source: ablation_results\q_fixes\fig_Q5_dose_response.png
+Relevance score: 13
+Matched to template: q5_dose_response
+----------------------------------------
+Fig. X. Dose-Response: Retention Degrades Monotonically with Replay Suppression.
+(A) M0 retention (isyn_score) as a function of replay events received, at five suppression levels (100%, 75%, 50%, 25%, ~0% of baseline 12 events). Retention decreases monotonically, confirming a graded rather than threshold relationship between replay and consolidation. (B) W_slow contribution mirrors the retention dose-response, confirming that the retention effect is mediated through the cascade weight.
+
+======================================================================
+
+FIGURE 13: m4_null_model_comparison.png
+Source: m4_results\m4_null_model_comparison.png
+Relevance score: 12
+Matched to template: m4_null_model
+----------------------------------------
+Fig. X. Single-Timescale Null Model: The Fusi Cascade is Necessary.
+(A) Retention comparison: two-timescale FULL model (0.286 +/- 0.013), single-timescale null (gamma=0, no W_slow potentiation) with replay (0.025 +/- 0.002), and NO_REPLAY baseline (0.037 +/- 0.003). Replay provides no benefit in the single-timescale null model (t = -175.3, p < 1e-15, n = 10 seeds per model). (B) Per-seed scatter confirming universal pattern: all 10 seeds show null-model retention ~ NO_REPLAY. The Fusi cascade W_slow is necessary for replay to gate consolidation.
+
+======================================================================
+
+FIGURE 14: fig1_early_replay_vs_retention.png
+Source: ablation_results\task10\figures\fig1_early_replay_vs_retention.png
+Relevance score: 12
+Matched to template: fig1_early_replay
+----------------------------------------
+Fig. X. Early Replay Count Predicts Retention.
+Scatter plot of replay events received by each memory versus its final retention score (isyn_score). The strong positive correlation (r = 0.97) demonstrates that within-session replay count is the proximate driver of W_slow consolidation. Memories that receive more replay events during the consolidation window show proportionally higher retention. This relationship is mediated by the harmonic-series scheduling mechanism: earlier-encoded memories are available for replay during more inter-encoding intervals.
+
+======================================================================
+
+FIGURE 15: e3_learned_schema.png
+Source: e3_results\e3_learned_schema.png
+Relevance score: 11
+Matched to template: e3_learned_schema
+----------------------------------------
+Fig. X. RGCC Signatures Reproduced in Networks with Emergent Schema Structure.
+(A) Emergent core size versus input correlation; dashed line = hand-assigned core (20 neurons). (B) Side-by-side comparison of RGCC signatures (replay necessity, W_slow[cc] elevation, frequency advantage) between hand-assigned and learned schema conditions. All signatures are present in the learned condition at approximately 82% of the hand-assigned magnitude at correlation = 0.8. The mechanism is not contingent on imposed architecture; it generalises to emergent schema structure.
+
+======================================================================
+

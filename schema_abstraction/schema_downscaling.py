@@ -23,7 +23,8 @@ Reference:
 import numpy as np
 import torch
 
-from compare_catastrophic_forgetting import N_EXC, N_NEURONS, DEVICE
+from compare_catastrophic_forgetting import DEVICE
+import compare_catastrophic_forgetting as _ccf
 
 # DEV_MODE speed-up
 try:
@@ -287,7 +288,7 @@ class DownscaleTracker:
                 asm = assemblies[aidx]
 
                 # Brief pulse to reactivate assembly
-                stim = torch.zeros(N_NEURONS, device=self.device)
+                stim = torch.zeros(_ccf.N_NEURONS, device=self.device)
                 cue = np.random.choice(asm[asm < self.n_exc],
                                        size=min(10, len(asm)), replace=False)
                 stim[cue] = 1.0
@@ -390,7 +391,7 @@ class DownscaleTracker:
 def _record_schema_firing(net, phase, tracker):
     """Record mean firing rate of excitatory neurons for this phase."""
     with torch.no_grad():
-        fr = float(net.spikes[:N_EXC].float().mean().item())
+        fr = float(net.spikes[:_ccf.N_EXC].float().mean().item())
     if phase == "nrem":
         tracker.schema_core_firing_nrem.append(fr)
     else:

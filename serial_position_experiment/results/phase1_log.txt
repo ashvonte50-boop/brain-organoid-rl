@@ -1,0 +1,29 @@
+[INFO] DEV_MODE=True (via $env:DEV_MODE)
+
+=== PHASE 1: DIAGNOSTIC (seed 42) ===
+  seed=42 frac=0.00: M0=0.0361 M1=0.0296 M2=0.0342 M3=0.0564 (777s)
+  seed=42 frac=0.50: M0=0.1048 M1=0.0743 M2=0.0664 M3=0.0545 (799s)
+  seed=42 frac=1.00: M0=0.1739 M1=0.1082 M2=0.0737 M3=0.0559 (835s)
+
+=== DIAGNOSTIC SUMMARY ===
+  frac        M0       M1       M2       M3    M3>M0?
+  0.00    0.0361   0.0296   0.0342   0.0564       YES
+  0.50    0.1048   0.0743   0.0664   0.0545        no
+  1.00    0.1739   0.1082   0.0737   0.0559        no
+
+  recency at immediate (M3>M0): True
+  primacy at delayed   (M0>M3): True
+  CROSSOVER: True
+Traceback (most recent call last):
+  File "C:\Users\Admin\serial_position_experiment\code\run_experiment.py", line 202, in <module>
+    run_diagnostic(seed=42, fractions=(0.0, 0.5, 1.0))
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\serial_position_experiment\code\run_experiment.py", line 110, in run_diagnostic
+    print(f"\n  \u03b3=0 probe (M0..M3): " +
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+          ' '.join(f"{v:.4f}" for v in g0_vals), flush=True)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python313\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u03b3' in position 4: character maps to <undefined>

@@ -1,0 +1,17 @@
+[INFO] DEV_MODE=True (via $env:DEV_MODE)
+[T10] seed=2042 -- FAST Predictive Validation
+[T10] core=20 unique=80 assemblies=4
+[T10] event=10 mem=0 core_frac=0.350
+[T10] event=20 mem=1 core_frac=0.400
+[T10] event=30 mem=1 core_frac=0.450
+[T10] event=40 mem=1 core_frac=0.450
+[T10] Training complete. 46 replay events.
+[T10] Final WScc=0.5981 WSuc=0.1183 WSuu=0.0381
+[T10] Q25%: events=11 replays=[11, 0, 0, 0] core_frac=0.486
+[T10] Q50%: events=23 replays=[18, 5, 0, 0] core_frac=0.448
+[T10] Q75%: events=34 replays=[20, 13, 1, 0] core_frac=0.438
+[T10] Q100%: events=46 replays=[22, 20, 4, 0] core_frac=0.437
+[T10] Retention:  ['0.3288', '0.3112', '0.2634', '0.2440']  mean=0.2868
+[T10] Retrieval:  ['0.0000', '0.0000', '0.0500', '0.0000']  mean=0.0125
+[T10] Replay counts: [22, 20, 4, 0]
+[T10] SAVED C:\Users\Admin\brain-organoid-rl\ablation_results\task10\T10_seed2042.pkl

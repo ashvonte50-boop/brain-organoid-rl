@@ -1,0 +1,70 @@
+
+==============================================================================
+MAJOR-4 OUTPUT 1: INTRODUCTION REWRITE — TEMPORAL PRIORITY HYPOTHESIS
+==============================================================================
+Replace existing Introduction with this prospective-framing version.
+Key change: The hypothesis is stated BEFORE the experiments, not after.
+
+--- BEGIN REVISED INTRODUCTION ---
+
+Sequential memory consolidation in biological neural networks faces a
+fundamental tension: new learning must be integrated without catastrophically
+overwriting existing memories. While systems-level solutions (hippocampal-
+neocortical transfer) and algorithmic approaches (elastic weight consolidation,
+progressive neural networks) address this at different scales, the synaptic-
+level mechanisms that enable sequential consolidation within a single network
+remain poorly understood.
+
+We propose the Replay-Gated Cascade Consolidation (RGCC) model, which combines
+two biologically grounded mechanisms:
+  (1) A two-timescale synaptic architecture (fast STDP + slow Fusi cascade)
+  (2) Coherence-gated offline replay during simulated rest periods
+
+The central hypothesis of this work is the TEMPORAL PRIORITY PRINCIPLE:
+
+  H1 (Temporal Priority): In systems with replay-driven consolidation,
+  earlier-encoded memories receive disproportionate consolidation because
+  they are eligible for replay across more rest periods than later memories.
+  This creates a primacy gradient that is an intrinsic property of the
+  replay-consolidation loop, not of encoding strength.
+
+This hypothesis makes three testable predictions:
+
+  P1 (Replay Necessity): Without replay, fast-weight interference destroys
+  all memories regardless of encoding order (no consolidation pathway).
+
+  P2 (Causal Asymmetry): Replay selectively protects earlier memories.
+  The magnitude of protection should scale with temporal position, not
+  with encoding quality.
+
+  P3 (Scheduling Dependence): The primacy gradient should depend on the
+  replay scheduling distribution. If replay allocations are equalized
+  across memories, the temporal-position effect should be reduced or
+  eliminated — demonstrating that the gradient arises from differential
+  replay exposure, not from an intrinsic encoding advantage.
+
+We derive P3 analytically from the harmonic-series structure of our replay
+scheduler (see Methods §X) and test it empirically in Experiment MAJOR-1.
+
+The temporal priority principle stands in contrast to a simpler SEED-THRESHOLD
+hypothesis:
+
+  H0 (Seed Threshold): Primacy arises because earlier memories have stronger
+  initial encoding (more presentations before interference begins), creating
+  a quality gradient that replay merely amplifies.
+
+Experiment E1 (§X) directly discriminates between H1 and H0 by testing
+whether artificially boosting the encoding of the most-forgetting-prone
+memory (M3) to match M0's post-encoding strength can rescue it. Under H0,
+this boost should be sufficient; under H1, it should fail because the
+deficit is in replay scheduling, not encoding quality.
+
+--- END REVISED INTRODUCTION ---
+
+KEY CHANGES FROM ORIGINAL:
+1. Hypothesis stated BEFORE experiments (prospective framing)
+2. Three explicit predictions (P1-P3) derived from the hypothesis
+3. Competing hypothesis (H0) stated explicitly
+4. E1 framed as discriminating test between H1 and H0
+5. MAJOR-1 scheduling test is foreshadowed as testing P3
+6. No post-hoc narrative — everything follows from the initial hypothesis
